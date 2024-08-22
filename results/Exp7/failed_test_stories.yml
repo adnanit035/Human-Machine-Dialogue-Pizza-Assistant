@@ -1,0 +1,548 @@
+version: "3.1"
+stories:
+- story: Test activate pizza order form (.\test\test_stories.yml)
+  steps:
+  - intent: inform_pizza_type
+    entities:
+    - pizza_type: pepperoni
+  - slot_was_set:
+    - pizza_type: pepperoni
+  - slot_was_set:
+    - pizza_type: pepperoni
+  - action: pizza_order_form
+  - active_loop: pizza_order_form
+- story: Test interrupt pizza order form with custom toppings information (.\test\test_stories.yml)
+  steps:
+  - intent: inform_pizza_type
+    entities:
+    - pizza_type: Margherita
+  - slot_was_set:
+    - pizza_type: Margherita
+  - slot_was_set:
+    - pizza_type: Margherita
+  - action: pizza_order_form
+  - active_loop: pizza_order_form
+  - intent: ask_custom_toppings_info
+  - action: action_inform_available_toppings
+  - action: action_utter_ask_topping_confirmation
+  - action: pizza_custom_topping_form
+  - active_loop: pizza_custom_topping_form
+- story: Test interrupt pizza order form with opening times information (.\test\test_stories.yml)
+  steps:
+  - intent: inform_pizza_type
+    entities:
+    - pizza_type: Margherita
+  - slot_was_set:
+    - pizza_type: Margherita
+  - slot_was_set:
+    - pizza_type: Margherita
+  - action: pizza_order_form
+  - active_loop: pizza_order_form
+  - intent: ask_opening_times
+  - action: utter_opening_times
+  - action: pizza_order_form
+  - active_loop: pizza_order_form
+- story: Test interrupt order pickup form with opening times information (.\test\test_stories.yml)
+  steps:
+  - slot_was_set:
+    - order_list: true
+  - intent: proceed_to_pickup  # predicted: nlu_fallback: I'd like to pick up my order
+  - action: action_calculate_preparation_time
+  - action: utter_response_to_proceed_to_pickup_intent
+  - action: order_pickup_form
+  - active_loop: order_pickup_form
+  - intent: ask_opening_times
+  - action: utter_opening_times_with_ask_pickup_time
+  - action: order_pickup_form
+  - active_loop: order_pickup_form
+- story: Test user interrupts asking assistant's identity and stops the pizza order form and conversation (.\test\test_stories.yml)
+  steps:
+  - intent: inform_pizza_type
+    entities:
+    - pizza_type: Margherita
+  - slot_was_set:
+    - pizza_type: Margherita
+  - slot_was_set:
+    - pizza_type: Margherita
+  - action: pizza_order_form
+  - active_loop: pizza_order_form
+  - intent: bot_challenge
+  - action: utter_bot_challenge
+  - action: pizza_order_form
+  - active_loop: pizza_order_form
+  - intent: no_longer_hungry_stop_conversation
+  - action: utter_response_to_confirm_stop_request
+  - intent: affirm
+  - action: action_deactivate_loop
+  - action: utter_want_to_stop_conversation
+  - action: action_reset_all_slots
+- story: Test user interrupts asking info about assistant's identity and continues with the pizza order form (.\test\test_stories.yml)
+  steps:
+  - intent: inform_pizza_type
+    entities:
+    - pizza_type: Margherita
+  - slot_was_set:
+    - pizza_type: Margherita
+  - slot_was_set:
+    - pizza_type: Margherita
+  - action: pizza_order_form
+  - active_loop: pizza_order_form
+  - intent: bot_challenge
+  - action: utter_bot_challenge
+  - action: pizza_order_form
+  - active_loop: pizza_order_form
+- story: Test - User selects one pizza from the menu with standard toppings and then proceeds to pickup (.\test\test_stories.yml)
+  steps:
+  - intent: start_greet
+  - action: action_utter_greet
+  - slot_was_set:
+    - restaurant_opened: true
+  - intent: initiate_general_conversation  # predicted: nlu_fallback: How are you?
+  - action: utter_initiate_general_conversation
+  - intent: inform_menu
+  - action: action_inform_menu
+  - action: utter_ask_pizza_type
+  - intent: pizza_standard_topping_confirm
+  - action: pizza_order_form
+  - active_loop: pizza_order_form
+  - slot_was_set:
+    - order_list: []
+  - slot_was_set:
+    - requested_slot: pizza_type
+  - intent: inform_pizza_type
+    entities:
+    - pizza_type: seafood
+  - slot_was_set:
+    - pizza_type: seafood
+  - slot_was_set:
+    - pizza_type: seafood
+  - action: pizza_order_form
+  - slot_was_set:
+    - pizza_type: seafood
+  - slot_was_set:
+    - order_list: []
+  - slot_was_set:
+    - requested_slot: pizza_topping
+  - active_loop: null
+  - active_loop: null
+  - intent: pizza_standard_topping_confirm
+  - action: pizza_order_form
+  - active_loop: pizza_order_form
+  - slot_was_set:
+    - pizza_type: seafood
+  - slot_was_set:
+    - order_list: []
+  - slot_was_set:
+    - pizza_topping:
+      - Shrimp
+      - Mussels
+      - Clams
+      - Tomato Sauce
+      - and Mozzarella Cheese
+  - slot_was_set:
+    - topping_satisfaction: true
+  - slot_was_set:
+    - requested_slot: pizza_size
+  - intent: inform_pizza_size
+    entities:
+    - pizza_size: medium
+  - slot_was_set:
+    - pizza_size: medium
+  - slot_was_set:
+    - pizza_size: medium
+  - action: pizza_order_form
+  - slot_was_set:
+    - pizza_size: medium
+  - slot_was_set:
+    - order_list: []
+  - slot_was_set:
+    - requested_slot: pizza_quantity
+  - intent: inform_pizza_quantity  # predicted: nlu_fallback: [one](pizza_quantity) pizza.
+    entities:
+    - pizza_quantity: one
+  - slot_was_set:
+    - pizza_quantity: one
+  - slot_was_set:
+    - pizza_quantity: one
+  - action: pizza_order_form
+  - slot_was_set:
+    - pizza_quantity: one
+  - slot_was_set:
+    - order_list: []
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_pizza_add_confirmation_message
+  - action: action_submit_pizza_order_form
+  - slot_was_set:
+    - pizza_type: null
+  - slot_was_set:
+    - pizza_topping: null
+  - slot_was_set:
+    - pizza_size: null
+  - slot_was_set:
+    - pizza_quantity: null
+  - slot_was_set:
+    - topping_satisfaction: null
+  - slot_was_set:
+    - pizza_custom_toppings: null
+  - slot_was_set:
+    - order_list:
+      - type: seafood
+        size: medium
+        topping:
+        - Shrimp
+        - Mussels
+        - Clams
+        - Tomato Sauce
+        - and Mozzarella Cheese
+        quantity: one
+        price: 1.0
+  - action: action_listen  # predicted: action_default_fallback
+  - intent: proceed_to_pickup  # predicted: nlu_fallback: I want to pick up my order.
+  - action: action_calculate_preparation_time
+  - slot_was_set:
+    - preparation_time: 10
+  - action: utter_response_to_proceed_to_pickup_intent
+  - action: order_pickup_form
+  - active_loop: order_pickup_form
+  - slot_was_set:
+    - order_list:
+      - type: seafood
+        size: medium
+        topping:
+        - Shrimp
+        - Mussels
+        - Clams
+        - Tomato Sauce
+        - and Mozzarella Cheese
+        quantity: one
+        price: 1.0
+  - slot_was_set:
+    - preparation_time: 10
+  - slot_was_set:
+    - requested_slot: order_pickup_time
+  - intent: inform_pickup_time
+    entities:
+    - pickup_time: 9:30 pm
+  - slot_was_set:
+    - pickup_time: 9:30 pm
+  - slot_was_set:
+    - order_pickup_time: 9:30 pm
+  - slot_was_set:
+    - pickup_time: 9:30 pm
+  - slot_was_set:
+    - order_pickup_time: 9:30 pm
+  - action: order_pickup_form
+  - slot_was_set:
+    - order_pickup_time: 2024-08-21 21:30
+  - slot_was_set:
+    - pickup_time: 2024-08-21 21:30
+  - slot_was_set:
+    - within_business_hours: true
+  - slot_was_set:
+    - requested_slot: pickup_confirmation
+  - intent: approve_pickup_time
+  - slot_was_set:
+    - pickup_confirmation: true
+  - action: order_pickup_form
+  - slot_was_set:
+    - pickup_confirmation: true
+  - slot_was_set:
+    - order_number: 5833
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_submit_order_pickup_form
+  - slot_was_set:
+    - pizza_type: null
+  - slot_was_set:
+    - pizza_topping: null
+  - slot_was_set:
+    - pizza_custom_toppings: null
+  - slot_was_set:
+    - topping_satisfaction: null
+  - slot_was_set:
+    - pizza_size: null
+  - slot_was_set:
+    - pizza_quantity: null
+  - slot_was_set:
+    - order_list: null
+  - slot_was_set:
+    - pickup_time: null
+  - slot_was_set:
+    - order_pickup_time: null
+  - slot_was_set:
+    - preparation_time: null
+  - slot_was_set:
+    - within_business_hours: null
+  - slot_was_set:
+    - order_number: null
+  - action: utter_end_greet  # predicted: action_default_fallback
+  - action: action_reset_all_slots  # predicted: action_default_fallback
+- story: Test - Order a Margherita Pizza with Custom Toppings and Pickup at Midnight (.\test\test_stories.yml)
+  steps:
+  - intent: start_greet  # predicted: nlu_fallback: Hi!
+  - action: action_utter_greet
+  - slot_was_set:
+    - restaurant_opened: true
+  - intent: initiate_general_conversation
+  - action: utter_initiate_general_conversation
+  - intent: inform_menu
+  - action: action_inform_menu
+  - action: utter_ask_pizza_type
+  - intent: inform_pizza_type
+    entities:
+    - pizza_type: margherita
+  - slot_was_set:
+    - pizza_type: margherita
+  - slot_was_set:
+    - pizza_type: margherita
+  - action: pizza_order_form
+  - active_loop: pizza_order_form
+  - slot_was_set:
+    - pizza_type: margherita
+  - slot_was_set:
+    - order_list: []
+  - slot_was_set:
+    - requested_slot: pizza_topping
+  - active_loop: null
+  - active_loop: null
+  - intent: pizza_custom_toppings_request
+  - action: pizza_custom_topping_form
+  - active_loop: pizza_custom_topping_form
+  - slot_was_set:
+    - requested_slot: pizza_custom_toppings
+  - intent: add_pizza_custom_toppings
+    entities:
+    - pizza_custom_toppings: olives
+  - slot_was_set:
+    - pizza_custom_toppings: olives
+  - slot_was_set:
+    - pizza_custom_toppings: olive
+  - slot_was_set:
+    - topping_satisfaction: false
+  - action: pizza_custom_topping_form
+  - slot_was_set:
+    - pizza_custom_toppings:
+      - olive
+  - slot_was_set:
+    - topping_satisfaction: null
+  - slot_was_set:
+    - pizza_topping:
+      - Mozzarella Cheese
+      - Tomato Sauce
+      - Basil Leaves
+      - olive
+  - slot_was_set:
+    - requested_slot: topping_satisfaction
+  - intent: remove_pizza_custom_toppings
+    entities:
+    - pizza_custom_toppings: basil leaves
+  - slot_was_set:
+    - pizza_custom_toppings: basil leaves
+  - slot_was_set:
+    - pizza_custom_toppings: basil leaves
+  - slot_was_set:
+    - topping_satisfaction: false
+  - action: pizza_custom_topping_form
+  - slot_was_set:
+    - pizza_custom_toppings:
+      - basil leaves
+  - slot_was_set:
+    - topping_satisfaction: null
+  - slot_was_set:
+    - pizza_topping:
+      - Mozzarella Cheese
+      - Tomato Sauce
+      - Basil Leaves
+      - olive
+  - slot_was_set:
+    - requested_slot: topping_satisfaction
+  - intent: pizza_custom_toppings_happy
+  - slot_was_set:
+    - topping_satisfaction: true
+  - action: pizza_custom_topping_form
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_summarize_customized_toppings
+  - action: action_submit_pizza_custom_topping_form
+  - slot_was_set:
+    - pizza_topping:
+      - Mozzarella Cheese
+      - Tomato Sauce
+      - Basil Leaves
+      - olive
+  - action: pizza_order_form
+  - active_loop: pizza_order_form
+  - slot_was_set:
+    - pizza_type: margherita
+  - slot_was_set:
+    - pizza_topping:
+      - Mozzarella Cheese
+      - Tomato Sauce
+      - Basil Leaves
+      - olive
+  - slot_was_set:
+    - order_list: []
+  - slot_was_set:
+    - topping_satisfaction: true
+  - slot_was_set:
+    - requested_slot: pizza_size
+  - intent: inform_pizza_size
+    entities:
+    - pizza_size: small
+  - slot_was_set:
+    - pizza_size: small
+  - slot_was_set:
+    - pizza_size: small
+  - action: pizza_order_form
+  - slot_was_set:
+    - pizza_size: small
+  - slot_was_set:
+    - order_list: []
+  - slot_was_set:
+    - requested_slot: pizza_quantity
+  - intent: inform_pizza_quantity
+    entities:
+    - pizza_quantity: two
+  - slot_was_set:
+    - pizza_quantity: two
+  - slot_was_set:
+    - pizza_quantity: two
+  - action: pizza_order_form
+  - slot_was_set:
+    - pizza_quantity: two
+  - slot_was_set:
+    - order_list: []
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_pizza_add_confirmation_message
+  - action: action_submit_pizza_order_form
+  - slot_was_set:
+    - pizza_type: null
+  - slot_was_set:
+    - pizza_topping: null
+  - slot_was_set:
+    - pizza_size: null
+  - slot_was_set:
+    - pizza_quantity: null
+  - slot_was_set:
+    - topping_satisfaction: null
+  - slot_was_set:
+    - pizza_custom_toppings: null
+  - slot_was_set:
+    - order_list:
+      - type: margherita
+        size: small
+        topping:
+        - Mozzarella Cheese
+        - Tomato Sauce
+        - Basil Leaves
+        - olive
+        quantity: two
+        price: 1.0
+  - action: action_listen  # predicted: action_default_fallback
+  - intent: proceed_to_pickup
+  - action: action_calculate_preparation_time
+  - slot_was_set:
+    - preparation_time: 7
+  - action: utter_response_to_proceed_to_pickup_intent
+  - action: order_pickup_form
+  - active_loop: order_pickup_form
+  - slot_was_set:
+    - order_list:
+      - type: margherita
+        size: small
+        topping:
+        - Mozzarella Cheese
+        - Tomato Sauce
+        - Basil Leaves
+        - olive
+        quantity: two
+        price: 1.0
+  - slot_was_set:
+    - preparation_time: 7
+  - slot_was_set:
+    - requested_slot: order_pickup_time
+  - intent: inform_pickup_time  # predicted: inform_pickup_time: I'll pick it up at midnight.
+    entities: []
+  - slot_was_set:
+    - pickup_time: midnight
+  - slot_was_set:
+    - order_pickup_time: midnight
+  - slot_was_set:
+    - pickup_time: midnight
+  - slot_was_set:
+    - order_pickup_time: midnight
+  - action: order_pickup_form
+  - slot_was_set:
+    - order_pickup_time: null
+  - slot_was_set:
+    - pickup_time: null
+  - slot_was_set:
+    - requested_slot: order_pickup_time
+  - intent: inform_pickup_time
+    entities:
+    - pickup_time: 11:50 PM
+  - slot_was_set:
+    - pickup_time: 11:50 PM
+  - slot_was_set:
+    - order_pickup_time: 11:50 PM
+  - slot_was_set:
+    - pickup_time: 11:50 PM
+  - slot_was_set:
+    - order_pickup_time: 11:50 PM
+  - action: order_pickup_form
+  - slot_was_set:
+    - order_pickup_time: 2024-08-21 23:50
+  - slot_was_set:
+    - pickup_time: 2024-08-21 23:50
+  - slot_was_set:
+    - within_business_hours: true
+  - slot_was_set:
+    - requested_slot: pickup_confirmation
+  - intent: approve_pickup_time
+  - slot_was_set:
+    - pickup_confirmation: true
+  - action: order_pickup_form
+  - slot_was_set:
+    - pickup_confirmation: true
+  - slot_was_set:
+    - order_number: 3792
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_submit_order_pickup_form
+  - slot_was_set:
+    - pizza_type: null
+  - slot_was_set:
+    - pizza_topping: null
+  - slot_was_set:
+    - pizza_custom_toppings: null
+  - slot_was_set:
+    - topping_satisfaction: null
+  - slot_was_set:
+    - pizza_size: null
+  - slot_was_set:
+    - pizza_quantity: null
+  - slot_was_set:
+    - order_list: null
+  - slot_was_set:
+    - pickup_time: null
+  - slot_was_set:
+    - order_pickup_time: null
+  - slot_was_set:
+    - preparation_time: null
+  - slot_was_set:
+    - within_business_hours: null
+  - slot_was_set:
+    - order_number: null
+  - action: utter_end_greet  # predicted: action_default_fallback
+  - action: action_reset_all_slots  # predicted: action_default_fallback
+- story: Test out of scope question (.\test\test_stories.yml)
+  steps:
+  - intent: out_of_scope  # predicted: nlu_fallback: What is the meaning of life?
+  - action: utter_out_of_scope

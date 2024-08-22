@@ -1,0 +1,80 @@
+2024-08-22 01:26:33 INFO     root  - Starting Rasa server on http://0.0.0.0:5005
+2024-08-22 01:26:34 INFO     rasa.core.processor  - Loading model models\20240822-011512-trusting-soldier.tar.gz...
+2024-08-22 01:26:34 INFO     rasa.nlu.utils.spacy_utils  - Trying to load SpaCy model with name 'en_core_web_md'.
+2024-08-22 01:26:36 INFO     rasa.nlu.utils.spacy_utils  - Trying to load SpaCy model with name 'en_core_web_md'.
+2024-08-22 01:27:01 INFO     root  - Rasa server is up and running.
+Bot loaded. Type a message and press enter (use '/stop' to exit):
+Your input ->  hi there
+Hello! Welcome to Champ Pizza Hut! We are currently closed. Our business hours are from 12 PM to 11 PM. How may I assist you today?
+Your input ->  I want to order a pizza
+Ah, the aroma of freshly baked pizza! You've landed in pizza heaven, my friend. How can I make your pizza dreams come true today? Would you like to explore our menu, or are you curious about our recommended specialities?
+Your input ->  menu
+🍕 Here's Our Menu 🍕:
+- 🌱 Vegetarian Pizzas:
+  - Margherita: Mozzarella Cheese, Tomato Sauce, Basil Leaves. Price: $12.99 (Medium)
+  - Supreme: Mushrooms, Bell Peppers, Onions, Olives, Tomatoes. Price: $14.99 (Medium)
+  - Pesto and sun-dried tomato: Pesto Sauce, Sun-dried Tomatoes, Feta Cheese, Spinach. Price: $13.99 (Medium)
+- 🍗 Non-Vegetarian Pizzas:
+  - Pepperoni: Pepperoni Slices, Mozzarella Cheese, Tomato Sauce. Price: $13.99 (Medium)
+  - Bbq chicken: BBQ Sauce, Grilled Chicken, Red Onions, Cilantro, Mozzarella Cheese. Price: $15.99 (Medium)
+  - Seafood: Shrimp, Mussels, Clams, Tomato Sauce, Mozzarella Cheese. Price: $16.99 (Medium)
+-------------------------------------------
+🤔 Which pizza would you like to order?
+Your input ->  margherita pizza
+Nice Selection! You have selected Margherita Pizza.
+The standard toppings for margherita are: Mozzarella Cheese, Tomato Sauce, and Basil Leaves.
+🍕 Would you like to go with the standard toppings or customize your own toppings?
+Your input ->  custom toppings please
+🍕 Current Selected Toppings for Your 'margherita' Pizza are: Mozzarella Cheese, Tomato Sauce, and Basil Leaves
+🍕 We offer the following topping options: feta cheese, tomato saucepesto sauce, bbq sauce, grilled chicken, tomatoes, sun-dried tomatoes, spinach, basil leaves, pepperoni slices, red onions, prosciutto, artichokes, anchovies, cilantro, shrimp, mussels, and and clams.
+👋 Please make your own custom toppings (🍕) selection(s)...
+Your input ->  add clams topping
+We have added ['clams'] to your toppings. You now have: Mozzarella Cheese, Tomato Sauce, Basil Leaves, and clams.
+Would you like to add/remove more flavor or are you happy with it? Feel free to customize further! 🎨.
+Your input ->  Perfect, I am happy with these toppings
+🍕 Fantastic! You have customized your margherita pizza with your choices, pizza is uniquely yours! 🍕 Let's move on to the next step in your pizza order. 🚀
+Great Choice! You have selected Margherita Pizza.
+🍕 We offer the following sizes for our pizzas:
+  - Small: 8 inches
+  - Medium: 12 inches
+  - Large: 16 inches
+🤔 Which size would you like to order?
+Your input ->  small
+🍕 We offer the following sizes for our pizzas:
+  - Small: 8 inches
+  - Medium: 12 inches
+  - Large: 16 inches
+🤔 Which size would you like to order?
+Your input ->  small
+🍕 We offer the following sizes for our pizzas:
+  - Small: 8 inches
+  - Medium: 12 inches
+  - Large: 16 inches
+🤔 Which size would you like to order?
+Your input ->  Small size
+🍕 We offer the following sizes for our pizzas:
+  - Small: 8 inches
+  - Medium: 12 inches
+  - Large: 16 inches
+🤔 Which size would you like to order?
+Your input ->  Large
+Great! You have selected Large size.
+🍕 How many pizzas would you like to order?
+Your input ->  two
+🍕 Great! We have added two large margherita pizza(s) to your order.
+🍕Here's Your Order Summary:
+1. Large Margherita Pizza
+   - Toppings: Mozzarella Cheese, Tomato Sauce, Basil Leaves, clams
+   - Quantity: Two
+   - Price: $16.99
+Total Price: $16.99
+🍕 Would you like to add another Pizza to your order? or Proceed to Pickup?
+Your input ->  cancel my order
+Are you sure you want to cancel the entire order?
+Your input ->  yes
+Your order has been cancelled. If you need anything else, just let me know!
+Your input ->  good bye
+Thank you for choosing Champ Pizza Hut! Have a great day.
+Your input ->
+
+Cancelled by user

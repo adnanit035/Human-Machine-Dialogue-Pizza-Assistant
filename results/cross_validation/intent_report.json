@@ -1,0 +1,270 @@
+{
+  "inform_pickup_time": {
+    "precision": 0.9820359281437125,
+    "recall": 0.9879518072289156,
+    "f1-score": 0.984984984984985,
+    "support": 166,
+    "confused_with": {
+      "deny_pickup_time": 2
+    }
+  },
+  "add_another_pizza_specific": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 109,
+    "confused_with": {}
+  },
+  "inform_menu": {
+    "precision": 0.9354838709677419,
+    "recall": 0.90625,
+    "f1-score": 0.9206349206349206,
+    "support": 32,
+    "confused_with": {
+      "out_of_scope": 3
+    }
+  },
+  "pizza_custom_toppings_request": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 35,
+    "confused_with": {}
+  },
+  "recommend_non_vegetarian_pizza": {
+    "precision": 1.0,
+    "recall": 0.9285714285714286,
+    "f1-score": 0.962962962962963,
+    "support": 28,
+    "confused_with": {
+      "inform_non_vegetarian_menu": 2
+    }
+  },
+  "inform_pizza_size": {
+    "precision": 0.9107142857142857,
+    "recall": 1.0,
+    "f1-score": 0.9532710280373832,
+    "support": 51,
+    "confused_with": {}
+  },
+  "add_pizza_custom_toppings": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 93,
+    "confused_with": {}
+  },
+  "ask_opening_times": {
+    "precision": 0.9333333333333333,
+    "recall": 1.0,
+    "f1-score": 0.9655172413793104,
+    "support": 14,
+    "confused_with": {}
+  },
+  "end_greet": {
+    "precision": 0.875,
+    "recall": 1.0,
+    "f1-score": 0.9333333333333333,
+    "support": 7,
+    "confused_with": {}
+  },
+  "recommend_pizza": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 19,
+    "confused_with": {}
+  },
+  "add_another_pizza_general": {
+    "precision": 0.9743589743589743,
+    "recall": 1.0,
+    "f1-score": 0.9870129870129869,
+    "support": 38,
+    "confused_with": {}
+  },
+  "pizza_standard_topping_confirm": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 33,
+    "confused_with": {}
+  },
+  "pizza_custom_toppings_happy": {
+    "precision": 0.9230769230769231,
+    "recall": 0.8,
+    "f1-score": 0.8571428571428571,
+    "support": 30,
+    "confused_with": {
+      "affirm": 3,
+      "add_another_pizza_general": 1
+    }
+  },
+  "affirm": {
+    "precision": 0.7142857142857143,
+    "recall": 0.8928571428571429,
+    "f1-score": 0.7936507936507937,
+    "support": 28,
+    "confused_with": {
+      "start_greet": 1,
+      "deny": 1
+    }
+  },
+  "inform_pizza_type": {
+    "precision": 0.9906976744186047,
+    "recall": 0.9906976744186047,
+    "f1-score": 0.9906976744186047,
+    "support": 215,
+    "confused_with": {
+      "pizza_order_modify": 2
+    }
+  },
+  "start_greet": {
+    "precision": 0.8125,
+    "recall": 0.8666666666666667,
+    "f1-score": 0.8387096774193549,
+    "support": 15,
+    "confused_with": {
+      "affirm": 1,
+      "deny_pickup_time": 1
+    }
+  },
+  "inform_vegetarian_menu": {
+    "precision": 0.9117647058823529,
+    "recall": 1.0,
+    "f1-score": 0.9538461538461539,
+    "support": 31,
+    "confused_with": {}
+  },
+  "proceed_to_pickup": {
+    "precision": 1.0,
+    "recall": 0.9534883720930233,
+    "f1-score": 0.9761904761904763,
+    "support": 43,
+    "confused_with": {
+      "approve_pickup_time": 1,
+      "pizza_order_modify": 1
+    }
+  },
+  "initiate_general_conversation": {
+    "precision": 0.95,
+    "recall": 0.926829268292683,
+    "f1-score": 0.9382716049382716,
+    "support": 41,
+    "confused_with": {
+      "start_greet": 1,
+      "out_of_scope": 1
+    }
+  },
+  "remove_pizza_custom_toppings": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 74,
+    "confused_with": {}
+  },
+  "recommend_vegetarian_pizza": {
+    "precision": 1.0,
+    "recall": 0.9642857142857143,
+    "f1-score": 0.9818181818181818,
+    "support": 28,
+    "confused_with": {
+      "inform_vegetarian_menu": 1
+    }
+  },
+  "inform_non_vegetarian_menu": {
+    "precision": 0.9393939393939394,
+    "recall": 1.0,
+    "f1-score": 0.96875,
+    "support": 31,
+    "confused_with": {}
+  },
+  "out_of_scope": {
+    "precision": 0.5,
+    "recall": 0.3125,
+    "f1-score": 0.38461538461538464,
+    "support": 16,
+    "confused_with": {
+      "bot_challenge": 3,
+      "approve_pickup_time": 2
+    }
+  },
+  "deny": {
+    "precision": 0.8181818181818182,
+    "recall": 0.8181818181818182,
+    "f1-score": 0.8181818181818182,
+    "support": 22,
+    "confused_with": {
+      "affirm": 2,
+      "inform_pizza_quantity": 1
+    }
+  },
+  "deny_pickup_time": {
+    "precision": 0.7333333333333333,
+    "recall": 0.6470588235294118,
+    "f1-score": 0.6875,
+    "support": 17,
+    "confused_with": {
+      "deny": 3,
+      "approve_pickup_time": 1
+    }
+  },
+  "inform_pizza_quantity": {
+    "precision": 0.9710144927536232,
+    "recall": 0.9571428571428572,
+    "f1-score": 0.9640287769784173,
+    "support": 70,
+    "confused_with": {
+      "affirm": 2,
+      "initiate_general_conversation": 1
+    }
+  },
+  "pizza_order_modify": {
+    "precision": 0.9038461538461539,
+    "recall": 0.8545454545454545,
+    "f1-score": 0.8785046728971962,
+    "support": 55,
+    "confused_with": {
+      "inform_pizza_size": 2,
+      "inform_vegetarian_menu": 2
+    }
+  },
+  "bot_challenge": {
+    "precision": 0.75,
+    "recall": 0.8571428571428571,
+    "f1-score": 0.7999999999999999,
+    "support": 14,
+    "confused_with": {
+      "inform_pizza_size": 1,
+      "out_of_scope": 1
+    }
+  },
+  "approve_pickup_time": {
+    "precision": 0.6875,
+    "recall": 0.6470588235294118,
+    "f1-score": 0.6666666666666667,
+    "support": 17,
+    "confused_with": {
+      "affirm": 2,
+      "pizza_custom_toppings_happy": 2
+    }
+  },
+  "accuracy": 0.9518950437317785,
+  "macro avg": {
+    "precision": 0.9040179706100178,
+    "recall": 0.9072837485684825,
+    "f1-score": 0.9036652481762091,
+    "support": 1372
+  },
+  "weighted avg": {
+    "precision": 0.9512898174368746,
+    "recall": 0.9518950437317785,
+    "f1-score": 0.9506800282080494,
+    "support": 1372
+  },
+  "micro avg": {
+    "precision": 0.9518950437317785,
+    "recall": 0.9518950437317785,
+    "f1-score": 0.9518950437317785,
+    "support": 1372
+  }
+}

@@ -1,0 +1,6 @@
+.idea/
+.rasa/
+__pycache__/
+models/
+#results/
+story_graph.dot

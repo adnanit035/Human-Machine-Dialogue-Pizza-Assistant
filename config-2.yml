@@ -1,0 +1,36 @@
+recipe: default.v1
+
+language: en
+
+pipeline:
+- name: WhitespaceTokenizer
+- name: CountVectorsFeaturizer
+  analyzer: "char_wb"
+  min_ngram: 1
+  max_ngram: 4
+- name: EntitySynonymMapper
+- name: LogisticRegressionClassifier
+  max_iter: 2000
+- name: CRFEntityExtractor
+- name: ResponseSelector
+  max_iterations: 100000
+  "L2_c": 0.1
+  epochs: 20
+
+policies:
+- name: TEDPolicy
+  max_history: 20
+  epochs: 100
+  constrain_similarities: true
+- name: AugmentedMemoizationPolicy
+  max_history: 4
+#- name: MemoizationPolicy
+#  max_history: 5
+- name: RulePolicy
+  # Confidence threshold for the `core_fallback_action_name` to apply.
+  # The action will apply if no other action was predicted with
+  # a confidence >= core_fallback_threshold
+  core_fallback_threshold: 0.4
+  core_fallback_action_name: "action_default_fallback"
+  enable_fallback_prediction: true
+assistant_id: 20240820-045736-spicy-sap

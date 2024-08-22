@@ -1,0 +1,2017 @@
+version: "3.1"
+
+stories:
+  - story: Reset all slots after deactivating loop
+    steps:
+      - action: action_deactivate_loop
+      - action: action_reset_all_slots
+
+
+  - story: Start and end greetings
+    steps:
+      - intent: start_greet
+      - action: action_utter_greet
+      - intent: end_greet
+      - action: utter_end_greet
+      - action: action_reset_all_slots
+
+
+  - story: Greets and asks for opening times
+    steps:
+      - intent: start_greet
+      - action: action_utter_greet
+      - intent: ask_opening_times
+      - action: utter_opening_times
+
+
+  - story: Out of scope question
+    steps:
+      - intent: out_of_scope
+      - action: utter_out_of_scope
+
+
+  - story: Bot challenge
+    steps:
+      - intent: bot_challenge
+      - action: utter_bot_challenge
+
+
+  - story: General conversation initiation
+    steps:
+      - intent: initiate_general_conversation
+      - action: utter_initiate_general_conversation
+
+
+  - story: Customer asks for restaurant location
+    steps:
+      - intent: ask_restaurant_address
+      - action: action_response_to_ask_restaurant_address
+
+  - story: Customer asks for restaurant contact number
+    steps:
+      - intent: ask_restaurant_contact_number
+      - action: action_response_to_ask_restaurant_contact_number
+
+  - story: Customer asks for restaurant name
+    steps:
+      - intent: ask_restaurant_name
+      - action: action_response_to_ask_restaurant_name
+
+  - story: Customer asks for restaurant details
+    steps:
+      - intent: ask_restaurant_details
+      - action: action_response_to_ask_restaurant_details
+
+
+  - story: Ask for Opening Times
+    steps:
+      - intent: ask_opening_times
+      - action: utter_opening_times
+
+
+  - story: Show the menu
+    steps:
+      - intent: inform_menu
+      - action: action_inform_menu
+      - action: utter_ask_pizza_type
+
+
+  - story: Show the vegetarian menu
+    steps:
+      - intent: inform_vegetarian_menu
+      - action: action_inform_vegetarian_menu
+      - action: utter_ask_pizza_type
+
+
+  - story: Show the non-vegetarian menu
+    steps:
+      - intent: inform_non_vegetarian_menu
+      - action: action_inform_non_vegetarian_menu
+      - action: utter_ask_pizza_type
+
+
+  - story: Request for recommendations
+    steps:
+      - intent: recommend_pizza
+      - action: action_inform_recommendations_menu
+      - action: utter_ask_pizza_type
+
+
+  - story: Request for vegetarian recommendations
+    steps:
+      - intent: recommend_vegetarian_pizza
+      - action: action_inform_veg_recommendations_menu
+      - action: utter_ask_pizza_type
+
+
+  - story: Request for non-vegetarian recommendations
+    steps:
+      - intent: recommend_non_vegetarian_pizza
+      - action: action_inform_non_veg_recommendations_menu
+      - action: utter_ask_pizza_type
+
+
+  - story: Activate Pizza Order Form
+    steps:
+      - intent: inform_pizza_type
+      - action: pizza_order_form
+      - active_loop: pizza_order_form
+
+
+  - story: Activate Pizza Topping Form after Pizza Order Form with Custom Topping Request
+    steps:
+      - intent: pizza_custom_toppings_request
+      - action: pizza_custom_topping_form
+      - active_loop: pizza_custom_topping_form
+
+
+  - story: Activate Pizza Order Form again after standard toppings confirmation intent
+    steps:
+      - intent: pizza_standard_topping_confirm
+      - action: pizza_order_form
+      - active_loop: pizza_order_form
+
+
+  - story: User cancels order and confirms
+    steps:
+      - slot_was_set:
+          - order_list: true
+      - intent: cancel_complete_order
+      - action: utter_confirm_cancel_order
+      - intent: affirm
+      - action: utter_order_cancelled
+      - action: action_reset_all_slots
+
+
+  - story: User cancels order but denies cancellation
+    steps:
+      - slot_was_set:
+          - order_list: true
+      - intent: cancel_complete_order
+      - action: utter_confirm_cancel_order
+      - intent: deny
+      - action: utter_order_not_cancelled
+
+
+  - story: User tries to cancel but no active order
+    steps:
+      - slot_was_set:
+          - order_list: false
+      - intent: cancel_complete_order
+      - action: utter_no_active_order_to_cancel
+
+
+  - story: Remove a specific pizza from the order
+    steps:
+      - slot_was_set:
+          - order_list: true
+          - pizza_type: true
+      - intent: remove_pizza_from_order
+      - action: utter_response_to_confirm_remove_pizza_request
+      - intent: affirm
+      - action: action_remove_item_from_order
+
+
+  - story: Remove a specific pizza from the order and deny the removal from the user
+    steps:
+      - slot_was_set:
+          - order_list: true
+          - pizza_type: true
+      - intent: remove_pizza_from_order
+      - action: utter_response_to_confirm_remove_pizza_request
+      - intent: deny
+      - action: utter_deny_remove_pizza_request
+      - action: action_show_order_summary
+
+
+  - story: Activate Order Pickup Form
+    steps:
+      - intent: proceed_to_pickup
+      - action: action_calculate_preparation_time
+      - action: utter_response_to_proceed_to_pickup_intent
+      - action: order_pickup_form
+      - active_loop: order_pickup_form
+
+
+  - story: Customer stops conversation with specific affirm intent
+    steps:
+      - intent: no_longer_hungry_stop_conversation
+      - action: utter_response_to_confirm_stop_request
+      - intent: say_affirm_to_stop_confirmation_by_bot
+      - action: utter_want_to_stop_conversation
+      - action: action_reset_all_slots
+
+
+  - story: Customer stops conversation with general affirm intent
+    steps:
+      - intent: no_longer_hungry_stop_conversation
+      - action: utter_response_to_confirm_stop_request
+      - intent: affirm
+      - action: utter_want_to_stop_conversation
+      - action: action_reset_all_slots
+
+
+  - story: Customer denies stopping conversation with general deny intent
+    steps:
+      - intent: no_longer_hungry_stop_conversation
+      - action: utter_response_to_confirm_stop_request
+      - intent: deny
+      - action: utter_response_to_deny_stop_request
+
+
+  - story: Customer denies stopping conversation with specific deny intent
+    steps:
+      - intent: no_longer_hungry_stop_conversation
+      - action: utter_response_to_confirm_stop_request
+      - intent: say_deny_to_stop_confirmation_by_bot
+      - action: utter_response_to_deny_stop_request
+
+
+  - story: Interrupt pizza order form with custom toppings information
+    steps:
+      - intent: inform_pizza_type
+      - action: pizza_order_form
+      - active_loop: pizza_order_form
+      - intent: ask_custom_toppings_info
+      - action: action_inform_available_toppings
+      - action: action_utter_ask_topping_confirmation
+      - action: pizza_custom_topping_form
+      - active_loop: pizza_custom_topping_form
+
+
+  - story: Interrupt pizza order form with opening times information
+    steps:
+      - intent: inform_pizza_type
+      - action: pizza_order_form
+      - active_loop: pizza_order_form
+      - intent: ask_opening_times
+      - action: utter_opening_times
+      - action: pizza_order_form
+      - active_loop: pizza_order_form
+
+
+  - story: Interrupt order pickup form with opening times information
+    steps:
+      - slot_was_set:
+          - order_list: true
+      - intent: proceed_to_pickup
+      - action: action_calculate_preparation_time
+      - action: utter_response_to_proceed_to_pickup_intent
+      - action: order_pickup_form
+      - active_loop: order_pickup_form
+      - intent: ask_opening_times
+      - action: utter_opening_times_with_ask_pickup_time
+      - action: order_pickup_form
+      - active_loop: order_pickup_form
+
+
+  - story: User interrupts asking for bot challenge and then stops conversation outside of the form with end_greet
+    steps:
+      - intent: bot_challenge
+      - action: utter_bot_challenge
+      - intent: end_greet
+      - action: utter_end_greet
+      - action: action_reset_all_slots
+
+
+  - story: User interrupts asking for bot challenge and then stops conversation outside of the form with no_longer_hungry_stop_conversation
+    steps:
+      - intent: bot_challenge
+      - action: utter_bot_challenge
+      - intent: no_longer_hungry_stop_conversation
+      - action: utter_response_to_confirm_stop_request
+      - intent: affirm
+      - action: utter_want_to_stop_conversation
+      - action: action_reset_all_slots
+
+
+  - story: User interrupts asking assistant's identity and stops the pizza order form and conversation
+    steps:
+      - intent: inform_pizza_type
+      - action: pizza_order_form
+      - active_loop: pizza_order_form
+      - intent: bot_challenge
+      - action: utter_bot_challenge
+      - action: pizza_order_form
+      - active_loop: pizza_order_form
+      - intent: no_longer_hungry_stop_conversation
+      - action: utter_response_to_confirm_stop_request
+      - intent: affirm
+      - action: action_deactivate_loop
+      - action: utter_want_to_stop_conversation
+      - action: action_reset_all_slots
+
+
+  - story: User interrupts asking info about assistant's identity and continues with the pizza order form
+    steps:
+      - intent: inform_pizza_type
+      - action: pizza_order_form
+      - active_loop: pizza_order_form
+      - intent: bot_challenge
+      - action: utter_bot_challenge
+      - action: pizza_order_form
+      - active_loop: pizza_order_form
+
+
+  - story: User selected one non-veg pizza from menu with standard toppings
+    steps:
+      - intent: inform_menu
+      - action: action_inform_menu
+      - action: utter_ask_pizza_type
+      - intent: inform_pizza_type
+        entities:
+        - pizza_type: seafood
+      - slot_was_set:
+        - pizza_type: seafood
+      - action: pizza_order_form
+      - active_loop: pizza_order_form
+      - slot_was_set:
+        - pizza_type: seafood
+      - slot_was_set:
+        - order_list: []
+      - slot_was_set:
+        - requested_slot: pizza_topping
+      - active_loop: null
+      - active_loop: null
+      - intent: pizza_standard_topping_confirm
+      - action: pizza_order_form
+      - active_loop: pizza_order_form
+      - slot_was_set:
+        - pizza_type: seafood
+      - slot_was_set:
+        - order_list: []
+      - slot_was_set:
+        - pizza_topping:
+          - Shrimp
+          - Mussels
+          - Clams
+          - Tomato Sauce
+          - and Mozzarella Cheese
+      - slot_was_set:
+        - topping_satisfaction: true
+      - slot_was_set:
+        - requested_slot: pizza_size
+      - intent: inform_pizza_size
+        entities:
+        - pizza_size: small
+      - slot_was_set:
+        - pizza_size: small
+      - action: pizza_order_form
+      - slot_was_set:
+        - pizza_size: small
+      - slot_was_set:
+        - order_list: []
+      - slot_was_set:
+        - requested_slot: pizza_quantity
+      - intent: inform_pizza_quantity
+        entities:
+        - pizza_quantity: two
+      - slot_was_set:
+        - pizza_quantity: two
+      - action: pizza_order_form
+      - slot_was_set:
+        - pizza_quantity: two
+      - slot_was_set:
+        - order_list: []
+      - slot_was_set:
+        - requested_slot: null
+      - active_loop: null
+      - action: utter_pizza_add_confirmation_message
+      - action: action_submit_pizza_order_form
+      - slot_was_set:
+        - pizza_type: null
+      - slot_was_set:
+        - pizza_topping: null
+      - slot_was_set:
+        - pizza_size: null
+      - slot_was_set:
+        - pizza_quantity: null
+      - slot_was_set:
+        - topping_satisfaction: null
+      - slot_was_set:
+        - pizza_custom_toppings: null
+      - slot_was_set:
+        - order_list:
+          - type: seafood
+            size: small
+            topping:
+            - Shrimp
+            - Mussels
+            - Clams
+            - Tomato Sauce
+            - and Mozzarella Cheese
+            quantity: two
+            price: 14.99
+      - action: action_listen
+
+
+  - story: User selected one non-veg pizza from menu with custom toppings
+    steps:
+      - intent: inform_menu
+      - action: action_inform_menu
+      - action: utter_ask_pizza_type
+      - intent: inform_pizza_type
+        entities:
+          - pizza_type: Pepperoni
+      - slot_was_set:
+          - pizza_type: Pepperoni
+      - action: pizza_order_form
+      - active_loop: pizza_order_form
+      - slot_was_set:
+          - pizza_type: Pepperoni
+      - slot_was_set:
+          - order_list: [ ]
+      - slot_was_set:
+          - requested_slot: pizza_topping
+      - active_loop: null
+      - active_loop: null
+      - intent: pizza_custom_toppings_request
+      - action: pizza_custom_topping_form
+      - active_loop: pizza_custom_topping_form
+      - slot_was_set:
+          - requested_slot: pizza_custom_toppings
+      - intent: inform_pizza_quantity
+        entities:
+          - pizza_custom_toppings: shrimp
+      - slot_was_set:
+          - pizza_custom_toppings: shrimp
+      - intent: add_pizza_custom_toppings
+        entities:
+          - pizza_custom_toppings: shrimp
+      - slot_was_set:
+          - pizza_custom_toppings: shrimp
+      - slot_was_set:
+          - topping_satisfaction: false
+      - action: pizza_custom_topping_form
+      - slot_was_set:
+          - pizza_custom_toppings:
+              - shrimp
+      - slot_was_set:
+          - topping_satisfaction: null
+      - slot_was_set:
+          - pizza_topping:
+              - Pepperoni Slices
+              - Mozzarella Cheese
+              - Tomato Sauce
+              - shrimp
+      - slot_was_set:
+          - requested_slot: topping_satisfaction
+      - intent: remove_pizza_custom_toppings
+        entities:
+          - pizza_custom_toppings: Tomato Sauce
+      - slot_was_set:
+          - pizza_custom_toppings: Tomato Sauce
+      - slot_was_set:
+          - topping_satisfaction: false
+      - action: pizza_custom_topping_form
+      - slot_was_set:
+          - pizza_custom_toppings:
+              - Tomato Sauce
+      - slot_was_set:
+          - topping_satisfaction: null
+      - slot_was_set:
+          - pizza_topping:
+              - Pepperoni Slices
+              - Mozzarella Cheese
+              - shrimp
+      - slot_was_set:
+          - requested_slot: topping_satisfaction
+      - intent: pizza_custom_toppings_happy
+      - slot_was_set:
+          - topping_satisfaction: true
+      - action: pizza_custom_topping_form
+      - slot_was_set:
+          - requested_slot: null
+      - slot_was_set:
+          - requested_slot: null
+      - active_loop: null
+      - action: utter_summarize_customized_toppings
+      - action: action_submit_pizza_custom_topping_form
+      - slot_was_set:
+          - pizza_topping:
+              - Pepperoni Slices
+              - Mozzarella Cheese
+              - shrimp
+      - action: pizza_order_form
+      - active_loop: pizza_order_form
+      - slot_was_set:
+          - pizza_type: pepperoni
+      - slot_was_set:
+          - pizza_topping:
+              - Pepperoni Slices
+              - Mozzarella Cheese
+              - shrimp
+      - slot_was_set:
+          - order_list: [ ]
+      - slot_was_set:
+          - topping_satisfaction: true
+      - slot_was_set:
+          - requested_slot: pizza_size
+      - intent: inform_pizza_size
+        entities:
+          - pizza_size: large
+      - slot_was_set:
+          - pizza_size: large
+      - action: pizza_order_form
+      - slot_was_set:
+          - pizza_size: large
+      - slot_was_set:
+          - order_list: [ ]
+      - slot_was_set:
+          - requested_slot: pizza_quantity
+      - intent: inform_pizza_quantity
+        entities:
+          - pizza_quantity: two
+      - slot_was_set:
+          - pizza_quantity: two
+      - action: pizza_order_form
+      - slot_was_set:
+          - pizza_quantity: two
+      - slot_was_set:
+          - order_list: [ ]
+      - slot_was_set:
+          - requested_slot: null
+      - active_loop: null
+      - action: utter_pizza_add_confirmation_message
+      - action: action_submit_pizza_order_form
+      - slot_was_set:
+          - pizza_type: null
+      - slot_was_set:
+          - pizza_topping: null
+      - slot_was_set:
+          - pizza_size: null
+      - slot_was_set:
+          - pizza_quantity: null
+      - slot_was_set:
+          - topping_satisfaction: null
+      - slot_was_set:
+          - pizza_custom_toppings: null
+      - slot_was_set:
+          - order_list:
+              - type: pepperoni
+                size: large
+                topping:
+                  - Pepperoni Slices
+                  - Mozzarella Cheese
+                  - shrimp
+                quantity: two
+                price: 17.99
+      - action: action_listen
+
+
+  - story: User selected one veg pizza from recommendations with standard toppings
+    steps:
+      - intent: recommend_pizza
+      - action: action_inform_recommendations_menu
+      - action: utter_ask_pizza_type
+      - intent: inform_pizza_type
+        entities:
+        - pizza_type: Margherita
+      - slot_was_set:
+        - pizza_type: Margherita
+      - action: pizza_order_form
+      - active_loop: pizza_order_form
+      - slot_was_set:
+        - pizza_type: Margherita
+      - slot_was_set:
+        - order_list: []
+      - slot_was_set:
+        - requested_slot: pizza_topping
+      - active_loop: null
+      - active_loop: null
+      - intent: pizza_standard_topping_confirm
+      - action: pizza_order_form
+      - active_loop: pizza_order_form
+      - slot_was_set:
+        - pizza_type: Margherita
+      - slot_was_set:
+        - order_list: []
+      - slot_was_set:
+        - pizza_topping:
+          - Mozzarella Cheese
+          - Tomato Sauce
+          - and Basil Leaves
+      - slot_was_set:
+        - topping_satisfaction: true
+      - slot_was_set:
+        - requested_slot: pizza_size
+      - intent: inform_pizza_size
+        entities:
+        - pizza_size: small
+      - slot_was_set:
+        - pizza_size: small
+      - action: pizza_order_form
+      - slot_was_set:
+        - pizza_size: small
+      - slot_was_set:
+        - order_list: []
+      - slot_was_set:
+        - requested_slot: pizza_quantity
+      - intent: inform_pizza_quantity
+        entities:
+        - pizza_quantity: one
+      - slot_was_set:
+        - pizza_quantity: one
+      - action: pizza_order_form
+      - slot_was_set:
+        - pizza_quantity: one
+      - slot_was_set:
+        - order_list: []
+      - slot_was_set:
+        - requested_slot: null
+      - active_loop: null
+      - action: utter_pizza_add_confirmation_message
+      - action: action_submit_pizza_order_form
+      - slot_was_set:
+        - pizza_type: null
+      - slot_was_set:
+        - pizza_topping: null
+      - slot_was_set:
+        - pizza_size: null
+      - slot_was_set:
+        - pizza_quantity: null
+      - slot_was_set:
+          - topping_satisfaction: null
+      - slot_was_set:
+          - pizza_custom_toppings: null
+      - slot_was_set:
+          - order_list:
+              - type: Margherita
+                size: small
+                topping:
+                  - Mozzarella Cheese
+                  - Tomato Sauce
+                  - and Basil Leaves
+                quantity: one
+                price: 9.99
+      - action: action_listen
+
+
+  - story: User selected one non-veg pizza from recommendations with custom toppings
+    steps:
+      - intent: recommend_pizza
+      - action: action_inform_recommendations_menu
+      - action: utter_ask_pizza_type
+      - intent: inform_pizza_type
+        entities:
+        - pizza_type: pepperoni
+      - slot_was_set:
+        - pizza_type: pepperoni
+      - action: pizza_order_form
+      - active_loop: pizza_order_form
+      - slot_was_set:
+        - pizza_type: pepperoni
+      - slot_was_set:
+        - order_list: []
+      - slot_was_set:
+        - requested_slot: pizza_topping
+      - active_loop: null
+      - active_loop: null
+      - intent: pizza_custom_toppings_request
+      - action: pizza_custom_topping_form
+      - active_loop: pizza_custom_topping_form
+      - slot_was_set:
+        - requested_slot: pizza_custom_toppings
+      - intent: inform_pizza_quantity
+        entities:
+        - pizza_custom_toppings: shrimp
+      - slot_was_set:
+        - pizza_custom_toppings: shrimp
+      - intent: add_pizza_custom_toppings
+        entities:
+        - pizza_custom_toppings: shrimp
+      - slot_was_set:
+        - pizza_custom_toppings: shrimp
+      - slot_was_set:
+        - topping_satisfaction: false
+      - action: pizza_custom_topping_form
+      - slot_was_set:
+        - pizza_custom_toppings:
+          - shrimp
+      - slot_was_set:
+        - topping_satisfaction: null
+      - slot_was_set:
+        - pizza_topping:
+          - Pepperoni Slices
+          - Mozzarella Cheese
+          - Tomato Sauce
+          - shrimp
+      - slot_was_set:
+        - requested_slot: topping_satisfaction
+      - intent: remove_pizza_custom_toppings
+        entities:
+        - pizza_custom_toppings: Tomato Sauce
+      - slot_was_set:
+        - pizza_custom_toppings: Tomato Sauce
+      - slot_was_set:
+        - topping_satisfaction: false
+      - action: pizza_custom_topping_form
+      - slot_was_set:
+        - pizza_custom_toppings:
+          - Tomato Sauce
+      - slot_was_set:
+        - topping_satisfaction: null
+      - slot_was_set:
+        - pizza_topping:
+          - Pepperoni Slices
+          - Mozzarella Cheese
+          - shrimp
+      - slot_was_set:
+          - requested_slot: topping_satisfaction
+      - intent: pizza_custom_toppings_happy
+      - slot_was_set:
+          - topping_satisfaction: true
+      - action: pizza_custom_topping_form
+      - slot_was_set:
+          - requested_slot: null
+      - slot_was_set:
+          - requested_slot: null
+      - active_loop: null
+      - action: utter_summarize_customized_toppings
+      - action: action_submit_pizza_custom_topping_form
+      - slot_was_set:
+          - pizza_topping:
+              - Pepperoni Slices
+              - Mozzarella Cheese
+              - shrimp
+      - action: pizza_order_form
+      - active_loop: pizza_order_form
+      - slot_was_set:
+          - pizza_type: pepperoni
+      - slot_was_set:
+          - pizza_topping:
+              - Pepperoni Slices
+              - Mozzarella Cheese
+              - shrimp
+      - slot_was_set:
+          - order_list: [ ]
+      - slot_was_set:
+          - topping_satisfaction: true
+      - slot_was_set:
+          - requested_slot: pizza_size
+      - intent: inform_pizza_size
+        entities:
+        - pizza_size: large
+      - slot_was_set:
+          - pizza_size: large
+      - action: pizza_order_form
+      - slot_was_set:
+          - pizza_size: large
+      - slot_was_set:
+          - order_list: [ ]
+      - slot_was_set:
+          - requested_slot: pizza_quantity
+      - intent: inform_pizza_quantity
+        entities:
+        - pizza_quantity: two
+      - slot_was_set:
+          - pizza_quantity: two
+      - action: pizza_order_form
+      - slot_was_set:
+          - pizza_quantity: two
+      - slot_was_set:
+          - order_list: [ ]
+      - slot_was_set:
+          - requested_slot: null
+      - active_loop: null
+      - action: utter_pizza_add_confirmation_message
+      - action: action_submit_pizza_order_form
+      - slot_was_set:
+          - pizza_type: null
+      - slot_was_set:
+          - pizza_topping: null
+      - slot_was_set:
+          - pizza_size: null
+      - slot_was_set:
+          - pizza_quantity: null
+      - slot_was_set:
+          - topping_satisfaction: null
+      - slot_was_set:
+          - pizza_custom_toppings: null
+      - slot_was_set:
+          - order_list:
+              - type: pepperoni
+                size: large
+                topping:
+                  - Pepperoni Slices
+                  - Mozzarella Cheese
+                  - shrimp
+                quantity: two
+                price: 16.99
+      - action: action_listen
+
+
+  - story: User selected two pizzas - one from menu with standard toppings; second from recommendations with custom toppings
+    steps:
+      - intent: inform_menu
+      - action: action_inform_menu
+      - action: utter_ask_pizza_type
+      - intent: inform_pizza_type
+        entities:
+        - pizza_type: seafood
+      - slot_was_set:
+        - pizza_type: seafood
+      - action: pizza_order_form
+      - active_loop: pizza_order_form
+      - slot_was_set:
+        - pizza_type: seafood
+      - slot_was_set:
+        - order_list: []
+      - slot_was_set:
+        - requested_slot: pizza_topping
+      - active_loop: null
+      - active_loop: null
+      - intent: pizza_standard_topping_confirm
+      - action: pizza_order_form
+      - active_loop: pizza_order_form
+      - slot_was_set:
+        - pizza_type: seafood
+      - slot_was_set:
+        - order_list: []
+      - slot_was_set:
+        - pizza_topping:
+          - Shrimp
+          - Mussels
+          - Clams
+          - Tomato Sauce
+          - and Mozzarella Cheese
+      - slot_was_set:
+        - topping_satisfaction: true
+      - slot_was_set:
+        - requested_slot: pizza_size
+      - intent: inform_pizza_size
+        entities:
+        - pizza_size: small
+      - slot_was_set:
+        - pizza_size: small
+      - action: pizza_order_form
+      - slot_was_set:
+        - pizza_size: small
+      - slot_was_set:
+        - order_list: []
+      - slot_was_set:
+        - requested_slot: pizza_quantity
+      - intent: inform_pizza_quantity
+        entities:
+        - pizza_quantity: two
+      - slot_was_set:
+        - pizza_quantity: two
+      - action: pizza_order_form
+      - slot_was_set:
+        - pizza_quantity: two
+      - slot_was_set:
+        - order_list: []
+      - slot_was_set:
+        - requested_slot: null
+      - active_loop: null
+      - action: utter_pizza_add_confirmation_message
+      - action: action_submit_pizza_order_form
+      - slot_was_set:
+        - pizza_type: null
+      - slot_was_set:
+        - pizza_topping: null
+      - slot_was_set:
+        - pizza_size: null
+      - slot_was_set:
+        - pizza_quantity: null
+      - slot_was_set:
+        - topping_satisfaction: null
+      - slot_was_set:
+        - pizza_custom_toppings: null
+      - slot_was_set:
+        - order_list:
+          - type: seafood
+            size: small
+            topping:
+            - Shrimp
+            - Mussels
+            - Clams
+            - Tomato Sauce
+            - and Mozzarella Cheese
+            quantity: two
+            price: 14.99
+      - intent: add_another_pizza_general
+      - action: utter_response_to_add_another_pizza_intent_general
+      - intent: recommend_pizza
+      - action: action_inform_recommendations_menu
+      - action: utter_ask_pizza_type
+      - intent: inform_pizza_type
+        entities:
+        - pizza_type: pepperoni
+      - slot_was_set:
+        - pizza_type: pepperoni
+      - action: pizza_order_form
+      - active_loop: pizza_order_form
+      - slot_was_set:
+        - pizza_type: pepperoni
+      - slot_was_set:
+        - order_list:
+          - type: seafood
+            size: small
+            topping:
+            - Shrimp
+            - Mussels
+            - Clams
+            - Tomato Sauce
+            - and Mozzarella Cheese
+            quantity: two
+            price: 14.99
+      - slot_was_set:
+        - requested_slot: pizza_topping
+      - active_loop: null
+      - active_loop: null
+      - intent: pizza_custom_toppings_request
+      - action: pizza_custom_topping_form
+      - active_loop: pizza_custom_topping_form
+      - slot_was_set:
+        - requested_slot: pizza_custom_toppings
+      - intent: inform_pizza_quantity
+        entities:
+        - pizza_custom_toppings: shrimp
+      - slot_was_set:
+        - pizza_custom_toppings: shrimp
+      - intent: add_pizza_custom_toppings
+        entities:
+        - pizza_custom_toppings: shrimp
+      - slot_was_set:
+        - pizza_custom_toppings: shrimp
+      - slot_was_set:
+        - topping_satisfaction: false
+      - action: pizza_custom_topping_form
+      - slot_was_set:
+        - pizza_custom_toppings:
+          - shrimp
+      - slot_was_set:
+        - topping_satisfaction: null
+      - slot_was_set:
+        - pizza_topping:
+          - Pepperoni Slices
+          - Mozzarella Cheese
+          - Tomato Sauce
+          - shrimp
+      - slot_was_set:
+        - requested_slot: topping_satisfaction
+      - intent: remove_pizza_custom_toppings
+        entities:
+        - pizza_custom_toppings: Tomato Sauce
+      - slot_was_set:
+        - pizza_custom_toppings: Tomato Sauce
+      - slot_was_set:
+        - topping_satisfaction: false
+      - action: pizza_custom_topping_form
+      - slot_was_set:
+        - pizza_custom_toppings:
+          - Tomato Sauce
+      - slot_was_set:
+        - topping_satisfaction: null
+      - slot_was_set:
+        - pizza_topping:
+          - Pepperoni Slices
+          - Mozzarella Cheese
+          - shrimp
+      - slot_was_set:
+        - requested_slot: topping_satisfaction
+      - intent: pizza_custom_toppings_happy
+      - slot_was_set:
+        - topping_satisfaction: true
+      - action: pizza_custom_topping_form
+      - slot_was_set:
+        - requested_slot: null
+      - slot_was_set:
+        - requested_slot: null
+      - active_loop: null
+      - action: utter_summarize_customized_toppings
+      - action: action_submit_pizza_custom_topping_form
+      - slot_was_set:
+        - pizza_topping:
+          - Pepperoni Slices
+          - Mozzarella Cheese
+          - shrimp
+      - action: pizza_order_form
+      - active_loop: pizza_order_form
+      - slot_was_set:
+        - pizza_type: pepperoni
+      - slot_was_set:
+        - pizza_topping:
+          - Pepperoni Slices
+          - Mozzarella Cheese
+          - shrimp
+      - slot_was_set:
+        - order_list:
+          - type: seafood
+            size: small
+            topping:
+            - Shrimp
+            - Mussels
+            - Clams
+            - Tomato Sauce
+            - and Mozzarella Cheese
+            quantity: two
+            price: 14.99
+      - slot_was_set:
+        - topping_satisfaction: true
+      - slot_was_set:
+        - requested_slot: pizza_size
+      - intent: inform_pizza_size
+        entities:
+        - pizza_size: large
+      - slot_was_set:
+        - pizza_size: large
+      - action: pizza_order_form
+      - slot_was_set:
+        - pizza_size: large
+      - slot_was_set:
+        - order_list:
+          - type: seafood
+            size: small
+            topping:
+            - Shrimp
+            - Mussels
+            - Clams
+            - Tomato Sauce
+            - and Mozzarella Cheese
+            quantity: two
+            price: 14.99
+      - slot_was_set:
+        - requested_slot: pizza_quantity
+      - intent: inform_pizza_quantity
+        entities:
+        - pizza_quantity: two
+      - slot_was_set:
+        - pizza_quantity: two
+      - action: pizza_order_form
+      - slot_was_set:
+        - pizza_quantity: two
+      - slot_was_set:
+        - order_list:
+          - type: seafood
+            size: small
+            topping:
+            - Shrimp
+            - Mussels
+            - Clams
+            - Tomato Sauce
+            - and Mozzarella Cheese
+            quantity: two
+            price: 14.99
+      - slot_was_set:
+        - requested_slot: null
+      - active_loop: null
+      - action: utter_pizza_add_confirmation_message
+      - action: action_submit_pizza_order_form
+      - slot_was_set:
+        - pizza_type: null
+      - slot_was_set:
+        - pizza_topping: null
+      - slot_was_set:
+        - pizza_size: null
+      - slot_was_set:
+        - pizza_quantity: null
+      - slot_was_set:
+        - topping_satisfaction: null
+      - slot_was_set:
+        - pizza_custom_toppings: null
+      - slot_was_set:
+        - order_list:
+          - type: seafood
+            size: small
+            topping:
+            - Shrimp
+            - Mussels
+            - Clams
+            - Tomato Sauce
+            - and Mozzarella Cheese
+            quantity: two
+            price: 14.99
+          - type: pepperoni
+            size: large
+            topping:
+            - Pepperoni Slices
+            - Mozzarella Cheese
+            - shrimp
+            quantity: two
+            price: 17.99
+      - action: action_listen
+
+
+  - story: User selected one pizza from menu with standard toppings and then proceeds to pickup (Completes the order)
+    steps:
+      - intent: start_greet
+      - action: action_utter_greet
+      - slot_was_set:
+          - restaurant_opened: true
+      - intent: initiate_general_conversation
+      - action: utter_initiate_general_conversation
+      - intent: inform_menu
+      - action: action_inform_menu
+      - action: utter_ask_pizza_type
+      - intent: pizza_standard_topping_confirm
+      - action: pizza_order_form
+      - active_loop: pizza_order_form
+      - slot_was_set:
+          - order_list: [ ]
+      - slot_was_set:
+          - requested_slot: pizza_type
+      - intent: inform_pizza_type
+        entities:
+          - pizza_type: seafood
+      - slot_was_set:
+          - pizza_type: seafood
+      - action: pizza_order_form
+      - slot_was_set:
+          - pizza_type: seafood
+      - slot_was_set:
+          - order_list: [ ]
+      - slot_was_set:
+          - requested_slot: pizza_topping
+      - active_loop: null
+      - active_loop: null
+      - intent: pizza_standard_topping_confirm
+      - action: pizza_order_form
+      - active_loop: pizza_order_form
+      - slot_was_set:
+          - pizza_type: seafood
+      - slot_was_set:
+          - order_list: [ ]
+      - slot_was_set:
+          - pizza_topping:
+              - Shrimp
+              - Mussels
+              - Clams
+              - Tomato Sauce
+              - and Mozzarella Cheese
+      - slot_was_set:
+          - topping_satisfaction: true
+      - slot_was_set:
+          - requested_slot: pizza_size
+      - intent: inform_pizza_size
+        entities:
+          - pizza_size: medium
+      - slot_was_set:
+          - pizza_size: medium
+      - action: pizza_order_form
+      - slot_was_set:
+          - pizza_size: medium
+      - slot_was_set:
+          - order_list: [ ]
+      - slot_was_set:
+          - requested_slot: pizza_quantity
+      - intent: inform_pizza_quantity
+        entities:
+          - pizza_quantity: one
+      - slot_was_set:
+          - pizza_quantity: one
+      - action: pizza_order_form
+      - slot_was_set:
+          - pizza_quantity: one
+      - slot_was_set:
+          - order_list: [ ]
+      - slot_was_set:
+          - requested_slot: null
+      - active_loop: null
+      - action: utter_pizza_add_confirmation_message
+      - action: action_submit_pizza_order_form
+      - slot_was_set:
+          - pizza_type: null
+      - slot_was_set:
+          - pizza_topping: null
+      - slot_was_set:
+          - pizza_size: null
+      - slot_was_set:
+          - pizza_quantity: null
+      - slot_was_set:
+          - topping_satisfaction: null
+      - slot_was_set:
+          - pizza_custom_toppings: null
+      - slot_was_set:
+          - order_list:
+              - type: seafood
+                size: medium
+                topping:
+                  - Shrimp
+                  - Mussels
+                  - Clams
+                  - Tomato Sauce
+                  - and Mozzarella Cheese
+                quantity: one
+                price: 1.0
+      - intent: proceed_to_pickup
+      - action: action_calculate_preparation_time
+      - slot_was_set:
+          - preparation_time: 10
+      - action: utter_response_to_proceed_to_pickup_intent
+      - action: order_pickup_form
+      - active_loop: order_pickup_form
+      - slot_was_set:
+          - order_list:
+              - type: seafood
+                size: medium
+                topping:
+                  - Shrimp
+                  - Mussels
+                  - Clams
+                  - Tomato Sauce
+                  - and Mozzarella Cheese
+                quantity: one
+                price: 1.0
+      - slot_was_set:
+          - preparation_time: 10
+      - slot_was_set:
+          - requested_slot: order_pickup_time
+      - intent: inform_pickup_time
+        entities:
+          - pickup_time: 9:30 pm
+      - slot_was_set:
+          - pickup_time: 9:30 pm
+      - slot_was_set:
+          - order_pickup_time: 9:30 pm
+      - action: order_pickup_form
+      - slot_was_set:
+          - order_pickup_time: 2024-08-21 21:30
+      - slot_was_set:
+          - pickup_time: 2024-08-21 21:30
+      - slot_was_set:
+          - within_business_hours: true
+      - slot_was_set:
+          - requested_slot: pickup_confirmation
+      - intent: approve_pickup_time
+      - slot_was_set:
+          - pickup_confirmation: true
+      - action: order_pickup_form
+      - slot_was_set:
+          - pickup_confirmation: true
+      - slot_was_set:
+          - order_number: 5833
+      - slot_was_set:
+          - requested_slot: null
+      - active_loop: null
+      - action: action_submit_order_pickup_form
+      - slot_was_set:
+          - pizza_type: null
+      - slot_was_set:
+          - pizza_topping: null
+      - slot_was_set:
+          - pizza_custom_toppings: null
+      - slot_was_set:
+          - topping_satisfaction: null
+      - slot_was_set:
+          - pizza_size: null
+      - slot_was_set:
+          - pizza_quantity: null
+      - slot_was_set:
+          - order_list: null
+      - slot_was_set:
+          - pickup_time: null
+      - slot_was_set:
+          - order_pickup_time: null
+      - slot_was_set:
+          - preparation_time: null
+      - slot_was_set:
+          - within_business_hours: null
+      - slot_was_set:
+          - order_number: null
+      - action: utter_end_greet
+      - action: action_reset_all_slots
+
+
+  - story: Order a Margherita Pizza with Custom Toppings and Pickup at Midnight
+    steps:
+      - intent: start_greet
+      - action: action_utter_greet
+      - slot_was_set:
+          - restaurant_opened: true
+      - intent: initiate_general_conversation
+      - action: utter_initiate_general_conversation
+      - intent: inform_menu
+      - action: action_inform_menu
+      - action: utter_ask_pizza_type
+      - intent: inform_pizza_type
+        entities:
+          - pizza_type: margherita
+      - slot_was_set:
+          - pizza_type: margherita
+      - action: pizza_order_form
+      - active_loop: pizza_order_form
+      - slot_was_set:
+          - pizza_type: margherita
+      - slot_was_set:
+          - order_list: [ ]
+      - slot_was_set:
+          - requested_slot: pizza_topping
+      - active_loop: null
+      - active_loop: null
+      - intent: pizza_custom_toppings_request
+      - action: pizza_custom_topping_form
+      - active_loop: pizza_custom_topping_form
+      - slot_was_set:
+          - requested_slot: pizza_custom_toppings
+      - intent: add_pizza_custom_toppings
+        entities:
+          - pizza_custom_toppings: olive
+      - slot_was_set:
+          - pizza_custom_toppings: olive
+      - slot_was_set:
+          - topping_satisfaction: false
+      - action: pizza_custom_topping_form
+      - slot_was_set:
+          - pizza_custom_toppings:
+              - olive
+      - slot_was_set:
+          - topping_satisfaction: null
+      - slot_was_set:
+          - pizza_topping:
+              - Mozzarella Cheese
+              - Tomato Sauce
+              - Basil Leaves
+              - olive
+      - slot_was_set:
+          - requested_slot: topping_satisfaction
+      - intent: remove_pizza_custom_toppings
+        entities:
+          - pizza_custom_toppings: basil leaves
+      - slot_was_set:
+          - pizza_custom_toppings: basil leaves
+      - slot_was_set:
+          - topping_satisfaction: false
+      - action: pizza_custom_topping_form
+      - slot_was_set:
+          - pizza_custom_toppings:
+              - basil leaves
+      - slot_was_set:
+          - topping_satisfaction: null
+      - slot_was_set:
+          - pizza_topping:
+              - Mozzarella Cheese
+              - Tomato Sauce
+              - Basil Leaves
+              - olive
+      - slot_was_set:
+          - requested_slot: topping_satisfaction
+      - intent: pizza_custom_toppings_happy
+      - slot_was_set:
+          - topping_satisfaction: true
+      - action: pizza_custom_topping_form
+      - slot_was_set:
+          - requested_slot: null
+      - slot_was_set:
+          - requested_slot: null
+      - active_loop: null
+      - action: utter_summarize_customized_toppings
+      - action: action_submit_pizza_custom_topping_form
+      - slot_was_set:
+          - pizza_topping:
+              - Mozzarella Cheese
+              - Tomato Sauce
+              - Basil Leaves
+              - olive
+      - action: pizza_order_form
+      - active_loop: pizza_order_form
+      - slot_was_set:
+          - pizza_type: margherita
+      - slot_was_set:
+          - pizza_topping:
+              - Mozzarella Cheese
+              - Tomato Sauce
+              - Basil Leaves
+              - olive
+      - slot_was_set:
+          - order_list: [ ]
+      - slot_was_set:
+          - topping_satisfaction: true
+      - slot_was_set:
+          - requested_slot: pizza_size
+      - intent: inform_pizza_size
+        entities:
+          - pizza_size: small
+      - slot_was_set:
+          - pizza_size: small
+      - action: pizza_order_form
+      - slot_was_set:
+          - pizza_size: small
+      - slot_was_set:
+          - order_list: [ ]
+      - slot_was_set:
+          - requested_slot: pizza_quantity
+      - intent: inform_pizza_quantity
+        entities:
+          - pizza_quantity: one
+      - slot_was_set:
+          - pizza_quantity: one
+      - action: pizza_order_form
+      - slot_was_set:
+          - pizza_quantity: one
+      - slot_was_set:
+          - order_list: [ ]
+      - slot_was_set:
+          - requested_slot: null
+      - active_loop: null
+      - action: utter_pizza_add_confirmation_message
+      - action: action_submit_pizza_order_form
+      - slot_was_set:
+          - pizza_type: null
+      - slot_was_set:
+          - pizza_topping: null
+      - slot_was_set:
+          - pizza_size: null
+      - slot_was_set:
+          - pizza_quantity: null
+      - slot_was_set:
+          - topping_satisfaction: null
+      - slot_was_set:
+          - pizza_custom_toppings: null
+      - slot_was_set:
+          - order_list:
+              - type: margherita
+                size: small
+                topping:
+                  - Mozzarella Cheese
+                  - Tomato Sauce
+                  - Basil Leaves
+                  - olive
+                quantity: one
+                price: 1.0
+      - intent: proceed_to_pickup
+      - action: action_calculate_preparation_time
+      - slot_was_set:
+          - preparation_time: 7
+      - action: utter_response_to_proceed_to_pickup_intent
+      - action: order_pickup_form
+      - active_loop: order_pickup_form
+      - slot_was_set:
+          - order_list:
+              - type: margherita
+                size: small
+                topping:
+                  - Mozzarella Cheese
+                  - Tomato Sauce
+                  - Basil Leaves
+                  - olive
+                quantity: one
+                price: 1.0
+      - slot_was_set:
+          - preparation_time: 7
+      - slot_was_set:
+          - requested_slot: order_pickup_time
+      - intent: inform_pickup_time
+        entities:
+          - pickup_time: midnight
+      - slot_was_set:
+          - pickup_time: midnight
+      - slot_was_set:
+          - order_pickup_time: midnight
+      - action: order_pickup_form
+      - slot_was_set:
+          - order_pickup_time: null
+      - slot_was_set:
+          - pickup_time: null
+      - slot_was_set:
+          - requested_slot: order_pickup_time
+      - intent: inform_pickup_time
+        entities:
+          - pickup_time: 11:00 PM
+      - slot_was_set:
+          - pickup_time: 11:00 PM
+      - slot_was_set:
+          - order_pickup_time: 11:00 PM
+      - action: order_pickup_form
+      - slot_was_set:
+          - order_pickup_time: 2024-08-21 23:00
+      - slot_was_set:
+          - pickup_time: 2024-08-21 23:00
+      - slot_was_set:
+          - within_business_hours: true
+      - slot_was_set:
+          - requested_slot: pickup_confirmation
+      - intent: approve_pickup_time
+      - slot_was_set:
+          - pickup_confirmation: true
+      - action: order_pickup_form
+      - slot_was_set:
+          - pickup_confirmation: true
+      - slot_was_set:
+          - order_number: 6874
+      - slot_was_set:
+          - requested_slot: null
+      - active_loop: null
+      - action: action_submit_order_pickup_form
+      - slot_was_set:
+          - pizza_type: null
+      - slot_was_set:
+          - pizza_topping: null
+      - slot_was_set:
+          - pizza_custom_toppings: null
+      - slot_was_set:
+          - topping_satisfaction: null
+      - slot_was_set:
+          - pizza_size: null
+      - slot_was_set:
+          - pizza_quantity: null
+      - slot_was_set:
+          - order_list: null
+      - slot_was_set:
+          - pickup_time: null
+      - slot_was_set:
+          - order_pickup_time: null
+      - slot_was_set:
+          - preparation_time: null
+      - slot_was_set:
+          - within_business_hours: null
+      - slot_was_set:
+          - order_number: null
+      - action: utter_end_greet
+      - action: action_reset_all_slots
+
+
+  - story: User went to menu then asked for recommendations and then start ordering pizza from recommendations
+    steps:
+    - intent: start_greet
+    - action: action_utter_greet
+    - intent: initiate_general_conversation
+    - action: utter_initiate_general_conversation
+    - intent: inform_menu
+    - action: action_inform_menu
+    - action: utter_ask_pizza_type
+    - intent: recommend_pizza
+    - action: action_inform_recommendations_menu
+    - action: utter_ask_pizza_type
+    - intent: inform_pizza_type
+      entities:
+      - pizza_type: pepperoni
+    - slot_was_set:
+      - pizza_type: pepperoni
+    - action: pizza_order_form
+    - active_loop: pizza_order_form
+
+
+  - story: User deletes only pizza he has from order of one item during confirmation
+    steps:
+      - intent: start_greet
+      - action: action_utter_greet
+      - slot_was_set:
+          - restaurant_opened: open
+      - intent: initiate_general_conversation
+      - action: utter_initiate_general_conversation
+      - intent: recommend_pizza
+      - action: action_inform_recommendations_menu
+      - action: utter_ask_pizza_type
+      - intent: inform_pizza_type
+        entities:
+          - pizza_type: Supreme
+      - slot_was_set:
+          - pizza_type: Supreme
+      - action: pizza_order_form
+      - active_loop: pizza_order_form
+      - slot_was_set:
+          - pizza_type: Supreme
+      - slot_was_set:
+          - order_list: [ ]
+      - slot_was_set:
+          - requested_slot: pizza_topping
+      - active_loop: null
+      - active_loop: null
+      - intent: pizza_standard_topping_confirm
+      - action: pizza_order_form
+      - active_loop: pizza_order_form
+      - slot_was_set:
+          - pizza_type: supreme
+      - slot_was_set:
+          - order_list: [ ]
+      - slot_was_set:
+          - pizza_topping:
+              - Mushrooms
+              - Bell Peppers
+              - Onions
+              - Olives
+              - and Tomatoes
+      - slot_was_set:
+          - topping_satisfaction: true
+      - slot_was_set:
+          - requested_slot: pizza_size
+      - intent: inform_pizza_size
+        entities:
+          - pizza_size: medium
+      - slot_was_set:
+          - pizza_size: medium
+      - action: pizza_order_form
+      - slot_was_set:
+          - pizza_size: medium
+      - slot_was_set:
+          - order_list: [ ]
+      - slot_was_set:
+          - requested_slot: pizza_quantity
+      - intent: inform_pizza_quantity
+        entities:
+          - pizza_quantity: one
+      - slot_was_set:
+          - pizza_quantity: one
+      - action: pizza_order_form
+      - slot_was_set:
+          - pizza_quantity: one
+      - slot_was_set:
+          - order_list: [ ]
+      - slot_was_set:
+          - requested_slot: null
+      - active_loop: null
+      - action: utter_pizza_add_confirmation_message
+      - action: action_submit_pizza_order_form
+      - slot_was_set:
+          - pizza_type: null
+      - slot_was_set:
+          - pizza_topping: null
+      - slot_was_set:
+          - pizza_size: null
+      - slot_was_set:
+          - pizza_quantity: null
+      - slot_was_set:
+          - topping_satisfaction: null
+      - slot_was_set:
+          - pizza_custom_toppings: null
+      - slot_was_set:
+          - order_list:
+              - type: supreme
+                size: medium
+                topping:
+                  - Mushrooms
+                  - Bell Peppers
+                  - Onions
+                  - Olives
+                  - and Tomatoes
+                quantity: one
+                price: 1.0
+      - intent: remove_pizza_custom_toppings
+        entities:
+          - pizza_type: Supreme
+      - slot_was_set:
+          - pizza_type: Supreme
+      - slot_was_set:
+          - topping_satisfaction: false
+      - intent: remove_pizza_from_order
+        entities:
+          - pizza_type: Supreme
+      - slot_was_set:
+          - pizza_type: Supreme
+      - action: utter_response_to_confirm_remove_pizza_request
+      - intent: affirm
+      - slot_was_set:
+          - pickup_confirmation: true
+      - action: action_remove_item_from_order
+      - slot_was_set:
+          - order_list: [ ]
+
+
+  - story: User deletes one pizza from order list of two pizzas during confirmation
+    steps:
+      - intent: start_greet
+      - action: action_utter_greet
+      - slot_was_set:
+          - restaurant_opened: open
+      - intent: initiate_general_conversation
+      - action: utter_initiate_general_conversation
+      - intent: recommend_vegetarian_pizza
+        entities:
+          - menu_category: vegetarian
+      - action: action_inform_veg_recommendations_menu
+      - action: utter_ask_pizza_type
+      - intent: inform_pizza_type
+        entities:
+          - pizza_type: Margherita
+      - slot_was_set:
+          - pizza_type: Margherita
+      - action: pizza_order_form
+      - active_loop: pizza_order_form
+      - slot_was_set:
+          - pizza_type: Margherita
+      - slot_was_set:
+          - order_list: [ ]
+      - slot_was_set:
+          - requested_slot: pizza_topping
+      - active_loop: null
+      - active_loop: null
+      - intent: pizza_standard_topping_confirm
+      - action: pizza_order_form
+      - active_loop: pizza_order_form
+      - slot_was_set:
+          - pizza_type: margherita
+      - slot_was_set:
+          - order_list: [ ]
+      - slot_was_set:
+          - pizza_topping:
+              - Mozzarella Cheese
+              - Tomato Sauce
+              - and Basil Leaves
+      - slot_was_set:
+          - topping_satisfaction: true
+      - slot_was_set:
+          - requested_slot: pizza_size
+      - intent: inform_pizza_size
+        entities:
+          - pizza_size: large
+      - slot_was_set:
+          - pizza_size: large
+      - action: pizza_order_form
+      - slot_was_set:
+          - pizza_size: large
+      - slot_was_set:
+          - order_list: [ ]
+      - slot_was_set:
+          - requested_slot: pizza_quantity
+      - intent: inform_pizza_quantity
+        entities:
+          - pizza_quantity: two
+      - slot_was_set:
+          - pizza_quantity: two
+      - action: pizza_order_form
+      - slot_was_set:
+          - pizza_quantity: two
+      - slot_was_set:
+          - order_list: [ ]
+      - slot_was_set:
+          - requested_slot: null
+      - active_loop: null
+      - action: utter_pizza_add_confirmation_message
+      - action: action_submit_pizza_order_form
+      - slot_was_set:
+          - pizza_type: null
+      - slot_was_set:
+          - pizza_topping: null
+      - slot_was_set:
+          - pizza_size: null
+      - slot_was_set:
+          - pizza_quantity: null
+      - slot_was_set:
+          - topping_satisfaction: null
+      - slot_was_set:
+          - pizza_custom_toppings: null
+      - slot_was_set:
+          - order_list:
+              - type: margherita
+                size: large
+                topping:
+                  - Mozzarella Cheese
+                  - Tomato Sauce
+                  - and Basil Leaves
+                quantity: two
+                price: 16.990000000000002
+      - intent: add_another_pizza_specific
+        entities:
+          - pizza_type: supreme
+      - slot_was_set:
+          - pizza_type: supreme
+      - action: utter_response_to_add_specific_pizza_intent
+      - action: pizza_order_form
+      - active_loop: pizza_order_form
+      - slot_was_set:
+          - pizza_type: supreme
+      - slot_was_set:
+          - order_list:
+              - type: margherita
+                size: large
+                topping:
+                  - Mozzarella Cheese
+                  - Tomato Sauce
+                  - and Basil Leaves
+                quantity: two
+                price: 16.990000000000002
+      - slot_was_set:
+          - requested_slot: pizza_topping
+      - active_loop: null
+      - active_loop: null
+      - intent: pizza_standard_topping_confirm
+      - action: pizza_order_form
+      - active_loop: pizza_order_form
+      - slot_was_set:
+          - pizza_type: supreme
+      - slot_was_set:
+          - order_list:
+              - type: margherita
+                size: large
+                topping:
+                  - Mozzarella Cheese
+                  - Tomato Sauce
+                  - and Basil Leaves
+                quantity: two
+                price: 16.990000000000002
+      - slot_was_set:
+          - pizza_topping:
+              - Mushrooms
+              - Bell Peppers
+              - Onions
+              - Olives
+              - and Tomatoes
+      - slot_was_set:
+          - topping_satisfaction: true
+      - slot_was_set:
+          - requested_slot: pizza_size
+      - intent: inform_pizza_size
+        entities:
+          - pizza_size: medium
+      - slot_was_set:
+          - pizza_size: medium
+      - action: pizza_order_form
+      - slot_was_set:
+          - pizza_size: medium
+      - slot_was_set:
+          - order_list:
+              - type: margherita
+                size: large
+                topping:
+                  - Mozzarella Cheese
+                  - Tomato Sauce
+                  - and Basil Leaves
+                quantity: two
+                price: 16.990000000000002
+      - slot_was_set:
+          - requested_slot: pizza_quantity
+      - intent: inform_pizza_quantity
+        entities:
+          - pizza_quantity: seven
+      - slot_was_set:
+          - pizza_quantity: seven
+      - action: pizza_order_form
+      - slot_was_set:
+          - pizza_quantity: seven
+      - slot_was_set:
+          - order_list:
+              - type: margherita
+                size: large
+                topping:
+                  - Mozzarella Cheese
+                  - Tomato Sauce
+                  - and Basil Leaves
+                quantity: two
+                price: 16.990000000000002
+      - slot_was_set:
+          - requested_slot: null
+      - active_loop: null
+      - action: utter_pizza_add_confirmation_message
+      - action: action_submit_pizza_order_form
+      - slot_was_set:
+          - pizza_type: null
+      - slot_was_set:
+          - pizza_topping: null
+      - slot_was_set:
+          - pizza_size: null
+      - slot_was_set:
+          - pizza_quantity: null
+      - slot_was_set:
+          - topping_satisfaction: null
+      - slot_was_set:
+          - pizza_custom_toppings: null
+      - slot_was_set:
+          - order_list:
+              - type: margherita
+                size: large
+                topping:
+                  - Mozzarella Cheese
+                  - Tomato Sauce
+                  - and Basil Leaves
+                quantity: two
+                price: 16.990000000000002
+              - type: supreme
+                size: medium
+                topping:
+                  - Mushrooms
+                  - Bell Peppers
+                  - Onions
+                  - Olives
+                  - and Tomatoes
+                quantity: seven
+                price: 90.94
+      - intent: remove_pizza_from_order
+        entities:
+          - pizza_type: Margherita
+      - slot_was_set:
+          - pizza_type: Margherita
+      - action: utter_response_to_confirm_remove_pizza_request
+      - intent: affirm
+      - slot_was_set:
+          - pickup_confirmation: true
+      - action: action_remove_item_from_order
+      - slot_was_set:
+          - pizza_type: null
+      - slot_was_set:
+          - pizza_topping: null
+      - slot_was_set:
+          - pizza_size: null
+      - slot_was_set:
+          - pizza_quantity: null
+      - slot_was_set:
+          - topping_satisfaction: null
+      - slot_was_set:
+          - pizza_custom_toppings: null
+      - slot_was_set:
+          - order_list:
+              - type: supreme
+                size: medium
+                topping:
+                  - Mushrooms
+                  - Bell Peppers
+                  - Onions
+                  - Olives
+                  - and Tomatoes
+                quantity: seven
+                price: 90.94
+
+
+  - story: User cancel the entire order during confirmation
+    steps:
+      - intent: start_greet
+      - action: action_utter_greet
+      - slot_was_set:
+          - restaurant_opened: false
+      - intent: initiate_general_conversation
+      - action: utter_initiate_general_conversation
+      - intent: inform_menu
+      - action: action_inform_menu
+      - action: utter_ask_pizza_type
+      - intent: inform_pizza_type
+        entities:
+          - pizza_type: supreme
+      - slot_was_set:
+          - pizza_type: supreme
+      - action: pizza_order_form
+      - active_loop: pizza_order_form
+      - slot_was_set:
+          - pizza_type: supreme
+      - slot_was_set:
+          - order_list: [ ]
+      - slot_was_set:
+          - requested_slot: pizza_topping
+      - active_loop: null
+      - active_loop: null
+      - intent: pizza_standard_topping_confirm
+      - action: pizza_order_form
+      - active_loop: pizza_order_form
+      - slot_was_set:
+          - pizza_type: supreme
+      - slot_was_set:
+          - order_list: [ ]
+      - slot_was_set:
+          - pizza_topping:
+              - Mushrooms
+              - Bell Peppers
+              - Onions
+              - Olives
+              - and Tomatoes
+      - slot_was_set:
+          - topping_satisfaction: true
+      - slot_was_set:
+          - requested_slot: pizza_size
+      - intent: inform_pizza_size
+        entities:
+          - pizza_size: large
+      - slot_was_set:
+          - pizza_size: large
+      - action: pizza_order_form
+      - slot_was_set:
+          - pizza_size: large
+      - slot_was_set:
+          - order_list: [ ]
+      - slot_was_set:
+          - requested_slot: pizza_quantity
+      - intent: inform_pizza_quantity
+        entities:
+          - pizza_quantity: nine
+      - slot_was_set:
+          - pizza_quantity: nine
+      - action: pizza_order_form
+      - slot_was_set:
+          - pizza_quantity: nine
+      - slot_was_set:
+          - order_list: [ ]
+      - slot_was_set:
+          - requested_slot: null
+      - active_loop: null
+      - action: utter_pizza_add_confirmation_message
+      - action: action_submit_pizza_order_form
+      - slot_was_set:
+          - pizza_type: null
+      - slot_was_set:
+          - pizza_topping: null
+      - slot_was_set:
+          - pizza_size: null
+      - slot_was_set:
+          - pizza_quantity: null
+      - slot_was_set:
+          - topping_satisfaction: null
+      - slot_was_set:
+          - pizza_custom_toppings: null
+      - slot_was_set:
+          - order_list:
+              - type: supreme
+                size: large
+                topping:
+                  - Mushrooms
+                  - Bell Peppers
+                  - Onions
+                  - Olives
+                  - and Tomatoes
+                quantity: nine
+                price: 144.92
+      - intent: cancel_complete_order
+      - action: utter_confirm_cancel_order
+      - intent: affirm
+      - slot_was_set:
+          - pickup_confirmation: true
+      - action: utter_order_cancelled
+      - action: action_reset_all_slots

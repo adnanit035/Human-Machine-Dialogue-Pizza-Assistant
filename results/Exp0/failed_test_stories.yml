@@ -1,0 +1,37 @@
+version: "3.1"
+stories:
+- story: Test show the vegetarian menu (.\test\test_stories.yml)
+  steps:
+  - intent: inform_vegetarian_menu  # predicted: inform_vegetarian_menu: Show me the [vegetarian](menu_category) menu
+  - action: action_inform_vegetarian_menu
+  - action: utter_ask_pizza_type
+- story: Test show the non-vegetarian menu (.\test\test_stories.yml)
+  steps:
+  - intent: inform_non_vegetarian_menu  # predicted: inform_non_vegetarian_menu: Show me the [non-vegetarian](menu_category) menu
+  - action: action_inform_non_vegetarian_menu
+  - action: utter_ask_pizza_type
+- story: Test request for vegetarian recommendations (.\test\test_stories.yml)
+  steps:
+  - intent: recommend_vegetarian_pizza  # predicted: recommend_vegetarian_pizza: Can you recommend a [vegetarian](recommendation_category) pizza?
+  - action: action_inform_veg_recommendations_menu
+  - action: utter_ask_pizza_type
+- story: Test request for non-vegetarian recommendations (.\test\test_stories.yml)
+  steps:
+  - intent: recommend_non_vegetarian_pizza  # predicted: recommend_non_vegetarian_pizza: Can you recommend a [non-vegetarian](recommendation_category) pizza?
+  - action: action_inform_non_veg_recommendations_menu
+  - action: utter_ask_pizza_type
+- story: Test activate pizza order form (.\test\test_stories.yml)
+  steps:
+  - intent: inform_pizza_type  # predicted: initiate_general_conversation: I want to order a [pepperoni](pizza_type) pizza
+    entities:
+    - pizza_type: pepperoni
+  - slot_was_set:
+    - pizza_type: pepperoni
+  - slot_was_set:
+    - pizza_type: pepperoni
+  - action: pizza_order_form
+  - active_loop: pizza_order_form
+- story: Test customer asks for restaurant details (.\test\test_stories.yml)
+  steps:
+  - intent: ask_restaurant_details  # predicted: ask_restaurant_name: Can you tell me more about this restaurant?
+  - action: action_response_to_ask_restaurant_details

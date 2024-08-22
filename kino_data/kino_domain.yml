@@ -1,0 +1,73 @@
+intents:
+ - greet
+ - Goodbye
+ - MovieComposer 
+ - MovieWriter
+ - CharacterContribution
+ - MovieCast
+ - MovieProducer
+ - MovieDirector
+ - MovieReleaseDate
+ - MovieBudget
+ - MovieRuntime
+ - CelebDeath
+ - CelebBirth
+ - MovieRevenue
+ - CelebMovies
+ - MovieGenre
+ - MovieDistributor
+ - MovieRating
+ - DirectorMovies
+ - CelebSearch
+ - CelebContribution
+ - CelebPlaceOfBirth
+ - MovieOverview
+ - MoviePoster
+
+entities:
+- movie_title
+- character_name
+- actor_name
+- director_name
+- person_name
+
+slots:
+  movie_title:
+    type: text
+  character_name:
+    type: text
+  actor_name:
+    type: text
+  director_name:
+    type: text
+  person_name:
+    type: text
+ 
+actions:
+- kino_bot.ActionGreet
+- kino_bot.ActionOnIt
+- kino_bot.ActionAskHowCanHelp
+- kino_bot.ActionDoMore
+- kino_bot.ActionMovieComposer
+- kino_bot.ActionMovieWriter
+- kino_bot.ActionCharacterContribution
+- kino_bot.ActionMovieCast
+- kino_bot.ActionMovieProducer
+- kino_bot.ActionMovieDirector
+- kino_bot.ActionMovieReleaseDate
+- kino_bot.ActionMovieBudget
+- kino_bot.ActionMovieRuntime
+- kino_bot.ActionCelebDeath
+- kino_bot.ActionCelebBirth
+- kino_bot.ActionCelebMovies
+- kino_bot.ActionMovieGenre
+- kino_bot.ActionMovieDistributor
+- kino_bot.ActionMovieRating
+- kino_bot.ActionDirectorMovies
+- kino_bot.ActionCelebSearch
+- kino_bot.ActionCelebContribution
+- kino_bot.ActionCelebPlaceOfBirth
+- kino_bot.ActionMovieOverview
+- kino_bot.ActionMoviePoster
+- kino_bot.ActionFallback
+- kino_bot.ActionGoodbye

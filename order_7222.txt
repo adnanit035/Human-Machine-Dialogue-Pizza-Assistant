@@ -1,0 +1,1 @@
+{'order_number': 7222, 'order_list': [{'type': 'seafood', 'size': 'small', 'topping': ['Shrimp', 'Mussels', 'Clams', 'Tomato Sauce', 'Mozzarella Cheese'], 'quantity': 'three', 'price': 28.98}], 'total_price': 28.98, 'preparation_time': 7, 'pickup_time': '2024-08-17 23:55'}

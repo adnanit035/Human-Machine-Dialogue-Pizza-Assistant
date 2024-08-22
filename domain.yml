@@ -1,0 +1,291 @@
+version: '3.1'
+intents:
+- add_another_pizza_general
+- add_another_pizza_specific
+- add_pizza_custom_toppings
+- affirm
+- approve_pickup_time
+- ask_custom_toppings_info
+- ask_opening_times
+- ask_restaurant_address
+- ask_restaurant_contact_number
+- ask_restaurant_details
+- ask_restaurant_name
+- bot_challenge
+- cancel_complete_order
+- deny
+- deny_pickup_time
+- end_greet
+- inform_menu
+- inform_non_vegetarian_menu
+- inform_pickup_time
+- inform_pizza_quantity
+- inform_pizza_size
+- inform_pizza_type
+- inform_vegetarian_menu
+- initiate_general_conversation
+- no_longer_hungry_stop_conversation
+- out_of_scope
+- pizza_custom_toppings_happy
+- pizza_custom_toppings_request
+- pizza_standard_topping_confirm
+- proceed_to_pickup
+- recommend_non_vegetarian_pizza
+- recommend_pizza
+- recommend_vegetarian_pizza
+- remove_pizza_custom_toppings
+- remove_pizza_from_order
+- say_affirm_to_stop_confirmation_by_bot
+- say_deny_to_stop_confirmation_by_bot
+- start_greet
+entities:
+- pizza_type
+- pizza_quantity
+- pizza_size
+- pizza_custom_toppings
+- pickup_time
+- pizza_topping
+slots:
+  restaurant_opened:
+    type: bool
+    initial_value: false
+    influence_conversation: true
+    mappings:
+    - type: custom
+  pizza_type:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: pizza_type
+  pizza_topping:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: pizza_topping
+  pizza_custom_toppings:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: pizza_custom_toppings
+  topping_satisfaction:
+    type: bool
+    influence_conversation: true
+    mappings:
+    - type: from_intent
+      intent: pizza_custom_toppings_happy
+      value: true
+    - type: from_intent
+      intent: add_pizza_custom_toppings
+      value: false
+    - type: from_intent
+      intent: remove_pizza_custom_toppings
+      value: false
+  pizza_size:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: pizza_size
+  pizza_quantity:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: pizza_quantity
+  order_list:
+    type: list
+    mappings:
+    - type: custom
+  pickup_time:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_entity
+      entity: pickup_time
+  order_pickup_time:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: pickup_time
+  preparation_time:
+    type: float
+    influence_conversation: false
+    mappings:
+    - type: custom
+  within_business_hours:
+    type: bool
+    influence_conversation: false
+    mappings:
+    - type: custom
+  order_number:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: custom
+  pickup_confirmation:
+    type: bool
+    influence_conversation: true
+    mappings:
+    - type: from_intent
+      intent: approve_pickup_time
+      value: true
+    - type: from_intent
+      intent: deny_pickup_time
+      value: false
+    - type: from_intent
+      intent: affirm
+      value: true
+    - type: from_intent
+      intent: deny
+      value: false
+responses:
+  utter_response_to_confirm_remove_pizza_request:
+  - text: |
+      Are you sure you want to remove the {pizza_type} pizza from your order?
+  utter_deny_remove_pizza_request:
+  - text: |
+      No worries! Your {pizza_type} pizza is still in your order.
+  utter_response_to_confirm_stop_request:
+  - text: Are you sure you want to stop?
+  utter_want_to_stop_conversation:
+  - text: Okay, Thank you for visiting Champ Pizza Hut. Have a great day!
+  utter_response_to_deny_stop_request:
+  - text: Okay, let me know if you need anything else.
+  action_utter_greet:
+  - text: Hello! Welcome to Champ Pizza Hut! How may I assist you today?
+  utter_greet_closed:
+  - text: Hello! Welcome to Champ Pizza Hut! We are currently closed. Our business hours are from 12 PM to 11 PM. How may I assist you today?
+  utter_end_greet:
+  - text: Thank you for choosing Champ Pizza Hut! Have a great day.
+  utter_out_of_scope:
+  - text: I'm sorry, I can only assist with Pizza Order.
+  utter_bot_challenge:
+  - text: Yes, I am a bot designed to help you with Pizza Order.
+  utter_deny:
+  - text: Okay, let me know if you need anything else.
+  utter_initiate_general_conversation:
+  - text: Ah, the aroma of freshly baked pizza! You've landed in pizza heaven, my friend. How can I make your pizza dreams come true today? Would you like to explore our menu, or are you curious about our recommended specialities?
+  utter_ask_pizza_type:
+  - text: |
+      🤔 Which pizza would you like to order?
+  utter_ask_pizza_quantity:
+  - text: |
+      🍕 How many pizzas would you like to order?
+  utter_pizza_add_confirmation_message:
+  - text: 🍕 Great! We have added {pizza_quantity} {pizza_size} {pizza_type} pizza(s) to your order.
+  utter_ask_topping_satisfaction:
+  - text: |
+      Would you like to add/remove more flavor or are you happy with it? Feel free to customize further! 🎨.
+  utter_summarize_customized_toppings:
+  - text: |
+      🍕 Fantastic! You have customized your {pizza_type} pizza with your choices, pizza is uniquely yours! 🍕 Let's move on to the next step in your pizza order. 🚀
+  utter_response_to_add_another_pizza_intent_general:
+  - text: |
+      🍕 Great! Let's add another pizza to your order. 🍕
+
+      🤔 This time, would you like to try our recommended pizzas or explore the menu for more options?
+  utter_response_to_add_specific_pizza_intent:
+  - text: |
+      🍕 Great choice! Let's add another {pizza_type} pizza to your order. 🍕
+
+      Let's move on to the next step in your pizza order. 🚀
+  utter_response_to_proceed_to_pickup_intent:
+  - text: |
+      🍕 Great! Your order will take approximately {preparation_time} minutes to prepare. 🍕
+
+      When would you like to pick it up? Our business hours are from 12 PM to 11 PM. 🚀
+  utter_time_outside_business_hours:
+  - text: |
+      Our pickup times are available between 12 PM and 11 PM. Please choose a time within these hours.
+  utter_opening_times_with_ask_pickup_time:
+  - text: |
+      Our business hours are from 12 PM to 11 PM every day. When would you like to pick up your order?
+  utter_opening_times:
+  - text: |
+      Our business hours are from 12 PM to 11 PM every day.
+  utter_confirm_cancel_order:
+  - text: Are you sure you want to cancel the entire order?
+  utter_order_cancelled:
+  - text: Your order has been cancelled. If you need anything else, just let me know!
+  utter_order_not_cancelled:
+  - text: No worries! Your order is still active.
+  utter_no_active_order_to_cancel:
+  - text: There’s no active order to cancel. Can I help you with anything else?
+
+actions:
+- action_submit_pizza_order_form
+- action_utter_greet
+- action_reset_all_slots
+- utter_confirm_cancel_order
+- utter_pizza_add_confirmation_message
+- utter_ask_pizza_type
+- utter_initiate_general_conversation
+- utter_order_cancelled
+- action_inform_menu
+- utter_end_greet
+- utter_summarize_customized_toppings
+- action_submit_order_pickup_form
+- action_submit_pizza_custom_topping_form
+- action_calculate_preparation_time
+- utter_response_to_proceed_to_pickup_intent
+- action_inform_recommendations_menu
+- action_inform_veg_recommendations_menu
+- action_remove_item_from_order
+- utter_response_to_add_specific_pizza_intent
+- utter_response_to_confirm_remove_pizza_request
+- utter_response_to_add_another_pizza_intent_general
+- utter_deny_remove_pizza_request
+- action_show_order_summary
+- utter_order_not_cancelled
+- utter_no_active_order_to_cancel
+- action_utter_ask_topping_confirmation
+- action_inform_available_toppings
+- utter_response_to_confirm_stop_request
+- utter_response_to_deny_stop_request
+- utter_want_to_stop_conversation
+- action_default_fallback
+- utter_opening_times
+- action_inform_non_veg_recommendations_menu
+- action_activate_toppings_form
+- action_inform_non_vegetarian_menu
+- action_inform_vegetarian_menu
+- action_ask_pizza_topping
+- action_ask_pizza_custom_toppings
+- action_ask_topping_satisfaction
+- action_ask_pizza_size
+- action_ask_pizza_quantity
+- validate_pizza_custom_topping_form
+- validate_pizza_order_form
+- action_activate_order_pickup_form
+- validate_order_pickup_form
+- action_response_to_ask_restaurant_address
+- action_response_to_ask_restaurant_contact_number
+- action_response_to_ask_restaurant_name
+- action_response_to_ask_restaurant_details
+forms:
+  pizza_order_form:
+    required_slots:
+    - pizza_type
+    - pizza_topping
+    - pizza_size
+    - pizza_quantity
+    - order_list
+  pizza_custom_topping_form:
+    required_slots:
+    - pizza_custom_toppings
+    - topping_satisfaction
+  order_pickup_form:
+    required_slots:
+    - order_list
+    - order_pickup_time
+    - preparation_time
+    - within_business_hours
+    - pickup_confirmation
+    - order_number
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

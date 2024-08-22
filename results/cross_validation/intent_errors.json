@@ -1,0 +1,530 @@
+[
+  {
+    "text": "greetings",
+    "intent": "start_greet",
+    "intent_prediction": {
+      "name": "affirm",
+      "confidence": 0.6161190283564564
+    }
+  },
+  {
+    "text": "what is the weather in Trento?",
+    "intent": "out_of_scope",
+    "intent_prediction": {
+      "name": "deny_pickup_time",
+      "confidence": 0.3172371776735649
+    }
+  },
+  {
+    "text": "never",
+    "intent": "deny",
+    "intent_prediction": {
+      "name": "inform_pizza_quantity",
+      "confidence": 0.6448104373421589
+    }
+  },
+  {
+    "text": "Do you have pizza?",
+    "intent": "initiate_general_conversation",
+    "intent_prediction": {
+      "name": "inform_menu",
+      "confidence": 0.923379853189347
+    }
+  },
+  {
+    "text": "No more changes, please.",
+    "intent": "pizza_custom_toppings_happy",
+    "intent_prediction": {
+      "name": "add_another_pizza_general",
+      "confidence": 0.3442616626788809
+    }
+  },
+  {
+    "text": "I'm ready to place my order",
+    "intent": "proceed_to_pickup",
+    "intent_prediction": {
+      "name": "pizza_order_modify",
+      "confidence": 0.6510390304729954
+    }
+  },
+  {
+    "text": "Yes, I’ll pick it up then.",
+    "intent": "approve_pickup_time",
+    "intent_prediction": {
+      "name": "inform_pickup_time",
+      "confidence": 0.4761454036789068
+    }
+  },
+  {
+    "text": "Can I pick it up later?",
+    "intent": "deny_pickup_time",
+    "intent_prediction": {
+      "name": "inform_pickup_time",
+      "confidence": 0.4213647436354801
+    }
+  },
+  {
+    "text": "No, can we push it back?",
+    "intent": "deny_pickup_time",
+    "intent_prediction": {
+      "name": "deny",
+      "confidence": 0.34486460853506934
+    }
+  },
+  {
+    "text": "That time doesn’t suit me.",
+    "intent": "deny_pickup_time",
+    "intent_prediction": {
+      "name": "approve_pickup_time",
+      "confidence": 0.9180286894403606
+    }
+  },
+  {
+    "text": "What is 2 + 2?",
+    "intent": "out_of_scope",
+    "intent_prediction": {
+      "name": "inform_pickup_time",
+      "confidence": 0.9989960152398374
+    }
+  },
+  {
+    "text": "book a flight from Milan to NY",
+    "intent": "out_of_scope",
+    "intent_prediction": {
+      "name": "bot_challenge",
+      "confidence": 0.8563015883722327
+    }
+  },
+  {
+    "text": "can you tell me a joke?",
+    "intent": "out_of_scope",
+    "intent_prediction": {
+      "name": "bot_challenge",
+      "confidence": 0.41213558651988824
+    }
+  },
+  {
+    "text": "I totally agree",
+    "intent": "affirm",
+    "intent_prediction": {
+      "name": "deny",
+      "confidence": 0.3287755837648447
+    }
+  },
+  {
+    "text": "nah",
+    "intent": "deny",
+    "intent_prediction": {
+      "name": "affirm",
+      "confidence": 0.5182354240588262
+    }
+  },
+  {
+    "text": "I am hungry",
+    "intent": "initiate_general_conversation",
+    "intent_prediction": {
+      "name": "start_greet",
+      "confidence": 0.5056665922324938
+    }
+  },
+  {
+    "text": "I want Pesto and Sun-Dried Tomato.",
+    "intent": "pizza_order_modify",
+    "intent_prediction": {
+      "name": "inform_pizza_type",
+      "confidence": 0.8094035592489573
+    }
+  },
+  {
+    "text": "I want Pesto.",
+    "intent": "pizza_order_modify",
+    "intent_prediction": {
+      "name": "inform_pizza_quantity",
+      "confidence": 0.38895602738772694
+    }
+  },
+  {
+    "text": "Yes, it's perfect now.",
+    "intent": "pizza_custom_toppings_happy",
+    "intent_prediction": {
+      "name": "approve_pickup_time",
+      "confidence": 0.8533301470988519
+    }
+  },
+  {
+    "text": "Happy",
+    "intent": "pizza_custom_toppings_happy",
+    "intent_prediction": {
+      "name": "affirm",
+      "confidence": 0.5267487511071675
+    }
+  },
+  {
+    "text": "happy",
+    "intent": "pizza_custom_toppings_happy",
+    "intent_prediction": {
+      "name": "affirm",
+      "confidence": 0.5267487511071675
+    }
+  },
+  {
+    "text": "eight",
+    "intent": "inform_pizza_quantity",
+    "intent_prediction": {
+      "name": "affirm",
+      "confidence": 0.5622170975080065
+    }
+  },
+  {
+    "text": "I think I can pick it up around noon",
+    "intent": "inform_pickup_time",
+    "intent_prediction": {
+      "name": "deny_pickup_time",
+      "confidence": 0.6728374055465622
+    }
+  },
+  {
+    "text": "No, that time won’t work.",
+    "intent": "deny_pickup_time",
+    "intent_prediction": {
+      "name": "deny",
+      "confidence": 0.5588521382528102
+    }
+  },
+  {
+    "text": "are you real?",
+    "intent": "out_of_scope",
+    "intent_prediction": {
+      "name": "bot_challenge",
+      "confidence": 0.371763734130716
+    }
+  },
+  {
+    "text": "give me directions to Times Square",
+    "intent": "out_of_scope",
+    "intent_prediction": {
+      "name": "approve_pickup_time",
+      "confidence": 0.34239098861522493
+    }
+  },
+  {
+    "text": "translate 'hello' to French",
+    "intent": "out_of_scope",
+    "intent_prediction": {
+      "name": "start_greet",
+      "confidence": 0.45252036981280147
+    }
+  },
+  {
+    "text": "are you artificial intelligence?",
+    "intent": "bot_challenge",
+    "intent_prediction": {
+      "name": "inform_pizza_size",
+      "confidence": 0.4939068851860374
+    }
+  },
+  {
+    "text": "definitely",
+    "intent": "affirm",
+    "intent_prediction": {
+      "name": "start_greet",
+      "confidence": 0.2954891225791584
+    }
+  },
+  {
+    "text": "I disagree",
+    "intent": "deny",
+    "intent_prediction": {
+      "name": "affirm",
+      "confidence": 0.761739544421091
+    }
+  },
+  {
+    "text": "what do you have?",
+    "intent": "inform_menu",
+    "intent_prediction": {
+      "name": "out_of_scope",
+      "confidence": 0.41847448176669105
+    }
+  },
+  {
+    "text": "what do you have",
+    "intent": "inform_menu",
+    "intent_prediction": {
+      "name": "out_of_scope",
+      "confidence": 0.41847448176669105
+    }
+  },
+  {
+    "text": "Which is the best vegetarian pizza?",
+    "intent": "recommend_vegetarian_pizza",
+    "intent_prediction": {
+      "name": "inform_vegetarian_menu",
+      "confidence": 0.7095873478886658
+    }
+  },
+  {
+    "text": "Can I get a Vegetarian pizza instead?",
+    "intent": "pizza_order_modify",
+    "intent_prediction": {
+      "name": "inform_vegetarian_menu",
+      "confidence": 0.7099912925647238
+    }
+  },
+  {
+    "text": "The small is too small, I want medium.",
+    "intent": "pizza_order_modify",
+    "intent_prediction": {
+      "name": "inform_pizza_size",
+      "confidence": 0.9946361070142024
+    }
+  },
+  {
+    "text": "I want Sun-Dried Tomato.",
+    "intent": "pizza_order_modify",
+    "intent_prediction": {
+      "name": "inform_pizza_type",
+      "confidence": 0.6542995032647464
+    }
+  },
+  {
+    "text": "Exactly how I imagined it!",
+    "intent": "pizza_custom_toppings_happy",
+    "intent_prediction": {
+      "name": "pizza_order_modify",
+      "confidence": 0.632714932579535
+    }
+  },
+  {
+    "text": "three",
+    "intent": "inform_pizza_quantity",
+    "intent_prediction": {
+      "name": "affirm",
+      "confidence": 0.535525339141731
+    }
+  },
+  {
+    "text": "I’ll pick up the order at noon",
+    "intent": "inform_pickup_time",
+    "intent_prediction": {
+      "name": "deny_pickup_time",
+      "confidence": 0.39002651302368835
+    }
+  },
+  {
+    "text": "what time is it?",
+    "intent": "out_of_scope",
+    "intent_prediction": {
+      "name": "approve_pickup_time",
+      "confidence": 0.5754759671209864
+    }
+  },
+  {
+    "text": "open Google for me",
+    "intent": "out_of_scope",
+    "intent_prediction": {
+      "name": "ask_opening_times",
+      "confidence": 0.37546057184702386
+    }
+  },
+  {
+    "text": "indeed",
+    "intent": "affirm",
+    "intent_prediction": {
+      "name": "inform_pizza_size",
+      "confidence": 0.20379320757249195
+    }
+  },
+  {
+    "text": "You're wrong",
+    "intent": "deny",
+    "intent_prediction": {
+      "name": "initiate_general_conversation",
+      "confidence": 0.3454849962136443
+    }
+  },
+  {
+    "text": "show me the today's Menu",
+    "intent": "inform_menu",
+    "intent_prediction": {
+      "name": "out_of_scope",
+      "confidence": 0.5323323209041618
+    }
+  },
+  {
+    "text": "Which is the best non-vegetarian pizza?",
+    "intent": "recommend_non_vegetarian_pizza",
+    "intent_prediction": {
+      "name": "inform_non_vegetarian_menu",
+      "confidence": 0.7844595232405306
+    }
+  },
+  {
+    "text": "Which is people's favorite non-vegetarian pizza here?",
+    "intent": "recommend_non_vegetarian_pizza",
+    "intent_prediction": {
+      "name": "inform_non_vegetarian_menu",
+      "confidence": 0.699943168051389
+    }
+  },
+  {
+    "text": "I want Pesto and Sun-dried Tomato pizza",
+    "intent": "inform_pizza_type",
+    "intent_prediction": {
+      "name": "pizza_order_modify",
+      "confidence": 0.6740065827103654
+    }
+  },
+  {
+    "text": "I want Pesto and Sun-dried Tomato",
+    "intent": "inform_pizza_type",
+    "intent_prediction": {
+      "name": "pizza_order_modify",
+      "confidence": 0.9178469948876236
+    }
+  },
+  {
+    "text": "Let's finalize the order",
+    "intent": "proceed_to_pickup",
+    "intent_prediction": {
+      "name": "approve_pickup_time",
+      "confidence": 0.15357334489430943
+    }
+  },
+  {
+    "text": "Sure, see you then.",
+    "intent": "approve_pickup_time",
+    "intent_prediction": {
+      "name": "end_greet",
+      "confidence": 0.8749984317899877
+    }
+  },
+  {
+    "text": "No, I’ll come later instead.",
+    "intent": "deny_pickup_time",
+    "intent_prediction": {
+      "name": "pizza_order_modify",
+      "confidence": 0.9263471368293922
+    }
+  },
+  {
+    "text": "long time no see",
+    "intent": "start_greet",
+    "intent_prediction": {
+      "name": "deny_pickup_time",
+      "confidence": 0.5612963501526733
+    }
+  },
+  {
+    "text": "do you have shoes?",
+    "intent": "out_of_scope",
+    "intent_prediction": {
+      "name": "inform_menu",
+      "confidence": 0.30605010849988357
+    }
+  },
+  {
+    "text": "play some music",
+    "intent": "out_of_scope",
+    "intent_prediction": {
+      "name": "inform_pizza_size",
+      "confidence": 0.21799921872083117
+    }
+  },
+  {
+    "text": "are you a real person?",
+    "intent": "bot_challenge",
+    "intent_prediction": {
+      "name": "out_of_scope",
+      "confidence": 0.6436991958884286
+    }
+  },
+  {
+    "text": "Are you there?",
+    "intent": "initiate_general_conversation",
+    "intent_prediction": {
+      "name": "out_of_scope",
+      "confidence": 0.3148948349927039
+    }
+  },
+  {
+    "text": "Actually, can I get a Margherita?",
+    "intent": "pizza_order_modify",
+    "intent_prediction": {
+      "name": "bot_challenge",
+      "confidence": 0.36494598364066905
+    }
+  },
+  {
+    "text": "Actually, I'd like a small pizza.",
+    "intent": "pizza_order_modify",
+    "intent_prediction": {
+      "name": "inform_pizza_size",
+      "confidence": 0.5711342912127501
+    }
+  },
+  {
+    "text": "Actually, I would like a small Vegetarian.",
+    "intent": "pizza_order_modify",
+    "intent_prediction": {
+      "name": "inform_vegetarian_menu",
+      "confidence": 0.6914704382326163
+    }
+  },
+  {
+    "text": "Satisfied",
+    "intent": "pizza_custom_toppings_happy",
+    "intent_prediction": {
+      "name": "affirm",
+      "confidence": 0.7246734614369977
+    }
+  },
+  {
+    "text": "I want one pizza",
+    "intent": "inform_pizza_quantity",
+    "intent_prediction": {
+      "name": "initiate_general_conversation",
+      "confidence": 0.5985561340120422
+    }
+  },
+  {
+    "text": "Sounds perfect!",
+    "intent": "approve_pickup_time",
+    "intent_prediction": {
+      "name": "affirm",
+      "confidence": 0.7802633514442121
+    }
+  },
+  {
+    "text": "That time is good.",
+    "intent": "approve_pickup_time",
+    "intent_prediction": {
+      "name": "affirm",
+      "confidence": 0.5908678247935257
+    }
+  },
+  {
+    "text": "Perfect, I’ll be there.",
+    "intent": "approve_pickup_time",
+    "intent_prediction": {
+      "name": "pizza_custom_toppings_happy",
+      "confidence": 0.45731222359243573
+    }
+  },
+  {
+    "text": "Yes, that timing is perfect.",
+    "intent": "approve_pickup_time",
+    "intent_prediction": {
+      "name": "pizza_custom_toppings_happy",
+      "confidence": 0.5247185242225332
+    }
+  },
+  {
+    "text": "No, that’s too early.",
+    "intent": "deny_pickup_time",
+    "intent_prediction": {
+      "name": "deny",
+      "confidence": 0.866794288631098
+    }
+  }
+]

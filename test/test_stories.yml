@@ -1,0 +1,815 @@
+version: "3.1"
+
+stories:
+  - story: Test start and end greetings
+    steps:
+      - user: |
+          hello
+        intent: start_greet
+      - action: action_utter_greet
+      - user: |
+          goodbye
+        intent: end_greet
+      - action: utter_end_greet
+      - action: action_reset_all_slots
+
+
+  - story: Test greets and asks for opening times
+    steps:
+      - user: |
+          hello
+        intent: start_greet
+      - action: action_utter_greet
+      - user: |
+          What time do you open?
+        intent: ask_opening_times
+      - action: utter_opening_times
+
+
+  - story: Test out of scope question
+    steps:
+      - user: |
+          What is the meaning of life?
+        intent: out_of_scope
+      - action: utter_out_of_scope
+
+
+  - story: Test bot challenge
+    steps:
+      - user: |
+          Are you a bot?
+        intent: bot_challenge
+      - action: utter_bot_challenge
+
+
+  - story: Test general conversation initiation
+    steps:
+      - user: |
+          I want to order a pizza
+        intent: initiate_general_conversation
+      - action: utter_initiate_general_conversation
+
+
+  - story: Test customer asks for restaurant location
+    steps:
+      - user: |
+          Where is the restaurant located?
+        intent: ask_restaurant_address
+      - action: action_response_to_ask_restaurant_address
+
+
+  - story: Test customer asks for restaurant contact number
+    steps:
+      - user: |
+          What's the contact number?
+        intent: ask_restaurant_contact_number
+      - action: action_response_to_ask_restaurant_contact_number
+
+
+  - story: Test customer asks for restaurant name
+    steps:
+      - user: |
+          What's the name of this place?
+        intent: ask_restaurant_name
+      - action: action_response_to_ask_restaurant_name
+
+
+  - story: Test customer asks for restaurant details
+    steps:
+      - user: |
+          Can you tell me more about this restaurant?
+        intent: ask_restaurant_details
+      - action: action_response_to_ask_restaurant_details
+
+
+  - story: Test ask for opening times
+    steps:
+      - user: |
+          When are you open?
+        intent: ask_opening_times
+      - action: utter_opening_times
+
+
+  - story: Test show the menu
+    steps:
+      - user: |
+          Show me the menu
+        intent: inform_menu
+      - action: action_inform_menu
+      - action: utter_ask_pizza_type
+
+
+  - story: Test show the vegetarian menu
+    steps:
+      - user: |
+          Show me the vegetarian menu
+        intent: inform_vegetarian_menu
+      - action: action_inform_vegetarian_menu
+      - action: utter_ask_pizza_type
+
+
+  - story: Test show the non-vegetarian menu
+    steps:
+      - user: |
+          Show me the non-vegetarian menu
+        intent: inform_non_vegetarian_menu
+      - action: action_inform_non_vegetarian_menu
+      - action: utter_ask_pizza_type
+
+
+  - story: Test request for recommendations
+    steps:
+      - user: |
+          Can you recommend me a pizza?
+        intent: recommend_pizza
+      - action: action_inform_recommendations_menu
+      - action: utter_ask_pizza_type
+
+
+  - story: Test request for vegetarian recommendations
+    steps:
+      - user: |
+          Can you recommend a vegetarian pizza?
+        intent: recommend_vegetarian_pizza
+      - action: action_inform_veg_recommendations_menu
+      - action: utter_ask_pizza_type
+
+
+  - story: Test request for non-vegetarian recommendations
+    steps:
+      - user: |
+          Can you recommend a non-vegetarian pizza?
+        intent: recommend_non_vegetarian_pizza
+      - action: action_inform_non_veg_recommendations_menu
+      - action: utter_ask_pizza_type
+
+
+  - story: Test activate pizza order form
+    steps:
+      - user: |
+          [pepperoni](pizza_type) pizza
+        intent: inform_pizza_type
+        entities:
+          - pizza_type: pepperoni
+      - slot_was_set:
+          - pizza_type: "pepperoni"
+      - action: pizza_order_form
+      - active_loop: pizza_order_form
+
+
+  - story: Test activate pizza order form again after standard topping confirmation
+    steps:
+      - user: |
+          Yes, I want standard toppings
+        intent: pizza_standard_topping_confirm
+      - action: pizza_order_form
+      - active_loop: pizza_order_form
+
+
+  - story: Test activate pizza topping form after custom topping request
+    steps:
+      - user: |
+          I want to customize my toppings
+        intent: pizza_custom_toppings_request
+      - action: pizza_custom_topping_form
+      - active_loop: pizza_custom_topping_form
+      - user: |
+          Add [shrimp]{"entity": "pizza_custom_toppings"} to my pizza
+        intent: add_pizza_custom_toppings
+        entities:
+          - pizza_custom_toppings: shrimp
+      - slot_was_set:
+          - pizza_custom_toppings: "shrimp"
+      - action: pizza_custom_topping_form
+      - active_loop: pizza_custom_topping_form
+
+
+  - story: Test user cancels order and confirms
+    steps:
+      - slot_was_set:
+          - order_list: true
+      - user: |
+          I want to cancel my order
+        intent: cancel_complete_order
+      - action: utter_confirm_cancel_order
+      - user: "Yes"
+        intent: affirm
+      - action: utter_order_cancelled
+      - action: action_reset_all_slots
+
+
+  - story: Test user cancels order but denies cancellation
+    steps:
+      - slot_was_set:
+          - order_list: true
+      - user: |
+          I want to cancel my order
+        intent: cancel_complete_order
+      - action: utter_confirm_cancel_order
+      - user: "No"
+        intent: deny
+      - action: utter_order_not_cancelled
+
+
+  - story: Test user tries to cancel but no active order
+    steps:
+      - slot_was_set:
+          - order_list: false
+      - user: |
+          I want to cancel my order
+        intent: cancel_complete_order
+      - action: utter_no_active_order_to_cancel
+
+
+  - story: Test interrupt pizza order form with custom toppings information
+    steps:
+      - user: |
+          [Margherita]{"entity": "pizza_type"} pizza
+        intent: inform_pizza_type
+        entities:
+          - pizza_type: Margherita
+      - slot_was_set:
+          - pizza_type: "Margherita"
+      - action: pizza_order_form
+      - active_loop: pizza_order_form
+      - user: |
+          What toppings do you provide for customization?
+        intent: ask_custom_toppings_info
+      - action: action_inform_available_toppings
+      - action: action_utter_ask_topping_confirmation
+      - action: pizza_custom_topping_form
+      - active_loop: pizza_custom_topping_form
+
+
+  - story: Test interrupt pizza order form with opening times information
+    steps:
+      - user: |
+          [Margherita]{"entity": "pizza_type"} pizza
+        intent: inform_pizza_type
+        entities:
+          - pizza_type: Margherita
+      - slot_was_set:
+          - pizza_type: "Margherita"
+      - action: pizza_order_form
+      - active_loop: pizza_order_form
+      - user: |
+          What time do you close?
+        intent: ask_opening_times
+      - action: utter_opening_times
+      - action: pizza_order_form
+      - active_loop: pizza_order_form
+
+
+  - story: Test interrupt order pickup form with opening times information
+    steps:
+      - slot_was_set:
+          - order_list: true
+      - user: |
+          I'd like to pick up my order
+        intent: proceed_to_pickup
+      - action: action_calculate_preparation_time
+      - action: utter_response_to_proceed_to_pickup_intent
+      - action: order_pickup_form
+      - active_loop: order_pickup_form
+      - user: |
+          What time do you close?
+        intent: ask_opening_times
+      - action: utter_opening_times_with_ask_pickup_time
+      - action: order_pickup_form
+      - active_loop: order_pickup_form
+
+
+  - story: Test user interrupts asking for bot challenge and then stops conversation outside of the form with end_greet
+    steps:
+      - user: |
+          Are you a bot?
+        intent: bot_challenge
+      - action: utter_bot_challenge
+      - user: |
+          Goodbye
+        intent: end_greet
+      - action: utter_end_greet
+      - action: action_reset_all_slots
+
+
+  - story: Test user interrupts asking assistant's identity and stops the pizza order form and conversation
+    steps:
+      - user: |
+          [Margherita]{"entity": "pizza_type"} pizza
+        intent: inform_pizza_type
+        entities:
+          - pizza_type: Margherita
+      - slot_was_set:
+          - pizza_type: "Margherita"
+      - action: pizza_order_form
+      - active_loop: pizza_order_form
+      - user: |
+          Are you a bot?
+        intent: bot_challenge
+      - action: utter_bot_challenge
+      - action: pizza_order_form
+      - active_loop: pizza_order_form
+      - user: |
+          I am no longer hungry, stop the conversation please
+        intent: no_longer_hungry_stop_conversation
+      - action: utter_response_to_confirm_stop_request
+      - user: "Yes"
+        intent: affirm
+      - action: action_deactivate_loop
+      - action: utter_want_to_stop_conversation
+      - action: action_reset_all_slots
+
+
+  - story: Test user interrupts asking info about assistant's identity and continues with the pizza order form
+    steps:
+      - user: |
+          [Margherita]{"entity": "pizza_type"} pizza
+        intent: inform_pizza_type
+        entities:
+          - pizza_type: Margherita
+      - slot_was_set:
+          - pizza_type: "Margherita"
+      - action: pizza_order_form
+      - active_loop: pizza_order_form
+      - user: |
+          Are you a bot?
+        intent: bot_challenge
+      - action: utter_bot_challenge
+      - action: pizza_order_form
+      - active_loop: pizza_order_form
+
+
+  - story: Test - User selects one pizza from the menu with standard toppings and then proceeds to pickup
+    steps:
+      - user: |
+          Hi there!
+        intent: start_greet
+      - action: action_utter_greet
+      - slot_was_set:
+          - restaurant_opened: true
+      - user: |
+          How are you?
+        intent: initiate_general_conversation
+      - action: utter_initiate_general_conversation
+      - user: |
+          Show me the menu.
+        intent: inform_menu
+      - action: action_inform_menu
+      - action: utter_ask_pizza_type
+      - user: |
+          I would like a pizza with standard toppings.
+        intent: pizza_standard_topping_confirm
+      - action: pizza_order_form
+      - active_loop: pizza_order_form
+      - slot_was_set:
+          - order_list: [ ]
+      - slot_was_set:
+          - requested_slot: pizza_type
+      - user: |
+          I'll have a [seafood]{"entity": "pizza_type"} pizza.
+        intent: inform_pizza_type
+        entities:
+          - pizza_type: seafood
+      - slot_was_set:
+          - pizza_type: seafood
+      - action: pizza_order_form
+      - slot_was_set:
+          - pizza_type: seafood
+      - slot_was_set:
+          - order_list: [ ]
+      - slot_was_set:
+          - requested_slot: pizza_topping
+      - active_loop: null
+      - active_loop: null
+      - user: |
+          Yes, the standard toppings are fine.
+        intent: pizza_standard_topping_confirm
+      - action: pizza_order_form
+      - active_loop: pizza_order_form
+      - slot_was_set:
+          - pizza_type: seafood
+      - slot_was_set:
+          - order_list: [ ]
+      - slot_was_set:
+          - pizza_topping:
+              - Shrimp
+              - Mussels
+              - Clams
+              - Tomato Sauce
+              - and Mozzarella Cheese
+      - slot_was_set:
+          - topping_satisfaction: true
+      - slot_was_set:
+          - requested_slot: pizza_size
+      - user: |
+          [medium]{"entity": "pizza_size"} size, please.
+        intent: inform_pizza_size
+        entities:
+          - pizza_size: medium
+      - slot_was_set:
+          - pizza_size: medium
+      - action: pizza_order_form
+      - slot_was_set:
+          - pizza_size: medium
+      - slot_was_set:
+          - order_list: [ ]
+      - slot_was_set:
+          - requested_slot: pizza_quantity
+      - user: |
+          [one]{"entity": "pizza_quantity"} pizza.
+        intent: inform_pizza_quantity
+        entities:
+          - pizza_quantity: one
+      - slot_was_set:
+          - pizza_quantity: one
+      - action: pizza_order_form
+      - slot_was_set:
+          - pizza_quantity: one
+      - slot_was_set:
+          - order_list: [ ]
+      - slot_was_set:
+          - requested_slot: null
+      - active_loop: null
+      - action: utter_pizza_add_confirmation_message
+      - action: action_submit_pizza_order_form
+      - slot_was_set:
+          - pizza_type: null
+      - slot_was_set:
+          - pizza_topping: null
+      - slot_was_set:
+          - pizza_size: null
+      - slot_was_set:
+          - pizza_quantity: null
+      - slot_was_set:
+          - topping_satisfaction: null
+      - slot_was_set:
+          - pizza_custom_toppings: null
+      - slot_was_set:
+          - order_list:
+              - type: seafood
+                size: medium
+                topping:
+                  - Shrimp
+                  - Mussels
+                  - Clams
+                  - Tomato Sauce
+                  - and Mozzarella Cheese
+                quantity: one
+                price: 1.0
+      - user: |
+          I want to pick up my order.
+        intent: proceed_to_pickup
+      - action: action_calculate_preparation_time
+      - slot_was_set:
+          - preparation_time: 10
+      - action: utter_response_to_proceed_to_pickup_intent
+      - action: order_pickup_form
+      - active_loop: order_pickup_form
+      - slot_was_set:
+          - order_list:
+              - type: seafood
+                size: medium
+                topping:
+                  - Shrimp
+                  - Mussels
+                  - Clams
+                  - Tomato Sauce
+                  - and Mozzarella Cheese
+                quantity: one
+                price: 1.0
+      - slot_was_set:
+          - preparation_time: 10
+      - slot_was_set:
+          - requested_slot: order_pickup_time
+      - user: |
+          I'll pick it up at [9:30 pm]{"entity": "pickup_time"}.
+        intent: inform_pickup_time
+        entities:
+          - pickup_time: 9:30 pm
+      - slot_was_set:
+          - pickup_time: 9:30 pm
+      - slot_was_set:
+          - order_pickup_time: 9:30 pm
+      - action: order_pickup_form
+      - slot_was_set:
+          - order_pickup_time: 2024-08-21 21:30
+      - slot_was_set:
+          - pickup_time: 2024-08-21 21:30
+      - slot_was_set:
+          - within_business_hours: true
+      - slot_was_set:
+          - requested_slot: pickup_confirmation
+      - user: |
+          Yes, that time works.
+        intent: approve_pickup_time
+      - slot_was_set:
+          - pickup_confirmation: true
+      - action: order_pickup_form
+      - slot_was_set:
+          - pickup_confirmation: true
+      - slot_was_set:
+          - order_number: 5833
+      - slot_was_set:
+          - requested_slot: null
+      - active_loop: null
+      - action: action_submit_order_pickup_form
+      - slot_was_set:
+          - pizza_type: null
+      - slot_was_set:
+          - pizza_topping: null
+      - slot_was_set:
+          - pizza_custom_toppings: null
+      - slot_was_set:
+          - topping_satisfaction: null
+      - slot_was_set:
+          - pizza_size: null
+      - slot_was_set:
+          - pizza_quantity: null
+      - slot_was_set:
+          - order_list: null
+      - slot_was_set:
+          - pickup_time: null
+      - slot_was_set:
+          - order_pickup_time: null
+      - slot_was_set:
+          - preparation_time: null
+      - slot_was_set:
+          - within_business_hours: null
+      - slot_was_set:
+          - order_number: null
+      - action: utter_end_greet
+      - action: action_reset_all_slots
+
+
+  - story: Test - Order a Margherita Pizza with Custom Toppings and Pickup at Midnight
+    steps:
+      - user: |
+          Hi!
+        intent: start_greet
+      - action: action_utter_greet
+      - slot_was_set:
+          - restaurant_opened: true
+      - user: |
+          I want to order a pizza.
+        intent: initiate_general_conversation
+      - action: utter_initiate_general_conversation
+      - user: |
+          Show me the menu.
+        intent: inform_menu
+      - action: action_inform_menu
+      - action: utter_ask_pizza_type
+      - user: |
+          I'll have a [margherita]{"entity": "pizza_type"} pizza.
+        intent: inform_pizza_type
+        entities:
+          - pizza_type: margherita
+      - slot_was_set:
+          - pizza_type: margherita
+      - action: pizza_order_form
+      - active_loop: pizza_order_form
+      - slot_was_set:
+          - pizza_type: margherita
+      - slot_was_set:
+          - order_list: [ ]
+      - slot_was_set:
+          - requested_slot: pizza_topping
+      - active_loop: null
+      - active_loop: null
+      - user: |
+          I want to add some custom toppings.
+        intent: pizza_custom_toppings_request
+      - action: pizza_custom_topping_form
+      - active_loop: pizza_custom_topping_form
+      - slot_was_set:
+          - requested_slot: pizza_custom_toppings
+      - user: |
+          Add [olives]{"entity": "pizza_custom_toppings"} topping.
+        intent: add_pizza_custom_toppings
+        entities:
+          - pizza_custom_toppings: olive
+      - slot_was_set:
+          - pizza_custom_toppings: olive
+      - slot_was_set:
+          - topping_satisfaction: false
+      - action: pizza_custom_topping_form
+      - slot_was_set:
+          - pizza_custom_toppings:
+              - olive
+      - slot_was_set:
+          - topping_satisfaction: null
+      - slot_was_set:
+          - pizza_topping:
+              - Mozzarella Cheese
+              - Tomato Sauce
+              - Basil Leaves
+              - olive
+      - slot_was_set:
+          - requested_slot: topping_satisfaction
+      - user: |
+          Remove [basil leaves]{"entity": "pizza_custom_toppings"} topping.
+        intent: remove_pizza_custom_toppings
+        entities:
+          - pizza_custom_toppings: basil leaves
+      - slot_was_set:
+          - pizza_custom_toppings: basil leaves
+      - slot_was_set:
+          - topping_satisfaction: false
+      - action: pizza_custom_topping_form
+      - slot_was_set:
+          - pizza_custom_toppings:
+              - basil leaves
+      - slot_was_set:
+          - topping_satisfaction: null
+      - slot_was_set:
+          - pizza_topping:
+              - Mozzarella Cheese
+              - Tomato Sauce
+              - Basil Leaves
+              - olive
+      - slot_was_set:
+          - requested_slot: topping_satisfaction
+      - user: |
+          I am happy with these toppings.
+        intent: pizza_custom_toppings_happy
+      - slot_was_set:
+          - topping_satisfaction: true
+      - action: pizza_custom_topping_form
+      - slot_was_set:
+          - requested_slot: null
+      - active_loop: null
+      - action: utter_summarize_customized_toppings
+      - action: action_submit_pizza_custom_topping_form
+      - slot_was_set:
+          - pizza_topping:
+              - Mozzarella Cheese
+              - Tomato Sauce
+              - Basil Leaves
+              - olive
+      - action: pizza_order_form
+      - active_loop: pizza_order_form
+      - slot_was_set:
+          - pizza_type: margherita
+      - slot_was_set:
+          - pizza_topping:
+              - Mozzarella Cheese
+              - Tomato Sauce
+              - Basil Leaves
+              - olive
+      - slot_was_set:
+          - order_list: [ ]
+      - slot_was_set:
+          - topping_satisfaction: true
+      - slot_was_set:
+          - requested_slot: pizza_size
+      - user: |
+          [small]{"entity": "pizza_size"} size, please.
+        intent: inform_pizza_size
+        entities:
+          - pizza_size: small
+      - slot_was_set:
+          - pizza_size: small
+      - action: pizza_order_form
+      - slot_was_set:
+          - pizza_size: small
+      - slot_was_set:
+          - order_list: [ ]
+      - slot_was_set:
+          - requested_slot: pizza_quantity
+      - user: |
+          [two]{"entity": "pizza_quantity"} pizzas.
+        intent: inform_pizza_quantity
+        entities:
+          - pizza_quantity: two
+      - slot_was_set:
+          - pizza_quantity: two
+      - action: pizza_order_form
+      - slot_was_set:
+          - pizza_quantity: two
+      - slot_was_set:
+          - order_list: [ ]
+      - slot_was_set:
+          - requested_slot: null
+      - active_loop: null
+      - action: utter_pizza_add_confirmation_message
+      - action: action_submit_pizza_order_form
+      - slot_was_set:
+          - pizza_type: null
+      - slot_was_set:
+          - pizza_topping: null
+      - slot_was_set:
+          - pizza_size: null
+      - slot_was_set:
+          - pizza_quantity: null
+      - slot_was_set:
+          - topping_satisfaction: null
+      - slot_was_set:
+          - pizza_custom_toppings: null
+      - slot_was_set:
+          - order_list:
+              - type: margherita
+                size: small
+                topping:
+                  - Mozzarella Cheese
+                  - Tomato Sauce
+                  - Basil Leaves
+                  - olive
+                quantity: two
+                price: 1.0
+      - user: |
+          I'm happy to proceed to pick up.
+        intent: proceed_to_pickup
+      - action: action_calculate_preparation_time
+      - slot_was_set:
+          - preparation_time: 7
+      - action: utter_response_to_proceed_to_pickup_intent
+      - action: order_pickup_form
+      - active_loop: order_pickup_form
+      - slot_was_set:
+          - order_list:
+              - type: margherita
+                size: small
+                topping:
+                  - Mozzarella Cheese
+                  - Tomato Sauce
+                  - Basil Leaves
+                  - olive
+                quantity: two
+                price: 1.0
+      - slot_was_set:
+          - preparation_time: 7
+      - slot_was_set:
+          - requested_slot: order_pickup_time
+      - user: |
+          I'll pick it up at [midnight]{"entity": "pickup_time"}.
+        intent: inform_pickup_time
+        entities:
+          - pickup_time: midnight
+      - slot_was_set:
+          - pickup_time: midnight
+      - slot_was_set:
+          - order_pickup_time: midnight
+      - action: order_pickup_form
+      - slot_was_set:
+          - order_pickup_time: null
+      - slot_was_set:
+          - pickup_time: null
+      - slot_was_set:
+          - requested_slot: order_pickup_time
+      - user: |
+          Make it [11:50 PM]{"entity": "pickup_time"} instead.
+        intent: inform_pickup_time
+        entities:
+          - pickup_time: 11:50 PM
+      - slot_was_set:
+          - pickup_time: 11:50 PM
+      - slot_was_set:
+          - order_pickup_time: 11:50 PM
+      - action: order_pickup_form
+      - slot_was_set:
+          - order_pickup_time: 2024-08-21 23:50
+      - slot_was_set:
+          - pickup_time: 2024-08-21 23:50
+      - slot_was_set:
+          - within_business_hours: true
+      - slot_was_set:
+          - requested_slot: pickup_confirmation
+      - user: |
+          Yes, that time is fine.
+        intent: approve_pickup_time
+      - slot_was_set:
+          - pickup_confirmation: true
+      - action: order_pickup_form
+      - slot_was_set:
+          - pickup_confirmation: true
+      - slot_was_set:
+          - order_number: 3792
+      - slot_was_set:
+          - requested_slot: null
+      - active_loop: null
+      - action: action_submit_order_pickup_form
+      - slot_was_set:
+          - pizza_type: null
+      - slot_was_set:
+          - pizza_topping: null
+      - slot_was_set:
+          - pizza_custom_toppings: null
+      - slot_was_set:
+          - topping_satisfaction: null
+      - slot_was_set:
+          - pizza_size: null
+      - slot_was_set:
+          - pizza_quantity: null
+      - slot_was_set:
+          - order_list: null
+      - slot_was_set:
+          - pickup_time: null
+      - slot_was_set:
+          - order_pickup_time: null
+      - slot_was_set:
+          - preparation_time: null
+      - slot_was_set:
+          - within_business_hours: null
+      - slot_was_set:
+          - order_number: null
+      - action: utter_end_greet
+      - action: action_reset_all_slots

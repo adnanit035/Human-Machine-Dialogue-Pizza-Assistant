@@ -1,0 +1,665 @@
+[
+  {
+    "text": "I want to order a non-vegetarian pizza",
+    "entities": [
+      {
+        "start": 18,
+        "end": 32,
+        "value": "non-vegetarian",
+        "entity": "menu_category"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "recommendation_category",
+        "start": 18,
+        "end": 32,
+        "confidence_entity": 0.6324642187694635,
+        "value": "non-vegetarian",
+        "extractor": "CRFEntityExtractor"
+      }
+    ]
+  },
+  {
+    "text": "What do you recommend in the non-vegetarian pizza?",
+    "entities": [
+      {
+        "start": 29,
+        "end": 43,
+        "value": "non-vegetarian",
+        "entity": "recommendation_category"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "menu_category",
+        "start": 29,
+        "end": 43,
+        "confidence_entity": 0.8934668095029432,
+        "value": "non-vegetarian",
+        "extractor": "CRFEntityExtractor"
+      }
+    ]
+  },
+  {
+    "text": "What non-vegetarian pizzas are recommended?",
+    "entities": [
+      {
+        "start": 5,
+        "end": 19,
+        "value": "non-vegetarian",
+        "entity": "recommendation_category"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "menu_category",
+        "start": 5,
+        "end": 19,
+        "confidence_entity": 0.7419456337454151,
+        "value": "non-vegetarian",
+        "extractor": "CRFEntityExtractor"
+      }
+    ]
+  },
+  {
+    "text": "I want a BBQ Chicken instead.",
+    "entities": [
+      {
+        "start": 9,
+        "end": 20,
+        "value": "BBQ Chicken",
+        "entity": "pizza_type"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "pizza_quantity",
+        "start": 7,
+        "end": 8,
+        "confidence_entity": 0.5151410040760482,
+        "value": "a",
+        "extractor": "CRFEntityExtractor"
+      },
+      {
+        "entity": "pizza_type",
+        "start": 9,
+        "end": 20,
+        "confidence_entity": 0.9908112456040301,
+        "value": "BBQ Chicken",
+        "extractor": "CRFEntityExtractor"
+      }
+    ]
+  },
+  {
+    "text": "11:30 am should be fine for me",
+    "entities": [
+      {
+        "start": 0,
+        "end": 8,
+        "value": "11:30 am",
+        "entity": "pickup_time"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "pickup_time",
+        "start": 0,
+        "end": 5,
+        "confidence_entity": 0.7606040192491593,
+        "value": "11:30",
+        "extractor": "CRFEntityExtractor"
+      }
+    ]
+  },
+  {
+    "text": "Hi I want to order a vegetarian pizza",
+    "entities": [
+      {
+        "start": 21,
+        "end": 31,
+        "value": "vegetarian",
+        "entity": "menu_category"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "recommendation_category",
+        "start": 21,
+        "end": 31,
+        "confidence_entity": 0.727758879507708,
+        "value": "vegetarian",
+        "extractor": "CRFEntityExtractor"
+      }
+    ]
+  },
+  {
+    "text": "Hi I want to order a non-vegetarian pizza",
+    "entities": [
+      {
+        "start": 21,
+        "end": 35,
+        "value": "non-vegetarian",
+        "entity": "menu_category"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "recommendation_category",
+        "start": 21,
+        "end": 35,
+        "confidence_entity": 0.7192206563513045,
+        "value": "non-vegetarian",
+        "extractor": "CRFEntityExtractor"
+      }
+    ]
+  },
+  {
+    "text": "what vegetarian pizza do you recommend?",
+    "entities": [
+      {
+        "start": 5,
+        "end": 15,
+        "value": "vegetarian",
+        "entity": "recommendation_category"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "menu_category",
+        "start": 5,
+        "end": 15,
+        "confidence_entity": 0.5792735036075581,
+        "value": "vegetarian",
+        "extractor": "CRFEntityExtractor"
+      }
+    ]
+  },
+  {
+    "text": "How about 4 o’clock for pickup?",
+    "entities": [
+      {
+        "start": 10,
+        "end": 19,
+        "value": "4 o’clock",
+        "entity": "pickup_time"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "14:45 works for me to pick it up",
+    "entities": [
+      {
+        "start": 0,
+        "end": 5,
+        "value": "14:45",
+        "entity": "pickup_time"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "15:30 is good for me to pick it up",
+    "entities": [
+      {
+        "start": 0,
+        "end": 5,
+        "value": "15:30",
+        "entity": "pickup_time"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "What vegetarian pizzas are available?",
+    "entities": [
+      {
+        "start": 5,
+        "end": 15,
+        "value": "vegetarian",
+        "entity": "menu_category"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "recommendation_category",
+        "start": 5,
+        "end": 15,
+        "confidence_entity": 0.6017368892983004,
+        "value": "vegetarian",
+        "extractor": "CRFEntityExtractor"
+      }
+    ]
+  },
+  {
+    "text": "I want to order a vegetarian pizza",
+    "entities": [
+      {
+        "start": 18,
+        "end": 28,
+        "value": "vegetarian",
+        "entity": "menu_category"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "recommendation_category",
+        "start": 18,
+        "end": 28,
+        "confidence_entity": 0.7240546247928941,
+        "value": "vegetarian",
+        "extractor": "CRFEntityExtractor"
+      }
+    ]
+  },
+  {
+    "text": "what non-vegetarian pizza do you recommend?",
+    "entities": [
+      {
+        "start": 5,
+        "end": 19,
+        "value": "non-vegetarian",
+        "entity": "recommendation_category"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "menu_category",
+        "start": 5,
+        "end": 19,
+        "confidence_entity": 0.609776107727874,
+        "value": "non-vegetarian",
+        "extractor": "CRFEntityExtractor"
+      }
+    ]
+  },
+  {
+    "text": "Can I get a Vegetarian pizza instead?",
+    "entities": [
+      {
+        "start": 12,
+        "end": 22,
+        "value": "Vegetarian",
+        "entity": "pizza_type"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "menu_category",
+        "start": 12,
+        "end": 22,
+        "confidence_entity": 0.43968957751152726,
+        "value": "Vegetarian",
+        "extractor": "CRFEntityExtractor"
+      }
+    ]
+  },
+  {
+    "text": "The small is too small, I want medium.",
+    "entities": [
+      {
+        "start": 4,
+        "end": 9,
+        "value": "small",
+        "entity": "pizza_size"
+      },
+      {
+        "start": 31,
+        "end": 37,
+        "value": "medium",
+        "entity": "pizza_size"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "pizza_size",
+        "start": 4,
+        "end": 9,
+        "confidence_entity": 0.7862370476923741,
+        "value": "small",
+        "extractor": "CRFEntityExtractor"
+      },
+      {
+        "entity": "pizza_size",
+        "start": 17,
+        "end": 22,
+        "confidence_entity": 0.6776206905220424,
+        "value": "small",
+        "extractor": "CRFEntityExtractor"
+      },
+      {
+        "entity": "pizza_size",
+        "start": 31,
+        "end": 37,
+        "confidence_entity": 0.9781491413697182,
+        "value": "medium",
+        "extractor": "CRFEntityExtractor"
+      }
+    ]
+  },
+  {
+    "text": "I want Sun-Dried Tomato.",
+    "entities": [
+      {
+        "start": 7,
+        "end": 23,
+        "value": "Sun-Dried Tomato",
+        "entity": "pizza_type"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "pizza_type",
+        "start": 17,
+        "end": 23,
+        "confidence_entity": 0.6389567082366236,
+        "value": "Tomato",
+        "extractor": "CRFEntityExtractor"
+      }
+    ]
+  },
+  {
+    "text": "I'd rather have a Vegetarian instead.",
+    "entities": [
+      {
+        "start": 18,
+        "end": 28,
+        "value": "Vegetarian",
+        "entity": "pizza_type"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "menu_category",
+        "start": 18,
+        "end": 28,
+        "confidence_entity": 0.4322469168154234,
+        "value": "Vegetarian",
+        "extractor": "CRFEntityExtractor"
+      }
+    ]
+  },
+  {
+    "text": "I want size S",
+    "entities": [
+      {
+        "start": 7,
+        "end": 13,
+        "value": "size S",
+        "entity": "pizza_size"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "I want size M",
+    "entities": [
+      {
+        "start": 7,
+        "end": 13,
+        "value": "size M",
+        "entity": "pizza_size"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "what non-vegetarian pizza do you have?",
+    "entities": [
+      {
+        "start": 5,
+        "end": 19,
+        "value": "non-vegetarian",
+        "entity": "menu_category"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "recommendation_category",
+        "start": 5,
+        "end": 19,
+        "confidence_entity": 0.6779323452176739,
+        "value": "non-vegetarian",
+        "extractor": "CRFEntityExtractor"
+      }
+    ]
+  },
+  {
+    "text": "What non-vegetarian pizzas are available?",
+    "entities": [
+      {
+        "start": 5,
+        "end": 19,
+        "value": "non-vegetarian",
+        "entity": "menu_category"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "recommendation_category",
+        "start": 5,
+        "end": 19,
+        "confidence_entity": 0.5930730820525336,
+        "value": "non-vegetarian",
+        "extractor": "CRFEntityExtractor"
+      }
+    ]
+  },
+  {
+    "text": "What do you recommend in the vegetarian pizza?",
+    "entities": [
+      {
+        "start": 29,
+        "end": 39,
+        "value": "vegetarian",
+        "entity": "recommendation_category"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "menu_category",
+        "start": 29,
+        "end": 39,
+        "confidence_entity": 0.8963581811418377,
+        "value": "vegetarian",
+        "extractor": "CRFEntityExtractor"
+      }
+    ]
+  },
+  {
+    "text": "a Margherita pizza",
+    "entities": [
+      {
+        "start": 0,
+        "end": 1,
+        "value": "a",
+        "entity": "pizza_quantity"
+      },
+      {
+        "start": 2,
+        "end": 12,
+        "value": "Margherita",
+        "entity": "pizza_type"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "pizza_type",
+        "start": 2,
+        "end": 12,
+        "confidence_entity": 0.994706042519084,
+        "value": "Margherita",
+        "extractor": "CRFEntityExtractor"
+      }
+    ]
+  },
+  {
+    "text": "a Supreme pizza",
+    "entities": [
+      {
+        "start": 0,
+        "end": 1,
+        "value": "a",
+        "entity": "pizza_quantity"
+      },
+      {
+        "start": 2,
+        "end": 9,
+        "value": "Supreme",
+        "entity": "pizza_type"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "pizza_type",
+        "start": 2,
+        "end": 9,
+        "confidence_entity": 0.9939862917866447,
+        "value": "Supreme",
+        "extractor": "CRFEntityExtractor"
+      }
+    ]
+  },
+  {
+    "text": "How does 12:15 sound for pickup?",
+    "entities": [
+      {
+        "start": 9,
+        "end": 14,
+        "value": "12:15",
+        "entity": "pickup_time"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "How does 4:45 sound for pickup?",
+    "entities": [
+      {
+        "start": 9,
+        "end": 13,
+        "value": "4:45",
+        "entity": "pickup_time"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "I’ll be there around midnight",
+    "entities": [
+      {
+        "start": 21,
+        "end": 29,
+        "value": "midnight",
+        "entity": "pickup_time"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "How does 16:45 sound for pickup?",
+    "entities": [
+      {
+        "start": 9,
+        "end": 14,
+        "value": "16:45",
+        "entity": "pickup_time"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "I’m thinking 13:45 for pickup",
+    "entities": [
+      {
+        "start": 13,
+        "end": 18,
+        "value": "13:45",
+        "entity": "pickup_time"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "what vegetarian pizza do you have?",
+    "entities": [
+      {
+        "start": 5,
+        "end": 15,
+        "value": "vegetarian",
+        "entity": "menu_category"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "recommendation_category",
+        "start": 5,
+        "end": 15,
+        "confidence_entity": 0.6426174722988313,
+        "value": "vegetarian",
+        "extractor": "CRFEntityExtractor"
+      }
+    ]
+  },
+  {
+    "text": "What vegetarian pizzas are recommended?",
+    "entities": [
+      {
+        "start": 5,
+        "end": 15,
+        "value": "vegetarian",
+        "entity": "recommendation_category"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "menu_category",
+        "start": 5,
+        "end": 15,
+        "confidence_entity": 0.6884651927072977,
+        "value": "vegetarian",
+        "extractor": "CRFEntityExtractor"
+      }
+    ]
+  },
+  {
+    "text": "a BBQ Chicken pizza",
+    "entities": [
+      {
+        "start": 0,
+        "end": 1,
+        "value": "a",
+        "entity": "pizza_quantity"
+      },
+      {
+        "start": 2,
+        "end": 13,
+        "value": "BBQ Chicken",
+        "entity": "pizza_type"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "pizza_type",
+        "start": 2,
+        "end": 13,
+        "confidence_entity": 0.9929782288697224,
+        "value": "BBQ Chicken",
+        "extractor": "CRFEntityExtractor"
+      }
+    ]
+  },
+  {
+    "text": "11:30 should be fine for me",
+    "entities": [
+      {
+        "start": 0,
+        "end": 5,
+        "value": "11:30",
+        "entity": "pickup_time"
+      }
+    ],
+    "predicted_entities": []
+  }
+]

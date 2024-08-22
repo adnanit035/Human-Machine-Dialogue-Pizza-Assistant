@@ -1,0 +1,212 @@
+[
+  {
+    "text": "Hi I want to order a vegetarian pizza",
+    "entities": [
+      {
+        "start": 21,
+        "end": 31,
+        "value": "vegetarian",
+        "entity": "menu_category"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "recommendation_category",
+        "start": 21,
+        "end": 31,
+        "confidence_entity": 0.6404691182730521,
+        "value": "vegetarian",
+        "extractor": "CRFEntityExtractor"
+      }
+    ]
+  },
+  {
+    "text": "what vegetarian pizza do you have?",
+    "entities": [
+      {
+        "start": 5,
+        "end": 15,
+        "value": "vegetarian",
+        "entity": "menu_category"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "recommendation_category",
+        "start": 5,
+        "end": 15,
+        "confidence_entity": 0.5134169035374321,
+        "value": "vegetarian",
+        "extractor": "CRFEntityExtractor"
+      }
+    ]
+  },
+  {
+    "text": "I want to order a vegetarian pizza",
+    "entities": [
+      {
+        "start": 18,
+        "end": 28,
+        "value": "vegetarian",
+        "entity": "menu_category"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "recommendation_category",
+        "start": 18,
+        "end": 28,
+        "confidence_entity": 0.6404691182647094,
+        "value": "vegetarian",
+        "extractor": "CRFEntityExtractor"
+      }
+    ]
+  },
+  {
+    "text": "Hi I want to order a non-vegetarian pizza",
+    "entities": [
+      {
+        "start": 21,
+        "end": 35,
+        "value": "non-vegetarian",
+        "entity": "menu_category"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "recommendation_category",
+        "start": 21,
+        "end": 35,
+        "confidence_entity": 0.6335306875527803,
+        "value": "non-vegetarian",
+        "extractor": "CRFEntityExtractor"
+      }
+    ]
+  },
+  {
+    "text": "what non-vegetarian pizza do you have?",
+    "entities": [
+      {
+        "start": 5,
+        "end": 19,
+        "value": "non-vegetarian",
+        "entity": "menu_category"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "recommendation_category",
+        "start": 5,
+        "end": 19,
+        "confidence_entity": 0.5058879790134616,
+        "value": "non-vegetarian",
+        "extractor": "CRFEntityExtractor"
+      }
+    ]
+  },
+  {
+    "text": "I want to order a non-vegetarian pizza",
+    "entities": [
+      {
+        "start": 18,
+        "end": 32,
+        "value": "non-vegetarian",
+        "entity": "menu_category"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "recommendation_category",
+        "start": 18,
+        "end": 32,
+        "confidence_entity": 0.6335306875449344,
+        "value": "non-vegetarian",
+        "extractor": "CRFEntityExtractor"
+      }
+    ]
+  },
+  {
+    "text": "What do you recommend in the vegetarian pizza?",
+    "entities": [
+      {
+        "start": 29,
+        "end": 39,
+        "value": "vegetarian",
+        "entity": "recommendation_category"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "menu_category",
+        "start": 29,
+        "end": 39,
+        "confidence_entity": 0.8476292646533135,
+        "value": "vegetarian",
+        "extractor": "CRFEntityExtractor"
+      }
+    ]
+  },
+  {
+    "text": "What vegetarian pizzas are recommended?",
+    "entities": [
+      {
+        "start": 5,
+        "end": 15,
+        "value": "vegetarian",
+        "entity": "recommendation_category"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "menu_category",
+        "start": 5,
+        "end": 15,
+        "confidence_entity": 0.557401390555712,
+        "value": "vegetarian",
+        "extractor": "CRFEntityExtractor"
+      }
+    ]
+  },
+  {
+    "text": "What do you recommend in the non-vegetarian pizza?",
+    "entities": [
+      {
+        "start": 29,
+        "end": 43,
+        "value": "non-vegetarian",
+        "entity": "recommendation_category"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "menu_category",
+        "start": 29,
+        "end": 43,
+        "confidence_entity": 0.8499067475534136,
+        "value": "non-vegetarian",
+        "extractor": "CRFEntityExtractor"
+      }
+    ]
+  },
+  {
+    "text": "What non-vegetarian pizzas are recommended?",
+    "entities": [
+      {
+        "start": 5,
+        "end": 19,
+        "value": "non-vegetarian",
+        "entity": "recommendation_category"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "menu_category",
+        "start": 5,
+        "end": 19,
+        "confidence_entity": 0.5609333968561744,
+        "value": "non-vegetarian",
+        "extractor": "CRFEntityExtractor"
+      }
+    ]
+  }
+]

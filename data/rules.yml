@@ -1,0 +1,576 @@
+version: "3.1"
+
+rules:
+  - rule: Handle starting greetings
+    conversation_start: true
+    steps:
+      - intent: start_greet
+      - action: action_utter_greet
+
+
+  - rule: Handle ending greetings
+    steps:
+      - intent: end_greet
+      - action: utter_end_greet
+      - action: action_reset_all_slots
+
+
+  - rule: Handle customer's ask for restaurant location
+    steps:
+      - intent: ask_restaurant_address
+      - action: action_response_to_ask_restaurant_address
+
+
+  - rule: Handle customer's ask for restaurant contact number
+    steps:
+      - intent: ask_restaurant_contact_number
+      - action: action_response_to_ask_restaurant_contact_number
+
+
+  - rule: Handle customer's ask for restaurant name
+    steps:
+      - intent: ask_restaurant_name
+      - action: action_response_to_ask_restaurant_name
+
+
+  - rule: Handle customer's ask for restaurant details
+    steps:
+      - intent: ask_restaurant_details
+      - action: action_response_to_ask_restaurant_details
+
+
+  - rule: Handle stop request
+    steps:
+      - intent: no_longer_hungry_stop_conversation
+      - action: utter_response_to_confirm_stop_request
+
+
+  - rule: Affirmation to stop request with affirm-specific-to-stop intent
+    steps:
+      - intent: say_affirm_to_stop_confirmation_by_bot
+      - action: utter_want_to_stop_conversation
+      - action: action_reset_all_slots
+
+
+  - rule: Affirmation to stop request with affirm-general intent
+    steps:
+      - intent: affirm
+      - action: utter_want_to_stop_conversation
+      - action: action_reset_all_slots
+
+
+  - rule: Say No to stop the conversation with deny-general intent (from user)
+    steps:
+      - intent: deny
+      - action: utter_response_to_deny_stop_request
+
+
+  - rule: Say No to stop the conversation with deny-specific-to-stop intent (from user)
+    steps:
+      - intent: say_deny_to_stop_confirmation_by_bot
+      - action: utter_response_to_deny_stop_request
+
+
+  - rule: Handle stop request during pizza order form
+    condition:
+      - active_loop: pizza_order_form
+    steps:
+      - intent: no_longer_hungry_stop_conversation
+      - action: utter_response_to_confirm_stop_request
+
+
+  - rule: Affirmation to stop request during pizza order form with affirm-specific-to-stop intent
+    condition:
+      - active_loop: pizza_order_form
+    steps:
+      - intent: say_affirm_to_stop_confirmation_by_bot
+      - action: action_deactivate_loop
+      - action: utter_want_to_stop_conversation
+      - action: action_reset_all_slots
+
+
+  - rule: Affirmation to stop request during pizza order form with affirm-general intent
+    condition:
+      - active_loop: pizza_order_form
+    steps:
+        - intent: affirm
+        - action: action_deactivate_loop
+        - action: utter_want_to_stop_conversation
+        - action: action_reset_all_slots
+
+
+  - rule: Say No to stop the conversation during pizza order form with deny-specific-to-stop intent (from user)
+    condition:
+      - active_loop: pizza_order_form
+    steps:
+        - intent: say_deny_to_stop_confirmation_by_bot
+        - action: pizza_order_form
+        - active_loop: pizza_order_form
+
+
+  - rule: Say No to stop the conversation during pizza order form with deny-general intent (from user)
+    condition:
+      - active_loop: pizza_order_form
+    steps:
+        - intent: deny
+        - action: pizza_order_form
+        - active_loop: pizza_order_form
+
+
+  - rule : Handle stop request during custom topping form
+    condition:
+      - active_loop: pizza_custom_topping_form
+    steps:
+      - intent: no_longer_hungry_stop_conversation
+      - action: utter_response_to_confirm_stop_request
+
+
+  - rule: Stop the conversation during custom topping form with affirm-specific-to-stop intent (from user)
+    condition:
+      - active_loop: pizza_custom_topping_form
+    steps:
+        - intent: say_affirm_to_stop_confirmation_by_bot
+        - action: action_deactivate_loop
+        - action: utter_want_to_stop_conversation
+        - action: action_reset_all_slots
+
+
+  - rule: Stop the conversation during custom topping form with affirm-general intent (from user)
+    condition:
+      - active_loop: pizza_custom_topping_form
+    steps:
+        - intent: affirm
+        - action: action_deactivate_loop
+        - action: utter_want_to_stop_conversation
+        - action: action_reset_all_slots
+
+
+  - rule: Say No to stop the conversation during custom topping form with deny-specific-to-stop intent (from user)
+    condition:
+      - active_loop: pizza_custom_topping_form
+    steps:
+        - intent: say_deny_to_stop_confirmation_by_bot
+        - action: pizza_custom_topping_form
+        - active_loop: pizza_custom_topping_form
+
+
+  - rule: Say No to stop the conversation during custom topping form with deny-general intent (from user)
+    condition:
+      - active_loop: pizza_custom_topping_form
+    steps:
+        - intent: deny
+        - action: pizza_custom_topping_form
+        - active_loop: pizza_custom_topping_form
+
+
+  - rule: Handle stop request during order pickup form
+    condition:
+      - active_loop: order_pickup_form
+    steps:
+      - intent: no_longer_hungry_stop_conversation
+      - action: utter_response_to_confirm_stop_request
+
+  - rule: Stop the conversation during order pickup form with affirm-specific-to-stop intent (from user)
+    condition:
+      - active_loop: order_pickup_form
+    steps:
+        - intent: say_affirm_to_stop_confirmation_by_bot
+        - action: action_deactivate_loop
+        - action: utter_want_to_stop_conversation
+        - action: action_reset_all_slots
+
+
+  - rule: Stop the conversation during order pickup form with affirm-general intent (from user)
+    condition:
+      - active_loop: order_pickup_form
+    steps:
+        - intent: affirm
+        - action: action_deactivate_loop
+        - action: utter_want_to_stop_conversation
+        - action: action_reset_all_slots
+
+
+  - rule: Say No to stop the conversation during order pickup form with deny-specific-to-stop intent (from user)
+    condition:
+      - active_loop: order_pickup_form
+    steps:
+        - intent: say_deny_to_stop_confirmation_by_bot
+        - action: order_pickup_form
+        - active_loop: order_pickup_form
+
+
+  - rule: Say No to stop the conversation during order pickup form with deny-general intent (from user)
+    condition:
+      - active_loop: order_pickup_form
+    steps:
+        - intent: deny
+        - action: order_pickup_form
+        - active_loop: order_pickup_form
+
+
+  - rule: Handle out of scope questions outside of forms
+    condition:
+      - active_loop: null
+    steps:
+      - intent: out_of_scope
+      - action: utter_out_of_scope
+
+
+  - rule: Handle out of scope questions during pizza order form
+    condition:
+      - active_loop: pizza_order_form
+    steps:
+      - intent: out_of_scope
+      - action: utter_out_of_scope
+      - action: pizza_order_form
+      - active_loop: pizza_order_form
+
+
+  - rule: Handle out of scope questions during custom topping form
+    condition:
+      - active_loop: pizza_custom_topping_form
+    steps:
+      - intent: out_of_scope
+      - action: utter_out_of_scope
+      - action: pizza_custom_topping_form
+      - active_loop: pizza_custom_topping_form
+
+
+  - rule: Handle out of scope questions during order pickup form
+    condition:
+      - active_loop: order_pickup_form
+    steps:
+      - intent: out_of_scope
+      - action: utter_out_of_scope
+      - action: order_pickup_form
+      - active_loop: order_pickup_form
+
+
+  - rule: Handle bot challenge questions outside of forms
+    condition:
+      - active_loop: null
+    steps:
+      - intent: bot_challenge
+      - action: utter_bot_challenge
+
+
+  - rule: Handle bot challenge questions during pizza order form
+    condition:
+      - active_loop: pizza_order_form
+    steps:
+      - intent: bot_challenge
+      - action: utter_bot_challenge
+      - action: pizza_order_form
+      - active_loop: pizza_order_form
+
+
+  - rule: Handle bot challenge questions during custom topping form
+    condition:
+      - active_loop: pizza_custom_topping_form
+    steps:
+      - intent: bot_challenge
+      - action: utter_bot_challenge
+      - action: pizza_custom_topping_form
+      - active_loop: pizza_custom_topping_form
+
+
+  - rule: Handle bot challenge questions during order pickup form
+    condition:
+      - active_loop: order_pickup_form
+    steps:
+      - intent: bot_challenge
+      - action: utter_bot_challenge
+      - action: order_pickup_form
+      - active_loop: order_pickup_form
+
+
+  - rule: Fallback rule
+    steps:
+      - action: action_default_fallback
+
+
+  - rule: Handle user's request to initiate general conversation for ordering pizza
+    steps:
+      - intent: initiate_general_conversation
+      - action: utter_initiate_general_conversation
+
+
+  - rule: Handle user's request to show the menu
+    steps:
+      - intent: inform_menu
+      - action: action_inform_menu
+      - action: utter_ask_pizza_type
+
+
+  - rule: Handle user's request for recommendations
+    steps:
+      - intent: recommend_pizza
+      - action: action_inform_recommendations_menu
+      - action: utter_ask_pizza_type
+
+
+  - rule: Handle user's request to show the vegetarian menu
+    steps:
+      - intent: inform_vegetarian_menu
+      - action: action_inform_vegetarian_menu
+      - action: utter_ask_pizza_type
+
+
+  - rule: Handle user's request to show the non-vegetarian menu
+    steps:
+      - intent: inform_non_vegetarian_menu
+      - action: action_inform_non_vegetarian_menu
+      - action: utter_ask_pizza_type
+
+
+  - rule: Handle user's request to show the vegetarian recommendations
+    steps:
+      - intent: recommend_vegetarian_pizza
+      - action: action_inform_veg_recommendations_menu
+      - action: utter_ask_pizza_type
+
+
+  - rule: Handle user's request to show the non-vegetarian recommendations
+    steps:
+      - intent: recommend_non_vegetarian_pizza
+      - action: action_inform_non_veg_recommendations_menu
+      - action: utter_ask_pizza_type
+
+
+  - rule: Handle user's request to show list of available custom toppings
+    steps:
+      - intent: ask_custom_toppings_info
+      - action: action_inform_available_toppings
+
+
+  - rule: Activate Pizza Order Form
+    steps:
+      - intent: inform_pizza_type
+      - action: pizza_order_form
+      - active_loop: pizza_order_form
+
+
+  - rule: Intrupt the pizza order form with custom topping information
+    condition:
+      - active_loop: pizza_order_form
+    steps:
+        - intent: ask_custom_toppings_info
+        - action: action_inform_available_toppings
+        - action: action_utter_ask_topping_confirmation
+        - action: pizza_custom_topping_form
+        - active_loop: pizza_custom_topping_form
+
+
+  - rule: Intrupt the pizza order form with opening times information
+    condition:
+      - active_loop: pizza_order_form
+    steps:
+        - intent: ask_opening_times
+        - action: utter_opening_times
+        - action: pizza_order_form
+        - active_loop: pizza_order_form
+
+
+  - rule: Activate Pizza Topping Form after Pizza Order Form with Custom Topping Request
+    steps:
+      - intent: pizza_custom_toppings_request
+      - action: pizza_custom_topping_form
+      - active_loop: pizza_custom_topping_form
+
+
+  - rule: Activate Pizza Order Form after again after standard toppings confirmation intent
+    steps:
+      - intent: pizza_standard_topping_confirm
+      - action: pizza_order_form
+      - active_loop: pizza_order_form
+
+
+  - rule: Pizza Topping Confirmation with Standard Toppings
+    condition:
+      - active_loop: pizza_order_form
+      - slot_was_set:
+          - pizza_type: true
+          - pizza_topping: true
+    steps:
+      - intent: pizza_standard_topping_confirm
+      - action: pizza_order_form
+      - active_loop: pizza_order_form
+
+
+  - rule: Submit Custom Pizza Topping Form
+    condition:
+      - active_loop: pizza_custom_topping_form
+      - slot_was_set:
+          - pizza_type: true
+          - pizza_topping: true
+          - topping_satisfaction: true
+          - pizza_custom_toppings: true
+    steps:
+      - action: pizza_custom_topping_form
+      - active_loop: null
+      - action: utter_summarize_customized_toppings
+      - action: action_submit_pizza_custom_topping_form
+      - action: pizza_order_form
+      - active_loop: pizza_order_form
+
+
+  - rule: Handle cancel complete order request
+    condition:
+      - slot_was_set:
+          - order_list: true
+    steps:
+      - intent: cancel_complete_order
+      - action: utter_confirm_cancel_order
+
+
+  - rule: Confirm order cancellation
+    condition:
+      - slot_was_set:
+          - order_list: true
+    steps:
+      - intent: affirm
+      - action: utter_order_cancelled
+      - action: action_reset_all_slots
+
+
+  - rule: Confirm order cancellation
+    condition:
+      - slot_was_set:
+          - order_list: true
+    steps:
+      - intent: affirm
+      - action: utter_order_cancelled
+      - action: action_reset_all_slots
+
+
+  - rule: Deny order cancellation
+    condition:
+      - slot_was_set:
+          - order_list: true
+    steps:
+      - intent: deny
+      - action: utter_order_not_cancelled
+
+
+  - rule: Handle cancel request when no active order
+    condition:
+      - slot_was_set:
+          - order_list: false
+    steps:
+      - intent: cancel_complete_order
+      - action: utter_no_active_order_to_cancel
+
+
+  - rule: Submit Pizza Order Form
+    condition:
+      - active_loop: pizza_order_form
+      - slot_was_set:
+          - pizza_type: true
+          - pizza_topping: true
+          - pizza_size: true
+          - pizza_quantity: true
+          - topping_satisfaction: true
+    steps:
+      - action: pizza_order_form
+      - active_loop: null
+      - action: utter_pizza_add_confirmation_message
+      - action: action_submit_pizza_order_form
+      - action: action_listen
+
+
+  - rule: Handle user's request to add more pizzas to the order - General
+    condition:
+      - slot_was_set:
+          - order_list: true
+    steps:
+      - intent: add_another_pizza_general
+      - action: utter_response_to_add_another_pizza_intent_general
+
+
+  - rule: Handle user's request to add more pizzas to the order - Specific
+    condition:
+      - slot_was_set:
+          - order_list: true
+    steps:
+      - intent: add_another_pizza_specific
+      - action: utter_response_to_add_specific_pizza_intent
+      - action: pizza_order_form
+      - active_loop: pizza_order_form
+
+
+  - rule: Handle remove pizza from order request with active order and pizza type provided
+    condition:
+        - slot_was_set:
+            - order_list: true
+            - pizza_type: true
+    steps:
+      - intent: remove_pizza_from_order
+      - action: utter_response_to_confirm_remove_pizza_request
+
+
+  - rule: Confirm removal of a single pizza from the order
+    condition:
+      - slot_was_set:
+          - order_list: true
+          - pizza_type: true
+    steps:
+      - intent: affirm
+      - action: action_remove_item_from_order
+
+
+  - rule: Deny removal of a pizza from the order
+    condition:
+      - slot_was_set:
+          - order_list: true
+          - pizza_type: true
+    steps:
+      - intent: deny
+      - action: utter_deny_remove_pizza_request
+      - action: action_show_order_summary
+
+
+  - rule: Activate Pizza Order Pickup Form
+    condition:
+      - slot_was_set:
+          - order_list: true
+    steps:
+      - intent: proceed_to_pickup
+      - action: action_calculate_preparation_time
+      - action: utter_response_to_proceed_to_pickup_intent
+      - action: order_pickup_form
+      - active_loop: order_pickup_form
+
+
+  - rule: Provide opening times when order pickup form is activated
+    condition:
+      - active_loop: order_pickup_form
+    steps:
+      - intent: ask_opening_times
+      - action: utter_opening_times_with_ask_pickup_time
+      - action: order_pickup_form
+      - active_loop: order_pickup_form
+
+
+  - rule: Provide opening times in general
+    steps:
+      - intent: ask_opening_times
+      - action: utter_opening_times
+
+
+  - rule: submit order pickup form
+    condition:
+      - active_loop: order_pickup_form
+      - slot_was_set:
+          - pickup_time: true
+          - order_pickup_time: true
+          - preparation_time: true
+          - within_business_hours: true
+          - pickup_confirmation: true
+          - order_number: true
+          - order_list: true
+    steps:
+      - action: order_pickup_form
+      - active_loop: null
+      - action: action_submit_order_pickup_form
+      - action: utter_end_greet
+      - action: action_reset_all_slots

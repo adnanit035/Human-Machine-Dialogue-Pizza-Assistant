@@ -1,0 +1,68 @@
+[
+  {
+    "text": "I would like one pizza",
+    "entities": [
+      {
+        "start": 13,
+        "end": 16,
+        "value": "one",
+        "entity": "pizza_quantity"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "I want one pizza",
+    "entities": [
+      {
+        "start": 7,
+        "end": 10,
+        "value": "one",
+        "entity": "pizza_quantity"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "One more pizza please",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "pizza_quantity",
+        "start": 0,
+        "end": 3,
+        "confidence_entity": 0.5735635112490626,
+        "value": "One",
+        "extractor": "CRFEntityExtractor"
+      }
+    ]
+  },
+  {
+    "text": "One more pizza to my order please",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "pizza_quantity",
+        "start": 0,
+        "end": 3,
+        "confidence_entity": 0.5735635112491321,
+        "value": "One",
+        "extractor": "CRFEntityExtractor"
+      }
+    ]
+  },
+  {
+    "text": "One more pizza to my cart please",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "pizza_quantity",
+        "start": 0,
+        "end": 3,
+        "confidence_entity": 0.5735635112491315,
+        "value": "One",
+        "extractor": "CRFEntityExtractor"
+      }
+    ]
+  }
+]

@@ -1,0 +1,15 @@
+[
+  {
+    "text": "I want to order a pepperoni pizza",
+    "entities": [
+      {
+        "text": "I want to order a pepperoni pizza",
+        "start": 18,
+        "end": 27,
+        "entity": "pizza_type",
+        "value": "pepperoni"
+      }
+    ],
+    "predicted_entities": []
+  }
+]

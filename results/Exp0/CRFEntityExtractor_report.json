@@ -1,0 +1,74 @@
+{
+  "pizza_custom_toppings": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 184,
+    "confused_with": {}
+  },
+  "pickup_time": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 260,
+    "confused_with": {}
+  },
+  "pizza_quantity": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 206,
+    "confused_with": {}
+  },
+  "recommendation_category": {
+    "precision": 0.896551724137931,
+    "recall": 0.9285714285714286,
+    "f1-score": 0.912280701754386,
+    "support": 56,
+    "confused_with": {
+      "menu_category": 4
+    }
+  },
+  "pizza_type": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 607,
+    "confused_with": {}
+  },
+  "menu_category": {
+    "precision": 0.9344262295081968,
+    "recall": 0.9047619047619048,
+    "f1-score": 0.9193548387096775,
+    "support": 63,
+    "confused_with": {
+      "recommendation_category": 6
+    }
+  },
+  "pizza_size": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 148,
+    "confused_with": {}
+  },
+  "micro avg": {
+    "precision": 0.9934383202099738,
+    "recall": 0.9934383202099738,
+    "f1-score": 0.9934383202099738,
+    "support": 1524
+  },
+  "macro avg": {
+    "precision": 0.9758539933780181,
+    "recall": 0.9761904761904763,
+    "f1-score": 0.975947934352009,
+    "support": 1524
+  },
+  "weighted avg": {
+    "precision": 0.9934880242852628,
+    "recall": 0.9934383202099738,
+    "f1-score": 0.993442962032123,
+    "support": 1524
+  },
+  "accuracy": 0.9988215884987037
+}

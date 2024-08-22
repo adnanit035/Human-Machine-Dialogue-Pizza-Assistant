@@ -1,0 +1,1875 @@
+version: "3.1"
+nlu:
+- intent: start_greet
+  examples: |
+    - hi
+    - just going to say hi
+    - hey
+    - hello hi
+    - Hey
+    - howdy
+    - Howdy
+    - hey there
+    - hi there
+    - Hi
+    - Hi there
+    - greetings
+    - long time no see
+    - hello
+    - hello there
+    - Hello
+- intent: end_greet
+  examples: |
+    - bye
+    - see you around
+    - Goodbye
+    - bye bye
+    - see you later
+    - see you
+    - bye for now
+    - ok good bye
+- intent: no_longer_hungry_stop_conversation
+  examples: |
+    - Stop
+    - Stop the conversation
+    - I am no longer hungry, stop the conversation
+    - I am not hungry anymore, stop
+    - I am full, stop the conversation
+    - I am not hungry, stop
+    - I am no longer hungry, stop
+    - I have changed my mind, stop
+    - change my mind, no longer want to order
+    - I have changed my mind, no longer want to order
+    - no longer want to order, stop
+    - Please stop, no longer want to order
+    - Please stop, I am no longer hungry, no order needed
+    - I want to stop
+    - I want to stop the conversation
+    - I need to go
+    - I need to go now
+    - I need to go, bye
+    - I need to go, bye bye
+    - I need to go, goodbye
+- intent: say_affirm_to_stop_confirmation_by_bot
+  examples: |
+    - Yes, please stop
+    - Yes, that's correct, stop the conversation noe
+    - Yes, end it now
+    - Yes, go ahead and stop
+    - Yes, you can stop now
+    - Sure, let's stop here
+    - Yes, stop the chat
+    - Correct, end the conversation now
+    - Yes, let's end it
+    - Yes, please end the chat
+    - Yes, I'm done
+    - Absolutely, stop now
+    - Yes, end the session
+    - Sure, wrap it up
+    - Yes, that's fine, stop now
+    - Yes, go ahead and end
+    - Yes, please end this
+    - Right, you can stop
+    - Sure, you can stop now
+    - Yes, let's finish here
+- intent: say_deny_to_stop_confirmation_by_bot
+  examples: |
+    - No, please continue
+    - No, don’t stop
+    - No, I want to keep going
+    - No, keep the conversation going
+    - Not yet, don’t end the conversation
+    - No, I'm still deciding
+    - No, I'm not done yet
+    - No, let’s keep chatting
+    - No, I need more time
+    - No, I’m still thinking about it
+    - No, continue with the order
+    - No, don’t end it now
+    - No, let's continue
+    - No, please don't stop
+    - No, I still want to talk
+    - No, I haven't decided yet
+    - No, let's keep going
+    - Not now, keep it going
+    - No, I'm not finished
+    - No, keep the conversation open
+- intent: out_of_scope
+  examples: |
+    - What is 2 + 2?
+    - Who's the US President?
+    - do you have shoes?
+    - what is your name?
+    - are you real?
+    - do you have a sister?
+    - book a flight from Milan to NY
+    - how far is the square?
+    - give me directions to Times Square
+    - what is the weather in Trento?
+    - can you tell me a joke?
+    - who is the CEO of Apple?
+    - translate 'hello' to French
+    - play some music
+    - what time is it?
+    - open Google for me
+    - what is 4 + 5?
+- intent: bot_challenge
+  examples: |
+    - are you a bot?
+    - are you a human?
+    - am I talking to a bot?
+    - am I talking to a human?
+    - are you a real person?
+    - you're a bot, right?
+    - you're a human, right?
+    - are you a bot or a human?
+    - are you a real human?
+    - are you a real bot?
+    - is this conversation with a bot?
+    - can you prove you're not a bot?
+    - are you artificial intelligence?
+    - are you AI or a human?
+- intent: affirm
+  examples: |
+    - yes
+    - indeed
+    - of course
+    - that sounds good
+    - correct
+    - absolutely
+    - sure
+    - definitely
+    - yeah
+    - yep
+    - ya
+    - yup
+    - right
+    - ok
+    - okay
+    - sounds good
+    - that's right
+    - that is true
+    - that is accurate
+    - that is exact
+    - that is precise
+    - that is spot on
+    - that is on the mark
+    - that is on the target
+    - that is on the goal
+    - Yes, I agree
+    - You're right
+    - I totally agree
+- intent: deny
+  examples: |
+    - no
+    - nah
+    - never
+    - I don't think so
+    - don't like that
+    - no way
+    - not really
+    - not sure
+    - I don't think that's right
+    - I don't think that's true
+    - I don't think that's accurate
+    - I don't think that's exact
+    - I don't think that's precise
+    - I don't think that's spot on
+    - I don't think that's on the mark
+    - I don't think that's on the target
+    - I don't think that's on the goal
+    - I disagree
+    - You're wrong
+    - That's not correct
+    - No, I don’t agree
+    - Not at all
+- intent: initiate_general_conversation
+  examples: |
+    - I am looking for a pizza
+    - I want to order an pizza
+    - I am looking for a pizza to order
+    - I want to order a pizza
+    - I am hungry
+    - I want to eat
+    - I want to order food
+    - I want to order something
+    - I want to eat something
+    - I am hungry and want to eat
+    - I am hungry and want to order food
+    - I am hungry and want to order something
+    - I am hungry and want to order a pizza
+    - order a pizza
+    - order food
+    - order something
+    - Want to order a pizza
+    - Want to order food
+    - Want to order something
+    - Want to eat
+    - Want to eat something
+    - Want to eat a pizza
+    - Do you have pizza?
+    - Do you have food?
+    - Do you have something to eat?
+    - Do you have something for me to eat?
+    - Do you have something for me to order?
+    - Do you have something for me to order to eat?
+    - Are you a pizza place?
+    - Are you a food place?
+    - Are you there?
+    - Are you a restaurant?
+    - Are you a pizza restaurant?
+    - Are you a food restaurant?
+    - Are you a pizza shop?
+    - Are you a food shop?
+    - i want food
+    - I want to order pizza
+    - I want pizza
+    - hi i want pizza
+    - i want pizza
+    - i want to order pizza
+- intent: inform_menu
+  examples: |
+    - What do you have in the pizza menu?
+    - what pizza do you have?
+    - Could you show me the pizza menu again?
+    - Show me the menu of pizza?
+    - what is the menu?
+    - show me menu again?
+    - Show me the pizza menu
+    - What pizzas are available?
+    - show pizza list
+    - show me the list of pizza
+    - list of pizza
+    - pizza
+    - show me the today's Menu
+    - show menu again
+    - menu
+    - what pizzas do you have?
+    - take me on menu page
+    - what do you have in the menu?
+    - what do you have in the Menu?
+    - Menu?
+    - Menu
+    - pizza please
+    - Pizza please
+    - Pizza will do
+    - pizza will do
+    - what do you have?
+    - what do you have
+    - what do you have in the menu
+    - what do you have in the Menu
+    - what do you have in the pizza menu
+    - what do you have in the Pizza menu
+    - menu please
+- intent: inform_vegetarian_menu
+  examples: |
+    - What do you have in the vegetarian pizza menu?
+    - Hi I want to order a vegetarian pizza
+    - what vegetarian pizza do you have?
+    - Could you show me the vegetarian pizza menu again?
+    - Show me the menu of vegetarian pizza?
+    - what is the vegetarian pizza menu?
+    - show me vegetarian pizza menu again?
+    - Show me the vegetarian pizza menu
+    - What vegetarian pizzas are available?
+    - show vegetarian pizza list
+    - show me the list of vegetarian pizza
+    - list of vegetarian pizza
+    - vegetarian pizza
+    - I want to order a vegetarian pizza
+    - show me the today's vegetarian Menu
+    - show vegetarian menu again
+    - vegetarian menu
+    - what vegetarian pizzas do you have?
+    - take me on vegetarian menu page
+    - what do you have in vegetarian menu?
+    - what do you have in the vegetarian Menu?
+    - vegetarian Menu?
+    - vegetarian Menu
+    - vegetarian pizza please
+    - vegetarian pizza will do
+    - what do you have in the vegetarian menu?
+    - what do you have in the vegetarian pizza menu?
+    - what do you have in the vegetarian pizza menu
+    - what do you have in the vegetarian Pizza menu
+- intent: inform_non_vegetarian_menu
+  examples: |
+    - What do you have in the non-vegetarian pizza menu?
+    - Hi I want to order a non-vegetarian pizza
+    - what non-vegetarian pizza do you have?
+    - Could you show me the non-vegetarian pizza menu again?
+    - Show me the menu of non-vegetarian pizza?
+    - what is the non-vegetarian pizza menu?
+    - show me non-vegetarian pizza menu again?
+    - Show me the non-vegetarian pizza menu
+    - What non-vegetarian pizzas are available?
+    - show non-vegetarian pizza list
+    - show me the list of non-vegetarian pizza
+    - list of non-vegetarian pizza
+    - non-vegetarian pizza
+    - I want to order a non-vegetarian pizza
+    - show me the today's non-vegetarian Menu
+    - show non-vegetarian menu again
+    - non-vegetarian menu
+    - what non-vegetarian pizzas do you have?
+    - take me on non-vegetarian menu page
+    - what do you have in non-vegetarian menu?
+    - what do you have in the non-vegetarian Menu?
+    - non-vegetarian Menu?
+    - non-vegetarian Menu
+    - non-vegetarian pizza please?
+    - non-vegetarian pizza please
+    - non-vegetarian pizza will do?
+    - non-vegetarian pizza will do
+    - what do you have in the non-vegetarian menu?
+    - what do you have in the non-vegetarian pizza menu?
+    - what do you have in the non-vegetarian Pizza menu
+    - what do you have in the non-vegetarian pizza menu
+- intent: recommend_pizza
+  examples: |
+    - What do you recommend?
+    - Hi I want to order a pizza, what do you recommend?
+    - what pizza do you recommend?
+    - Could you recommend me a pizza?
+    - Recommend me a pizza?
+    - what is the recommended pizza?
+    - recommend me a pizza
+    - What pizzas are recommended?
+    - recommend pizza
+    - Which is the best pizza?
+    - What is your best pizza?
+    - What is your popular pizza?
+    - What is your most popular pizza?
+    - What is your special pizza?
+    - Which is people's favorite pizza here?
+    - What is the most ordered pizza?
+    - What is the most ordered pizza here?
+    - What is the most ordered pizza in your restaurant?
+    - What is the most ordered pizza in your shop?
+    - Yes, I want to know your recommended pizzas
+    - recommendations please
+    - Yes I would like to show me your non veg recommendations
+- intent: recommend_vegetarian_pizza
+  examples: |
+    - What do you recommend in the vegetarian pizza?
+    - Hi I want to order a vegetarian pizza, what do you recommend?
+    - what vegetarian pizza do you recommend?
+    - Could you recommend me a vegetarian pizza?
+    - Recommend me a vegetarian pizza?
+    - what is the recommended vegetarian pizza?
+    - recommend me a vegetarian pizza
+    - What vegetarian pizzas are recommended?
+    - recommend vegetarian pizza
+    - Which is the best vegetarian pizza?
+    - What is your best vegetarian pizza?
+    - What is your popular vegetarian pizza?
+    - What is your most popular vegetarian pizza?
+    - What is your special vegetarian pizza?
+    - Which is people's favorite vegetarian pizza here?
+    - What is the most ordered vegetarian pizza?
+    - What is the most ordered vegetarian pizza here?
+    - What is the most ordered vegetarian pizza in your restaurant?
+    - What is the most ordered vegetarian pizza in your shop?
+    - What is the most ordered vegetarian pizza in your place?
+    - What is the most ordered vegetarian pizza in your store?
+    - What is the most ordered vegetarian pizza in your outlet?
+    - What is the most ordered vegetarian pizza in your joint?
+    - What is the most ordered vegetarian pizza in your cafe?
+    - What is the most ordered vegetarian pizza in your diner?
+    - What is the most ordered vegetarian pizza in your eatery?
+    - What is the most ordered vegetarian pizza in your bistro?
+    - What is the most ordered vegetarian pizza in your pizzeria?
+- intent: recommend_non_vegetarian_pizza
+  examples: |
+    - What do you recommend in the non-vegetarian pizza?
+    - Hi I want to order a non-vegetarian pizza, what do you recommend?
+    - what non-vegetarian pizza do you recommend?
+    - Could you recommend me a non-vegetarian pizza?
+    - Recommend me a non-vegetarian pizza?
+    - what is the recommended non-vegetarian pizza?
+    - recommend me a non-vegetarian pizza
+    - What non-vegetarian pizzas are recommended?
+    - recommend non-vegetarian pizza
+    - Which is the best non-vegetarian pizza?
+    - What is your best non-vegetarian pizza?
+    - What is your popular non-vegetarian pizza?
+    - What is your most popular non-vegetarian pizza?
+    - What is your special non-vegetarian pizza?
+    - Which is people's favorite non-vegetarian pizza here?
+    - What is the most ordered non-vegetarian pizza?
+    - What is the most ordered non-vegetarian pizza here?
+    - What is the most ordered non-vegetarian pizza in your restaurant?
+    - What is the most ordered non-vegetarian pizza in your shop?
+    - What is the most ordered non-vegetarian pizza in your place?
+    - What is the most ordered non-vegetarian pizza in your store?
+    - What is the most ordered non-vegetarian pizza in your outlet?
+    - What is the most ordered non-vegetarian pizza in your joint?
+    - What is the most ordered non-vegetarian pizza in your cafe?
+    - What is the most ordered non-vegetarian pizza in your diner?
+    - What is the most ordered non-vegetarian pizza in your eatery?
+    - What is the most ordered non-vegetarian pizza in your bistro?
+    - What is the most ordered non-vegetarian pizza in your pizzeria?
+- intent: inform_pizza_type
+  examples: |
+    - [Margherita](pizza_type)
+    - [Pepperoni](pizza_type)
+    - [BBQ Chicken](pizza_type)
+    - [bbq chicken](pizza_type)
+    - [Bbq Chicken](pizza_type)
+    - [Bbq chicken](pizza_type)
+    - [Supreme](pizza_type)
+    - [Pesto and Sun-dried Tomato](pizza_type)
+    - [Seafood](pizza_type)
+    - [Margherita](pizza_type) pizza
+    - [Pepperoni](pizza_type) pizza
+    - [Supreme](pizza_type) pizza
+    - [Pesto and Sun-dried Tomato](pizza_type) pizza
+    - [Seafood](pizza_type) pizza
+    - [Margherita](pizza_type) please
+    - [Pepperoni](pizza_type) please
+    - [BBQ Chicken](pizza_type) please
+    - [Supreme](pizza_type) please
+    - [Pesto and Sun-dried Tomato](pizza_type) please
+    - [Seafood](pizza_type) please
+    - [Margherita](pizza_type) pizza please
+    - [Pepperoni](pizza_type) pizza please
+    - [BBQ Chicken](pizza_type) pizza please
+    - [Supreme](pizza_type) pizza please
+    - [Pesto and Sun-dried Tomato](pizza_type) pizza please
+    - [Seafood](pizza_type) pizza please
+    - Please [Margherita](pizza_type) pizza
+    - Please [Pepperoni](pizza_type) pizza
+    - Please [BBQ Chicken](pizza_type) pizza
+    - Please [Supreme](pizza_type) pizza
+    - Please [Pesto and Sun-dried Tomato](pizza_type) pizza
+    - Please [Seafood](pizza_type) pizza
+    - I want [Margherita](pizza_type) pizza
+    - I want [Pepperoni](pizza_type) pizza
+    - I want [BBQ Chicken](pizza_type) pizza
+    - I want [Supreme](pizza_type) pizza
+    - I want [Pesto and Sun-dried Tomato](pizza_type) pizza
+    - I want [Seafood](pizza_type) pizza
+    - I want [Margherita](pizza_type)
+    - I want [Pepperoni](pizza_type)
+    - I want [BBQ Chicken](pizza_type)
+    - I want [Supreme](pizza_type)
+    - I want [Pesto and Sun-dried Tomato](pizza_type)
+    - I want [Seafood](pizza_type)
+    - [one](pizza_quantity) [Margherita](pizza_type) pizza
+    - [one](pizza_quantity) [Pepperoni](pizza_type) pizza
+    - [one](pizza_quantity) [BBQ Chicken](pizza_type) pizza
+    - [one](pizza_quantity) [Supreme](pizza_type) pizza
+    - [one](pizza_quantity) [Pesto and Sun-dried Tomato](pizza_type) pizza
+    - [one](pizza_quantity) [Seafood](pizza_type) pizza
+    - [a](pizza_quantity) [Margherita](pizza_type) pizza
+    - [a](pizza_quantity) [Pepperoni](pizza_type) pizza
+    - [a](pizza_quantity) [BBQ Chicken](pizza_type) pizza
+    - [a](pizza_quantity) [Supreme](pizza_type) pizza
+    - [a](pizza_quantity) [Pesto and Sun-dried Tomato](pizza_type) pizza
+    - [a](pizza_quantity) [Seafood](pizza_type) pizza
+    - [two](pizza_quantity) [Margherita](pizza_type) pizzas please
+    - [two](pizza_quantity) [Pepperoni](pizza_type) pizzas please
+    - [two](pizza_quantity) [BBQ Chicken](pizza_type) pizzas please
+    - [two](pizza_quantity) [Supreme](pizza_type) pizzas please
+    - [two](pizza_quantity) [Pesto and Sun-dried Tomato](pizza_type) pizzas please
+    - [two](pizza_quantity) [Seafood](pizza_type) pizzas please
+    - [three](pizza_quantity) [Margherita](pizza_type) pizzas please
+    - [three](pizza_quantity) [Pepperoni](pizza_type) pizzas please
+    - [three](pizza_quantity) [BBQ Chicken](pizza_type) pizzas please
+    - [three](pizza_quantity) [Supreme](pizza_type) pizzas please
+    - [three](pizza_quantity) [Pesto and Sun-dried Tomato](pizza_type) pizzas please
+    - [three](pizza_quantity) [Seafood](pizza_type) pizzas please
+    - [four](pizza_quantity) [Margherita](pizza_type) pizzas please
+    - [four](pizza_quantity) [Pepperoni](pizza_type) pizzas please
+    - [four](pizza_quantity) [BBQ Chicken](pizza_type) pizzas please
+    - [four](pizza_quantity) [Supreme](pizza_type) pizzas please
+    - [four](pizza_quantity) [Pesto and Sun-dried Tomato](pizza_type) pizzas please
+    - [four](pizza_quantity) [Seafood](pizza_type) pizzas please
+    - [five](pizza_quantity) [Margherita](pizza_type) pizzas please
+    - [five](pizza_quantity) [Pepperoni](pizza_type) pizzas please
+    - [five](pizza_quantity) [BBQ Chicken](pizza_type) pizzas please
+    - [five](pizza_quantity) [Supreme](pizza_type) pizzas please
+    - [five](pizza_quantity) [Pesto and Sun-dried Tomato](pizza_type) pizzas please
+    - [five](pizza_quantity) [Seafood](pizza_type) pizzas please
+    - [six](pizza_quantity) [Margherita](pizza_type) pizzas please
+    - [six](pizza_quantity) [Pepperoni](pizza_type) pizzas please
+    - [six](pizza_quantity) [BBQ Chicken](pizza_type) pizzas please
+    - Please [six](pizza_quantity) [Supreme](pizza_type) pizzas
+    - [six](pizza_quantity) [Pesto and Sun-dried Tomato](pizza_type) pizzas please
+    - [six](pizza_quantity) [Seafood](pizza_type) pizzas please
+    - [seven](pizza_quantity) [Margherita](pizza_type) pizzas please
+    - [seven](pizza_quantity) [Pepperoni](pizza_type) pizzas please
+    - [seven](pizza_quantity) [BBQ Chicken](pizza_type) pizzas please
+    - [seven](pizza_quantity) [Supreme](pizza_type) pizzas please
+    - [seven](pizza_quantity) [Pesto and Sun-dried Tomato](pizza_type) pizzas please
+    - [seven](pizza_quantity) [Seafood](pizza_type) pizzas please
+    - [eight](pizza_quantity) [Margherita](pizza_type) pizzas please
+    - [eight](pizza_quantity) [Pepperoni](pizza_type) pizzas please
+    - [eight](pizza_quantity) [BBQ Chicken](pizza_type) pizzas please
+    - [eight](pizza_quantity) [Supreme](pizza_type) pizzas please
+    - [eight](pizza_quantity) [Pesto and Sun-dried Tomato](pizza_type) pizzas please
+    - [eight](pizza_quantity) [Seafood](pizza_type) pizzas please
+    - [nine](pizza_quantity) [Margherita](pizza_type) pizzas please
+    - [nine](pizza_quantity) [Pepperoni](pizza_type) pizzas please
+    - [nine](pizza_quantity) [BBQ Chicken](pizza_type) pizzas please
+    - [nine](pizza_quantity) [Supreme](pizza_type) pizzas please
+    - [nine](pizza_quantity) [Pesto and Sun-dried Tomato](pizza_type) pizzas please
+    - [nine](pizza_quantity) [Seafood](pizza_type) pizzas please
+    - [ten](pizza_quantity) [Margherita](pizza_type) pizzas please
+    - [ten](pizza_quantity) [Pepperoni](pizza_type) pizzas please
+    - [ten](pizza_quantity) [BBQ Chicken](pizza_type) pizzas please
+    - [ten](pizza_quantity) [Supreme](pizza_type) pizzas please
+    - [ten](pizza_quantity) [Pesto and Sun-dried Tomato](pizza_type) pizzas please
+    - [ten](pizza_quantity) [Seafood](pizza_type) pizzas please
+    - Please add [Margherita](pizza_type) pizza
+    - Please add [Pepperoni](pizza_type) pizza
+    - Please add [BBQ Chicken](pizza_type) pizza
+    - Please add [Supreme](pizza_type) pizza
+    - Please add [Pesto and Sun-dried Tomato](pizza_type) pizza
+    - Please add [Seafood](pizza_type) pizza
+    - Please add [Margherita](pizza_type)
+    - Please add [Pepperoni](pizza_type)
+    - Please add [BBQ Chicken](pizza_type)
+    - Please add [Supreme](pizza_type)
+    - Please add [Pesto and Sun-dried Tomato](pizza_type)
+    - Please add [Seafood](pizza_type)
+    - Add [Margherita](pizza_type) pizza
+    - Add [Pepperoni](pizza_type) pizza
+    - Add [BBQ Chicken](pizza_type) pizza
+    - Add [Supreme](pizza_type) pizza
+    - Add [Pesto and Sun-dried Tomato](pizza_type) pizza
+    - Add [Seafood](pizza_type) pizza
+    - Add [Margherita](pizza_type)
+    - Add [Pepperoni](pizza_type)
+    - Add [BBQ Chicken](pizza_type)
+    - Add [Supreme](pizza_type)
+    - Add [Pesto and Sun-dried Tomato](pizza_type)
+    - Add [Seafood](pizza_type)
+    - Please add [a](pizza_quantity) [Margherita](pizza_type) pizza
+    - Please add [a](pizza_quantity) [Pepperoni](pizza_type) pizza
+    - Please add [a](pizza_quantity) [BBQ Chicken](pizza_type) pizza
+    - Please add [a](pizza_quantity) [Supreme](pizza_type) pizza
+    - Please add [a](pizza_quantity) [Pesto and Sun-dried Tomato](pizza_type) pizza
+    - Please add [a](pizza_quantity) [Seafood](pizza_type) pizza
+    - Add [a](pizza_quantity) [Margherita](pizza_type) pizza
+    - Add [a](pizza_quantity) [Pepperoni](pizza_type) pizza
+    - Add [a](pizza_quantity) [BBQ Chicken](pizza_type) pizza
+    - Add [a](pizza_quantity) [Supreme](pizza_type) pizza
+    - Add [a](pizza_quantity) [Pesto and Sun-dried Tomato](pizza_type) pizza
+    - Add [a](pizza_quantity) [Seafood](pizza_type) pizza
+    - Add [one](pizza_quantity) [Margherita](pizza_type) pizza
+    - Add [one](pizza_quantity) [Pepperoni](pizza_type) pizza
+    - Add [one](pizza_quantity) [BBQ Chicken](pizza_type) pizza
+    - Add [one](pizza_quantity) [Supreme](pizza_type) pizza
+    - Add [one](pizza_quantity) [Pesto and Sun-dried Tomato](pizza_type) pizza
+    - Add [one](pizza_quantity) [Seafood](pizza_type) pizza
+    - Add [two](pizza_quantity) [Margherita](pizza_type) pizzas
+    - Add [two](pizza_quantity) [Pepperoni](pizza_type) pizzas
+    - Add [two](pizza_quantity) [BBQ Chicken](pizza_type) pizzas
+    - Add [two](pizza_quantity) [Supreme](pizza_type) pizzas
+    - Add [two](pizza_quantity) [Pesto and Sun-dried Tomato](pizza_type) pizzas
+    - Add [two](pizza_quantity) [Seafood](pizza_type) pizzas
+    - Add [three](pizza_quantity) [Margherita](pizza_type) pizzas
+    - Add [three](pizza_quantity) [Pepperoni](pizza_type) pizzas
+    - Add [three](pizza_quantity) [BBQ Chicken](pizza_type) pizzas
+    - Add [three](pizza_quantity) [Supreme](pizza_type) pizzas
+    - Add [three](pizza_quantity) [Pesto and Sun-dried Tomato](pizza_type) pizzas
+    - Add [three](pizza_quantity) [Seafood](pizza_type) pizzas
+    - Add [four](pizza_quantity) [Margherita](pizza_type) pizzas
+    - Add [four](pizza_quantity) [Pepperoni](pizza_type) pizzas
+    - Add [four](pizza_quantity) [BBQ Chicken](pizza_type) pizzas
+    - Add [four](pizza_quantity) [Supreme](pizza_type) pizzas
+    - Add [four](pizza_quantity) [Pesto and Sun-dried Tomato](pizza_type) pizzas
+    - Add [four](pizza_quantity) [Seafood](pizza_type) pizzas
+    - Add [five](pizza_quantity) [Margherita](pizza_type) pizzas
+    - Add [five](pizza_quantity) [Pepperoni](pizza_type) pizzas
+    - Add [five](pizza_quantity) [BBQ Chicken](pizza_type) pizzas
+    - [small](pizza_size) [Margherita](pizza_type) pizza
+    - [medium](pizza_size) [Pepperoni](pizza_type) pizza
+    - [large](pizza_size) [BBQ Chicken](pizza_type) pizza
+    - [small](pizza_size) [Supreme](pizza_type) pizza
+    - [medium](pizza_size) [Pesto and Sun-dried Tomato](pizza_type) pizza
+    - [large](pizza_size) [Seafood](pizza_type) pizza
+    - Please add [small](pizza_size) [Margherita](pizza_type) pizza
+    - Please add [medium](pizza_size) [Pepperoni](pizza_type) pizza
+    - Please add [large](pizza_size) [BBQ Chicken](pizza_type) pizza
+    - Please add [small](pizza_size) [Supreme](pizza_type) pizza
+    - Please add [medium](pizza_size) [Pesto and Sun-dried Tomato](pizza_type) pizza
+    - Please add [large](pizza_size) [Seafood](pizza_type) pizza
+    - Add [small](pizza_size) [Margherita](pizza_type) pizza
+    - Add [medium](pizza_size) [Pepperoni](pizza_type) pizza
+    - Add [large](pizza_size) [BBQ Chicken](pizza_type) pizza
+    - Add [small](pizza_size) [Supreme](pizza_type) pizza
+    - Add [medium](pizza_size) [Pesto and Sun-dried Tomato](pizza_type) pizza
+    - Add [large](pizza_size) [Seafood](pizza_type) pizza
+    - Add [one](pizza_quantity) [small](pizza_size) [Margherita](pizza_type) pizza
+    - Add [one](pizza_quantity) [medium](pizza_size) [Pepperoni](pizza_type) pizza
+    - Add [one](pizza_quantity) [large](pizza_size) [BBQ Chicken](pizza_type) pizza
+    - Add [one](pizza_quantity) [small](pizza_size) [Supreme](pizza_type) pizza
+    - Add [one](pizza_quantity) [medium](pizza_size) [Pesto and Sun-dried Tomato](pizza_type) pizza
+    - Add [one](pizza_quantity) [large](pizza_size) [Seafood](pizza_type) pizza
+    - Add [two](pizza_quantity) [small](pizza_size) [Margherita](pizza_type) pizzas
+    - Add [two](pizza_quantity) [medium](pizza_size) [Pepperoni](pizza_type) pizzas
+    - Add [two](pizza_quantity) [large](pizza_size) [BBQ Chicken](pizza_type) pizzas
+    - Add [two](pizza_quantity) [small](pizza_size) [Supreme](pizza_type) pizzas
+    - Add [two](pizza_quantity) [medium](pizza_size) [Pesto and Sun-dried Tomato](pizza_type) pizzas
+    - Add [two](pizza_quantity) [large](pizza_size) [Seafood](pizza_type) pizzas
+    - Add [three](pizza_quantity) [small](pizza_size) [Margherita](pizza_type) pizzas
+    - Add [three](pizza_quantity) [medium](pizza_size) [Pepperoni](pizza_type) pizzas
+    - Add [three](pizza_quantity) [large](pizza_size) [BBQ Chicken](pizza_type) pizzas
+    - Add [three](pizza_quantity) [small](pizza_size) [Supreme](pizza_type) pizzas
+    - Add [three](pizza_quantity) [medium](pizza_size) [Pesto and Sun-dried Tomato](pizza_type) pizzas
+    - Add [three](pizza_quantity) [large](pizza_size) [Seafood](pizza_type) pizzas
+    - Add [four](pizza_quantity) [small](pizza_size) [Margherita](pizza_type) pizzas
+    - Add [four](pizza_quantity) [medium](pizza_size) [Pepperoni](pizza_type) pizzas
+    - Add [four](pizza_quantity) [large](pizza_size) [BBQ Chicken](pizza_type) pizzas
+    - Add [four](pizza_quantity) [small](pizza_size) [Supreme](pizza_type) pizzas
+    - Add [four](pizza_quantity) [medium](pizza_size) [Pesto and Sun-dried Tomato](pizza_type) pizzas
+    - Add [four](pizza_quantity) [large](pizza_size) [Seafood](pizza_type) pizzas
+    - [pepperoni](pizza_type)
+    - [margherita](pizza_type)
+    - [seafood](pizza_type)
+    - [Supreme](pizza_type):
+    - [supreme](pizza_type)
+- intent: pizza_standard_topping_confirm
+  examples: |
+    - Yes, I want the standard toppings
+    - Yes, I want the standard toppings on my pizza
+    - Yes, I want the standard toppings on my order
+    - Yes, I am okay with the standard toppings
+    - Yes, I am okay with the standard toppings on my pizza
+    - Yes, I am fine with the listed toppings
+    - Yes, I am fine with the listed toppings on my pizza
+    - Yes, I am okay with the listed toppings on my order
+    - Yes, I am ok with the listed toppings
+    - Yes, listed toppings are fine
+    - Yes, listed toppings are okay
+    - Yes, listed toppings are good
+    - listed toppings, please
+    - listed toppings, thank you
+    - listed toppings, thanks
+    - hmm, i would like to have the listed toppings
+    - hmm, i would like to have the listed toppings on my pizza
+    - I would like to go with the listed toppings
+    - I would like to go with the listed toppings on my pizza
+    - Please go with the listed toppings
+    - I like the listed toppings
+    - I like the listed toppings on my pizza
+    - I like the listed toppings on my order
+    - Yes, standard toppings please
+    - yes, standard toppings
+    - standard toppings, please
+    - standard toppings, thank you
+    - standard toppings, thanks
+    - Definitely, I want the standard toppings
+    - Definitely, I want the standard toppings on my pizza
+    - Default toppings, please
+    - Default toppings, thank you
+    - Default toppings, thanks
+    - standard toppings
+- intent: ask_custom_toppings_info
+  examples: |
+    - What custom toppings do you offer?
+    - Can you tell me the available toppings?
+    - What toppings can I choose from?
+    - What options do I have for toppings?
+    - What are the available toppings for customization?
+    - What toppings do you provide?
+    - Can you list the toppings I can add?
+    - What toppings are available?
+    - Can I see the list of toppings you offer?
+    - What are the customization options for toppings?
+    - What are the toppings options?
+    - Could you provide the available toppings list?
+    - What toppings can I select?
+    - Do you have a list of available toppings?
+    - What are the topping choices for customization?
+    - Can you show me the custom toppings options?
+    - What toppings do you have for customizing my pizza?
+    - What are the different toppings you offer?
+    - What are the possible toppings I can choose from?
+    - Could you tell me about the available toppings?
+- intent: pizza_custom_toppings_request
+  examples: |
+    - I want to customize my pizza toppings
+    - I want to customize my pizza
+    - I want to customize my order
+    - Can I customize my pizza toppings?
+    - Can I customize my pizza?
+    - Can I customize my order?
+    - Can I have my pizza customized?
+    - Can I have my pizza toppings customized?
+    - Can I have my order customized?
+    - No, I want to customize my pizza toppings
+    - No, I want to customize my pizza
+    - Please customize my pizza toppings
+    - Please customize my pizza
+    - I have a special request for my pizza toppings
+    - I have a special request for my pizza
+    - I have a special request for my order
+    - No, please customize my pizza toppings
+    - Custom toppings, please
+    - Custom toppings, thank you
+    - I like to customize my pizza toppings
+    - I like the listed toppings but I want to customize
+    - I like the listed toppings but I want to customize my pizza
+    - I like the listed toppings but I want to customize my order
+    - I would like to customize my pizza toppings
+    - I would like to go with the listed toppings but I want to customize
+    - I would like to go with custom toppings
+    - I would like to go with custom toppings on my pizza
+    - Please go with custom toppings
+    - Custom pizza toppings, please
+    - Custom please
+    - No, thank you, I want to customize my pizza toppings
+    - No, thank you, I want to customize my pizza
+    - No, I want custom toppings
+    - No, custom toppings please
+    - custom toppings
+    - custom toppings please
+- intent: add_pizza_custom_toppings
+  examples: |
+    - Please add [pepperoni slices](pizza_custom_toppings) to my pizza
+    - Please add [olives](pizza_custom_toppings) to my pizza
+    - Can you add [onions](pizza_custom_toppings) to my pizza?
+    - Can you add [mushrooms](pizza_custom_toppings) topping to my pizza?
+    - Can you add [spinach](pizza_custom_toppings) to my pizza?
+    - Can you add [bell peppers](pizza_custom_toppings) to my pizza?
+    - Can you add [tomatoes](pizza_custom_toppings) to my pizza?
+    - I would like to add [mozzarella cheese](pizza_custom_toppings) to my pizza
+    - I want to add [feta cheese](pizza_custom_toppings) to my pizza
+    - I want to add [pesto sauce](pizza_custom_toppings) topping to my pizza
+    - I want to add [bbq sauce](pizza_custom_toppings) to my pizza
+    - Yes, please add [grilled chicken](pizza_custom_toppings) to my pizza
+    - Yes, please add [prosciutto](pizza_custom_toppings) to my pizza
+    - Yes, please add [artichokes](pizza_custom_toppings) topping to my pizza
+    - Yes, please add [anchovies](pizza_custom_toppings) to my pizza
+    - Please add [shrimp](pizza_custom_toppings) topping to my pizza
+    - Please add [mussels](pizza_custom_toppings) to my pizza
+    - Please add [clams](pizza_custom_toppings) to my pizza
+    - I'd like to add [BBQ sauce](pizza_custom_toppings) to my pizza
+    - Could you add [cilantro](pizza_custom_toppings) topping to my pizza?
+    - Please add [red onions](pizza_custom_toppings) to my pizza
+    - Add [sun-dried tomatoes](pizza_custom_toppings) to my pizza
+    - Add [basil leaves](pizza_custom_toppings) to my pizza
+    - I'd like to add topping [tomato sauce](pizza_custom_toppings) to my pizza
+    - Add topping [pesto sauce](pizza_custom_toppings) to my pizza
+    - Add [spinach](pizza_custom_toppings) to my pizza
+    - Add [mushrooms](pizza_custom_toppings) to my pizza
+    - Add [pepperoni slices](pizza_custom_toppings) to my pizza
+    - Add topping [mozzarella cheese](pizza_custom_toppings) to my pizza
+    - Add [feta cheese](pizza_custom_toppings) to my pizza
+    - Add [bbq sauce](pizza_custom_toppings) to my pizza
+    - Add [grilled chicken](pizza_custom_toppings) to my pizza
+    - Add [prosciutto](pizza_custom_toppings) to my pizza
+    - Add topping [artichokes](pizza_custom_toppings) to my pizza
+    - Add [anchovies](pizza_custom_toppings) to my pizza
+    - Add [shrimp](pizza_custom_toppings) to my pizza
+    - Add topping [mussels](pizza_custom_toppings) to my pizza
+    - Add [clams](pizza_custom_toppings) to my pizza
+    - Add [bell peppers](pizza_custom_toppings) to my pizza
+    - Add [tomatoes](pizza_custom_toppings) to my pizza
+    - Add topping [sun-dried tomatoes](pizza_custom_toppings) to my pizza
+    - Add [red onions](pizza_custom_toppings) topping to my pizza
+    - Add [olives](pizza_custom_toppings) to my pizza
+    - Add [cilantro](pizza_custom_toppings) to my pizza
+    - Please add [sun-dried tomatoes](pizza_custom_toppings) to my pizza
+    - Please add [basil leaves](pizza_custom_toppings) to my pizza
+    - Please add [tomato sauce](pizza_custom_toppings) topping to my pizza
+    - Please add [pesto sauce](pizza_custom_toppings) to my pizza
+    - Please add [bbq sauce](pizza_custom_toppings) to my pizza
+    - Please add [grilled chicken](pizza_custom_toppings) to my pizza
+    - Please add [prosciutto](pizza_custom_toppings) topping to my pizza
+    - Please add [artichokes](pizza_custom_toppings) to my pizza
+    - Please add [anchovies](pizza_custom_toppings) topping to my pizza
+    - Please add [shrimp](pizza_custom_toppings) to my pizza
+    - Please add [mussels](pizza_custom_toppings) topping to my pizza
+    - Can you add [spinach](pizza_custom_toppings) topping?
+    - Can you add [basil leaves](pizza_custom_toppings)?
+    - Can you add [red onions](pizza_custom_toppings)?
+    - Can you add [olives](pizza_custom_toppings)?
+    - Can you add [bell peppers](pizza_custom_toppings) topping?
+    - Can you add [tomatoes](pizza_custom_toppings) topping?
+    - Yes, add [pesto sauce](pizza_custom_toppings)
+    - Yes, add [feta cheese](pizza_custom_toppings) topping
+    - Yes, add [grilled chicken](pizza_custom_toppings)
+    - Yes, add [prosciutto](pizza_custom_toppings)
+    - Yes, add [artichokes](pizza_custom_toppings) topping
+    - Yes, add [anchovies](pizza_custom_toppings) topping
+    - Yes, add [shrimp](pizza_custom_toppings) topping
+    - Yes, add [mussels](pizza_custom_toppings) topping
+    - Yes, add [clams](pizza_custom_toppings) topping
+    - Yes, add [cilantro](pizza_custom_toppings) topping
+    - add [shrimp](pizza_custom_toppings) topping
+    - add [olive](pizza_custom_toppings) topping
+- intent: remove_pizza_custom_toppings
+  examples: |
+    - Please remove [pepperoni slices](pizza_custom_toppings) from my pizza
+    - Please remove [olives](pizza_custom_toppings) from my pizza
+    - Can you remove [mushrooms](pizza_custom_toppings) topping from my pizza?
+    - Can you remove [onions](pizza_custom_toppings) from my pizza?
+    - I would like to remove [mozzarella cheese](pizza_custom_toppings) from my pizza
+    - Can you remove [bell peppers](pizza_custom_toppings) topping from my pizza?
+    - Can you remove [tomatoes](pizza_custom_toppings) from my pizza?
+    - I want to remove [spinach](pizza_custom_toppings) topping
+    - I want to remove topping [basil leaves](pizza_custom_toppings) from my pizza
+    - I want to remove [feta cheese](pizza_custom_toppings)
+    - Remove [pesto sauce](pizza_custom_toppings) from my pizza
+    - Remove [bbq sauce](pizza_custom_toppings) from my pizza
+    - Yes, please remove [grilled chicken](pizza_custom_toppings)
+    - Remove [prosciutto](pizza_custom_toppings) from my pizza
+    - Yes, remove [artichokes](pizza_custom_toppings)
+    - Remove [anchovies](pizza_custom_toppings)
+    - Remove [shrimp](pizza_custom_toppings) from my pizza
+    - Please remove [mussels](pizza_custom_toppings) from my pizza
+    - Yes, remove [clams](pizza_custom_toppings)
+    - Remove [red onions](pizza_custom_toppings) from my pizza
+    - Can you remove [sun-dried tomatoes](pizza_custom_toppings) from my pizza?
+    - Remove [cilantro](pizza_custom_toppings)
+    - I’d like to remove [tomato sauce](pizza_custom_toppings)
+    - Remove [pepperoni slices](pizza_custom_toppings)
+    - Please remove [mozzarella cheese](pizza_custom_toppings)
+    - Remove [basil leaves](pizza_custom_toppings) from my pizza
+    - Remove [tomatoes](pizza_custom_toppings) from my pizza
+    - Remove [sun-dried tomatoes](pizza_custom_toppings)
+    - Can you remove [mushrooms](pizza_custom_toppings)?
+    - Remove [onions](pizza_custom_toppings)
+    - Remove [red onions](pizza_custom_toppings)
+    - Remove [bell peppers](pizza_custom_toppings)
+    - Remove [spinach](pizza_custom_toppings)
+    - Remove [prosciutto](pizza_custom_toppings)
+    - Remove [anchovies](pizza_custom_toppings) from my pizza
+    - Remove [artichokes](pizza_custom_toppings)
+    - Remove [shrimp](pizza_custom_toppings)
+    - Remove [mussels](pizza_custom_toppings)
+    - Remove [clams](pizza_custom_toppings)
+    - Remove [BBQ sauce](pizza_custom_toppings)
+    - Remove [grilled chicken](pizza_custom_toppings)
+    - Please remove [cilantro](pizza_custom_toppings)
+    - Remove [pesto sauce](pizza_custom_toppings)
+    - Remove [feta cheese](pizza_custom_toppings)
+    - Can you remove [tomato sauce](pizza_custom_toppings)?
+    - Please remove [basil leaves](pizza_custom_toppings)
+    - I want to remove [pepperoni slices](pizza_custom_toppings)
+    - I want to remove [sun-dried tomatoes](pizza_custom_toppings)
+    - I want to remove [artichokes](pizza_custom_toppings)
+    - I’d like to remove [mussels](pizza_custom_toppings)
+    - Yes, remove [shrimp](pizza_custom_toppings)
+    - Please remove [clams](pizza_custom_toppings) from my pizza
+    - remove [Tomato Sauce](pizza_custom_toppings) topping
+    - remove [basil leaves](pizza_custom_toppings) toppings please
+- intent: pizza_custom_toppings_happy
+  examples: |
+    - Yes, I am happy with the custom toppings
+    - Yes, I am happy with the custom selection
+    - Yes, I am happy with the custom toppings selection
+    - I am happy with the custom toppings
+    - I am happy with the custom selection
+    - I am happy with the custom toppings selection
+    - Yes, custom toppings are perfect
+    - Yes, custom selection is perfect
+    - I'm happy with my toppings selection.
+    - Perfect, no more changes needed for the toppings.
+    - Perfect, I'm satisfied with these toppings.
+    - Happy with the toppings.
+    - Happy with the custom selection.
+    - I'm happy with the custom toppings selection.
+    - Happy
+    - Satisfied
+    - More than happy
+    - More than satisfied
+    - I'm satisfied with these toppings.
+    - Exactly how I imagined it!
+    - No more changes, please.
+    - No more changes, I'm happy with these toppings.
+    - No more changes, I'm satisfied with these toppings.
+    - Hundred percent satisfied with these toppings.
+    - Hundred percent satisfied with these toppings selection.
+    - Hundred percent happy with these toppings.
+    - Hundred percent happy with these toppings selection.
+    - happy
+    - I am happy with custom toppings
+    - I am happy with these toppings
+    - i am happy with custom toppings
+    - i am happy with these customizations
+- intent: inform_pizza_quantity
+  examples: |
+    - [one](pizza_quantity)
+    - [two](pizza_quantity)
+    - [three](pizza_quantity)
+    - [four](pizza_quantity)
+    - [five](pizza_quantity)
+    - [six](pizza_quantity)
+    - [seven](pizza_quantity)
+    - [eight](pizza_quantity)
+    - [nine](pizza_quantity)
+    - [ten](pizza_quantity)
+    - I want [one](pizza_quantity)
+    - I want [two](pizza_quantity)
+    - I want [three](pizza_quantity)
+    - I want [four](pizza_quantity)
+    - I want [five](pizza_quantity)
+    - I want [six](pizza_quantity)
+    - I want [seven](pizza_quantity)
+    - I want [eight](pizza_quantity)
+    - I want [nine](pizza_quantity)
+    - I want [ten](pizza_quantity)
+    - Please add [one](pizza_quantity) pizza
+    - Please add [two](pizza_quantity) pizzas
+    - Please add [three](pizza_quantity) pizzas
+    - Please add [four](pizza_quantity)
+    - Please add [five](pizza_quantity)
+    - Please add [six](pizza_quantity)
+    - Please add [seven](pizza_quantity)
+    - Please add [eight](pizza_quantity)
+    - Please add [nine](pizza_quantity)
+    - Please add [ten](pizza_quantity)
+    - I would like [one](pizza_quantity) pizza
+    - I would like [two](pizza_quantity) pizzas
+    - I would like [three](pizza_quantity)
+    - I would like [four](pizza_quantity)
+    - I would like [five](pizza_quantity)
+    - I would like [six](pizza_quantity)
+    - I would like [seven](pizza_quantity)
+    - I would like [eight](pizza_quantity)
+    - I would like [nine](pizza_quantity)
+    - I would like [ten](pizza_quantity)
+    - [one](pizza_quantity) please
+    - [two](pizza_quantity) please
+    - [three](pizza_quantity) please
+    - [four](pizza_quantity) please
+    - [five](pizza_quantity) please
+    - [six](pizza_quantity) please
+    - [seven](pizza_quantity) please
+    - [eight](pizza_quantity) please
+    - [nine](pizza_quantity) please
+    - [ten](pizza_quantity) please
+    - I want [one](pizza_quantity) pizza
+    - I want [two](pizza_quantity) pizzas
+    - I want [three](pizza_quantity) pizzas
+    - I want [four](pizza_quantity) pizzas
+    - I want [five](pizza_quantity) pizzas
+    - I want [six](pizza_quantity) pizzas
+    - I want [seven](pizza_quantity) pizzas
+    - I want [eight](pizza_quantity) pizzas
+    - I want [nine](pizza_quantity) pizzas
+    - I want [ten](pizza_quantity) pizzas
+    - Please add [four](pizza_quantity) pizzas
+    - Please add [five](pizza_quantity) pizzas
+    - Please add [six](pizza_quantity) pizzas
+    - Please add [seven](pizza_quantity) pizzas
+    - Please add [eight](pizza_quantity) pizzas
+    - Please add [nine](pizza_quantity) pizzas
+    - Please add [ten](pizza_quantity) pizzas
+    - [nine](pizza_quantity)
+- intent: inform_pizza_size
+  examples: |
+    - [small](pizza_size)
+    - [medium](pizza_size)
+    - [large](pizza_size)
+    - [ten inches](pizza_size)
+    - [towel inches](pizza_size)
+    - [sixteen inches](pizza_size)
+    - [ten inch](pizza_size)
+    - [towel inch](pizza_size)
+    - [sixteen inch](pizza_size)
+    - I want [small](pizza_size)
+    - I want [medium](pizza_size)
+    - I want [large](pizza_size)
+    - I want [ten inches](pizza_size)
+    - I want [towel inches](pizza_size)
+    - I want [sixteen inches](pizza_size)
+    - I want [ten inch](pizza_size)
+    - I want [towel inch](pizza_size)
+    - I want [sixteen inch](pizza_size)
+    - I want [size S](pizza_size)
+    - I want [size M](pizza_size)
+    - I want [size L](pizza_size)
+    - Please add [small](pizza_size)
+    - Please add [medium](pizza_size)
+    - Please add [large](pizza_size)
+    - Please add [ten inches](pizza_size)
+    - Please add [towel inches](pizza_size)
+    - Please add [sixteen inches](pizza_size)
+    - Please [small](pizza_size)
+    - Please [medium](pizza_size)
+    - Please [large](pizza_size)
+    - [small](pizza_size) please
+    - [medium](pizza_size) please
+    - [large](pizza_size) please
+    - [ten inches](pizza_size) please
+    - [towel inches](pizza_size) please
+    - [sixteen inches](pizza_size) please
+    - [ten inch](pizza_size) please
+    - [towel inch](pizza_size) please
+    - [sixteen inch](pizza_size) please
+    - I want [small](pizza_size) pizza
+    - I want [medium](pizza_size) pizzas
+    - I want [large](pizza_size) pizzas
+    - I want [ten inches](pizza_size) pizzas
+    - I want [towel inches](pizza_size) pizzas
+    - I want [sixteen inches](pizza_size) pizzas
+    - I want [ten inch](pizza_size) pizzas
+    - I want [towel inch](pizza_size) pizzas
+    - I want [sixteen inch](pizza_size) pizzas
+    - Please add [small](pizza_size) pizza
+    - Please add [medium](pizza_size) pizzas
+    - Please add [large](pizza_size) pizzas
+    - [large](pizza_size)
+- intent: add_another_pizza_general
+  examples: |
+    - I want to add another pizza
+    - I want to add another pizza to my order
+    - I want to add another pizza to my list
+    - Add another pizza
+    - Add another pizza to my order
+    - Order another pizza
+    - Order another pizza to my order
+    - Want another pizza
+    - Want another pizza to my order
+    - Want to add another pizza
+    - Want to add another pizza to my order
+    - I want to order another pizza
+    - I want to order another pizza to my order
+    - I want to order another pizza to my list
+    - Wanna add another pizza
+    - Wanna add another pizza to my order
+    - Wanna add another pizza to my cart
+    - One more pizza please
+    - One more pizza to my order please
+    - One more pizza to my cart please
+    - I also have more pizza to order
+    - I also have more pizza to order to my order
+    - I also have more order to add
+    - I also have more order to add to my order
+    - Yes, I want to add another pizza
+    - Yes, I want to add another pizza to my order
+    - Yes, I want to add another pizza to my list
+    - Yes, please add another pizza
+    - Yes, please add another pizza to my order
+    - Yes, please I want to add another pizza
+    - Yes, please I want to add another pizza to my order
+    - Yes, I have more pizza to order
+    - Yes, I have more pizza to order to my order
+    - Yes, I have more pizza to order to my cart
+    - Yes I need to add another pizza
+    - Yes I need to add another pizza to my order
+    - Yes i need to order another pizza
+    - Yes i need to order another pizza to my order
+- intent: add_another_pizza_specific
+  examples: |
+    - I want to add another [margherita](pizza_type)
+    - I want to add another [pepperoni](pizza_type)
+    - I want to add another [BBQ Chicken](pizza_type)
+    - I want to add another [supreme](pizza_type)
+    - I want to add another [pesto and sun-dried tomato](pizza_type)
+    - I want to add another [seafood](pizza_type)
+    - I want to add another [margherita](pizza_type) pizza
+    - I want to add another [pepperoni](pizza_type) pizza
+    - I want to add another [BBQ Chicken](pizza_type) pizza
+    - I want to add another [supreme](pizza_type) pizza
+    - I want to add another [pesto and sun-dried tomato](pizza_type) pizza
+    - I want to add another [seafood](pizza_type) pizza
+    - Add another [margherita](pizza_type)
+    - Add another [pepperoni](pizza_type)
+    - Add another [BBQ Chicken](pizza_type)
+    - Add another [supreme](pizza_type)
+    - Add another [pesto and sun-dried tomato](pizza_type)
+    - Add another [seafood](pizza_type)
+    - Add another [margherita](pizza_type) pizza
+    - Add another [pepperoni](pizza_type) pizza
+    - Add another [BBQ Chicken](pizza_type) pizza
+    - Add another [supreme](pizza_type) pizza
+    - Add another [pesto and sun-dried tomato](pizza_type) pizza
+    - Add another [seafood](pizza_type) pizza
+    - Order another [margherita](pizza_type)
+    - Order another [pepperoni](pizza_type)
+    - Order another [BBQ Chicken](pizza_type)
+    - Order another [supreme](pizza_type)
+    - Order another [pesto and sun-dried tomato](pizza_type)
+    - Order another [seafood](pizza_type)
+    - Order another [margherita](pizza_type) pizza
+    - Order another [pepperoni](pizza_type) pizza
+    - Order another [BBQ Chicken](pizza_type) pizza
+    - Order another [supreme](pizza_type) pizza
+    - Order another [pesto and sun-dried tomato](pizza_type) pizza
+    - Order another [seafood](pizza_type) pizza
+    - Want another [margherita](pizza_type)
+    - Want another [pepperoni](pizza_type)
+    - Want another [BBQ Chicken](pizza_type)
+    - Want another [supreme](pizza_type)
+    - Want another [pesto and sun-dried tomato](pizza_type)
+    - Want another [seafood](pizza_type)
+    - Yes, I want to add another [margherita](pizza_type)
+    - Yes, I want to add another [pepperoni](pizza_type)
+    - Yes, I want to add another [BBQ Chicken](pizza_type)
+    - Yes, I want to add another [supreme](pizza_type)
+    - Yes, I want to add another [pesto and sun-dried tomato](pizza_type)
+    - Yes, I want to add another [seafood](pizza_type)
+    - I want to add another [margherita](pizza_type) [small](pizza_size) pizza
+    - I want to add another [pepperoni](pizza_type) [large](pizza_size) pizza
+    - I want to add another [BBQ Chicken](pizza_type) [small](pizza_size) pizza
+    - I want to add another [supreme](pizza_type) [medium](pizza_size) pizza
+    - I want to add another [pesto and sun-dried tomato](pizza_type) [large](pizza_size) pizza
+    - I want to add another [seafood](pizza_type) [small](pizza_size) pizza
+    - Yes, I want to add another [margherita](pizza_type) [small](pizza_size) pizza
+    - Yes, I want to add another [pepperoni](pizza_type) [large](pizza_size) pizza
+    - Yes, I want to add another [BBQ Chicken](pizza_type) [small](pizza_size) pizza
+    - Yes, I want to add another [supreme](pizza_type) [large](pizza_size) pizza
+    - Yes, I want to add another [pesto and sun-dried tomato](pizza_type) [small](pizza_size) pizza
+    - Yes, I want to add another [seafood](pizza_type) [medium](pizza_size) pizza
+    - Want another [margherita](pizza_type) [small](pizza_size) pizza
+    - Want another [pepperoni](pizza_type) [large](pizza_size) pizza
+    - Want another [BBQ Chicken](pizza_type) [small](pizza_size) pizza
+    - Want another [supreme](pizza_type) [small](pizza_size) pizza
+    - Want another [pesto and sun-dried tomato](pizza_type) [medium](pizza_size) pizza
+    - Want another [seafood](pizza_type) [large](pizza_size) pizza
+    - Yes, I would like to order [two](pizza_quantity) more [small](pizza_size) [margherita](pizza_type) pizzas
+    - Yes, I would like to order [four](pizza_quantity) more [large](pizza_size) [pepperoni](pizza_type) pizzas
+    - I would like to order [five](pizza_quantity) more [small](pizza_size) [BBQ Chicken](pizza_type) pizzas
+    - Yes, I would like to order [three](pizza_quantity) more [medium](pizza_size) [supreme](pizza_type) pizzas
+    - Yes, I would like to order [six](pizza_quantity) more [large](pizza_size) [pesto and sun-dried tomato](pizza_type) pizzas
+    - I would like to order [seven](pizza_quantity) more [small](pizza_size) [seafood](pizza_type) pizzas
+    - I would like to order [eight](pizza_quantity) more [medium](pizza_size) [BBQ Chicken](pizza_type) pizzas
+    - Yes add another [margherita](pizza_type)
+    - Yes add another [pepperoni](pizza_type)
+    - Yes add another [BBQ Chicken](pizza_type)
+    - Yes add another [supreme](pizza_type)
+    - Yes add another [pesto and sun-dried tomato](pizza_type)
+    - Yes add another [seafood](pizza_type)
+    - Yes add another [margherita](pizza_type) pizza
+    - Yes add another [pepperoni](pizza_type) pizza
+    - Yes add another [BBQ Chicken](pizza_type) pizza
+    - Yes add another [supreme](pizza_type) pizza
+    - Yes add another [pesto and sun-dried tomato](pizza_type) pizza
+    - Yes add another [seafood](pizza_type) pizza
+    - Yes order another [margherita](pizza_type)
+    - Yes order another [pepperoni](pizza_type)
+    - Yes order another [BBQ Chicken](pizza_type)
+    - Yes order another [supreme](pizza_type)
+    - Yes order another [pesto and sun-dried tomato](pizza_type)
+    - Yes order another [seafood](pizza_type)
+    - Yes order another [margherita](pizza_type) pizza
+    - Yes order another [pepperoni](pizza_type) pizza
+    - Yes order another [BBQ Chicken](pizza_type) pizza
+    - Yes order another [supreme](pizza_type) pizza
+    - Yes order another [pesto and sun-dried tomato](pizza_type) pizza
+    - Yes order another [seafood](pizza_type) pizza
+    - Yes want another [margherita](pizza_type)
+    - Yes want another [pepperoni](pizza_type)
+    - Yes want another [BBQ Chicken](pizza_type)
+    - Yes want another [supreme](pizza_type)
+    - Yes want another [pesto and sun-dried tomato](pizza_type)
+    - Yes want another [seafood](pizza_type)
+    - Yes, I want to add another [margherita](pizza_type) pizza
+    - Yes, I want to add another [pepperoni](pizza_type) pizza
+    - Yes, I want to add another [BBQ Chicken](pizza_type) pizza
+    - Yes, I want to add another [supreme](pizza_type) pizza
+    - Yes, I want to add another [pesto and sun-dried tomato](pizza_type) pizza
+    - Yes, I want to add another [seafood](pizza_type) pizza
+    - I want to order another [supreme](pizza_type) pizza
+- intent: cancel_complete_order
+  examples: |
+    - Cancel the order
+    - Cancel the complete order
+    - Cancel the entire order
+    - Cancel the order completely
+    - Cancel the order fully
+    - Cancel the order entirely
+    - Cancel the order please
+    - Cancel the complete order please
+    - Cancel the entire order please
+    - Cancel the order completely please
+    - Cancel the order fully please
+    - Cancel the order entirely please
+    - Cancel the order now
+    - Cancel the complete order now
+    - Cancel the entire order now
+    - Cancel the order completely now
+    - Cancel the order fully now
+    - Cancel the order completely immediately
+    - Cancel the order fully immediately
+    - Cancel the order entirely immediately
+    - Cancel the order right now
+    - Cancel the complete order right now
+    - Cancel the entire order right now
+    - Cancel the order completely right now
+    - Cancel the order fully right now
+    - Cancel the order entirely right now
+    - Cancel the order right away
+    - Cancel the complete order right away
+    - Cancel the entire order right away
+    - I want to cancel my order
+    - I need to cancel my order
+    - Can I cancel the order?
+    - Please cancel the order
+    - Cancel everything
+    - Cancel my entire order
+    - I would like to cancel the order
+    - I changed my mind, cancel the order
+    - I changed my mind, cancel the entire order
+    - I changed my mind, cancel the complete order
+    - I changed my mind, cancel the order completely
+    - I changed my mind, please cancel the order
+    - I changed my mind, please cancel the entire order
+    - I no longer want the order, cancel the the order please
+    - I no longer want the order, cancel the the entire order please
+    - I am no longer hungry please cancel my entire order
+    - Please cancel my entire order
+- intent: remove_pizza_from_order
+  examples: |
+    - Remove the [margherita](pizza_type) pizza from my order
+    - Please remove the [margherita](pizza_type) pizza from my order
+    - I don't want the [margherita](pizza_type) pizza anymore, remove it
+    - Can you take the [margherita](pizza_type) pizza off my order?
+    - I changed my mind, remove the [margherita](pizza_type) pizza
+    - Remove the [margherita](pizza_type) pizza, I no longer want it
+    - Remove the [supreme](pizza_type) pizza from my order
+    - Please remove the [supreme](pizza_type) pizza
+    - I don't want the [supreme](pizza_type) pizza anymore, take it off
+    - Can you cancel the [supreme](pizza_type) pizza from my order?
+    - I decided against the [supreme](pizza_type) pizza, remove it
+    - Remove the [supreme](pizza_type) pizza, please
+    - Remove the [pesto and sun-dried tomato](pizza_type) pizza from my order
+    - I want to remove the [pesto and sun-dried tomato](pizza_type) pizza
+    - Please take off the [pesto and sun-dried tomato](pizza_type) pizza from my order
+    - I don't want the [pesto and sun-dried tomato](pizza_type) pizza anymore
+    - Can you remove the [pesto and sun-dried tomato](pizza_type) pizza from my order?
+    - I changed my mind, remove the [pesto and sun-dried tomato](pizza_type) pizza
+    - Remove the [pepperoni](pizza_type) pizza from my order
+    - Please remove the [pepperoni](pizza_type) pizza from my order
+    - I don't want the [pepperoni](pizza_type) pizza anymore
+    - Can you take off the [pepperoni](pizza_type) pizza from my order?
+    - I no longer want the [pepperoni](pizza_type) pizza, remove it
+    - Cancel the [pepperoni](pizza_type) pizza, I don't need it anymore
+    - Remove the [seafood](pizza_type) pizza from my order
+    - Please take off the [seafood](pizza_type) pizza from my order
+    - I don't want the [seafood](pizza_type) pizza anymore, remove it
+    - I changed my mind, cancel the [seafood](pizza_type) pizza
+    - Can you remove the [seafood](pizza_type) pizza from my order?
+    - Remove the [seafood](pizza_type) pizza, I no longer want it
+    - Remove the [BBQ Chicken](pizza_type) pizza from my order
+    - Please remove the [BBQ Chicken](pizza_type) pizza from my order
+    - I don't want the [BBQ Chicken](pizza_type) pizza anymore
+    - Can you cancel the [BBQ Chicken](pizza_type) pizza from my order?
+    - I changed my mind, take off the [BBQ Chicken](pizza_type) pizza
+    - Remove the [BBQ Chicken](pizza_type) pizza, I no longer need it
+    - I want to remove [Supreme](pizza_type) pizza from my order
+    - Please remove [Margherita](pizza_type) pizza from my order
+- intent: ask_opening_times
+  examples: |
+    - What time do you open?
+    - What time do you close?
+    - What are your opening hours?
+    - What are your closing hours?
+    - When do you open?
+    - When do you close?
+    - What time do you open today?
+    - What time do you close today?
+    - What time do you open tomorrow?
+    - What time do you close tomorrow?
+    - What time do you open on weekdays?
+    - What time do you close on weekdays?
+    - What time do you open on weekends?
+    - What time do you close on weekends?
+- intent: ask_restaurant_address
+  examples: |
+    - What is your address?
+    - Where are you located?
+    - What is your location?
+    - What is your street address?
+    - What is your street location?
+    - What is your street name?
+    - Can you provide me with your address?
+    - Can you provide me with your location?
+    - Can you provide me with your street address?
+    - Can you provide me with your street location?
+    - Can you provide me with your street name?
+- intent: ask_restaurant_contact_number
+  examples: |
+    - What is your contact number?
+    - What is your phone number?
+    - What is your contact phone number?
+    - What is your contact telephone number?
+    - Can you provide me with your contact number?
+    - Can you provide me with your phone number?
+    - Can you provide me with your contact phone number?
+    - Can you provide me with your contact telephone number?
+- intent: ask_restaurant_name
+  examples: |
+    - What is your restaurant name?
+    - What is the name of your restaurant?
+    - What is the name of your place?
+    - What is the name of your establishment?
+    - Can you tell me the name of your restaurant?
+    - Can you tell me the name of your place?
+    - Can you tell me the name of your establishment?
+- intent: ask_restaurant_details
+  examples: |
+    - What are your restaurant details?
+    - Can you tell me more about this restaurant?
+    - Can you provide me with your restaurant details?
+    - Can you provide me with more information about this restaurant?
+    - What are your restaurant information?
+    - What are your details?
+    - What are your information?
+    - Can you provide me with your restaurant information?
+    - Can you provide me with your details?
+    - Can you provide me with your information?
+- intent: proceed_to_pickup
+  examples: |
+    - I want to proceed to pick up
+    - Yes, proceed to checkout
+    - Confirm pickup
+    - Let's finalize the order
+    - Let's finalize the order and proceed to checkout
+    - Yes, I'm ready to pick
+    - Yes, I'm ready to pick up
+    - Yes, please proceed to pick up
+    - Yes, please proceed to checkout and pick up
+    - Please go ahead and checkout for pick up
+    - Yes, I want to proceed with the order.
+    - Proceed to pick up
+    - Yes, I want to proceed with the order and pick up
+    - Yes, I want to proceed pick up
+    - I'm ready to checkout.
+    - Let's go to the checkout.
+    - I'm happy to proceed to pick up.
+    - I'm happy with my order, let's proceed to checkout.
+    - I'm happy with my order, let's proceed to pick up.
+    - I'm happy with my order, let's proceed to checkout and pick up.
+    - pickup please
+    - Proceed pickup please
+    - Proceed to pickup please
+    - Please pickup now
+    - Please proceed
+    - Please proceed to checkout
+    - Please proceed and checkout
+    - Please proceed now
+    - proceed to pickup
+    - proceed to pickup please
+- intent: inform_pickup_time
+  examples: |
+    - I will pick up my order at [14:00](pickup_time)
+    - I want to pick up my order at [5 PM](pickup_time)
+    - I'll come by at [6:30 PM](pickup_time)
+    - Can I pick it up at [11:45](pickup_time)?
+    - I'll pick it up around [18:00](pickup_time)
+    - How about [2 PM](pickup_time) for pickup?
+    - I’ll be there at [19:15](pickup_time) to get it
+    - I want to pick it up at [13:30](pickup_time)
+    - I can pick it up at [4 PM](pickup_time)
+    - Let me pick it up at [17:00](pickup_time)
+    - I'll collect the order at [20:30](pickup_time)
+    - I’ll come around [7 PM](pickup_time)
+    - How does [12:15](pickup_time) sound for pickup?
+    - I will be there at [9:45 AM](pickup_time)
+    - I'll pick it up at [10:30](pickup_time)
+    - Can I come at [11 AM](pickup_time)?
+    - I plan to pick up my order at [15:45](pickup_time)
+    - I'll be there to pick it up at [3 PM](pickup_time)
+    - Can I come around [2:30](pickup_time)?
+    - I should be able to pick it up by [5:45](pickup_time)
+    - How about I pick it up at [4 PM](pickup_time)?
+    - I’ll come and get it at [6:15 PM](pickup_time)
+    - I think I can pick it up around [noon](pickup_time)
+    - I'll swing by to grab it at [11 AM](pickup_time)
+    - Can you have it ready by [7 PM](pickup_time)?
+    - I'll pick it up on my way home at [5 PM](pickup_time)
+    - Let’s schedule pickup for [9:30](pickup_time)
+    - I'll come at [2 PM](pickup_time) to get my order
+    - I’m planning to pick it up at [8:45 AM](pickup_time)
+    - I’ll be there to collect it at [11:15](pickup_time)
+    - How does [4:45](pickup_time) sound for pickup?
+    - I’ll there by at [1 PM](pickup_time)
+    - I’m thinking of picking it up at [10:30](pickup_time)
+    - I'll pick it up at [8 PM](pickup_time)
+    - I’ll be there around [7:30 AM](pickup_time)
+    - Can I come at [6:15 PM](pickup_time) to get it?
+    - I’ll collect it at [4:30](pickup_time)
+    - How about [10 AM](pickup_time) for pickup?
+    - [2:45 PM](pickup_time) works for me to pick it up
+    - Let’s set the pickup time for [3:15](pickup_time)
+    - I'll reach by at [9 PM](pickup_time)
+    - [11:30 AM](pickup_time) should be fine for me
+    - I’ll come by at [6 PM](pickup_time) to grab my order
+    - I’ll pick up the order at [noon](pickup_time)
+    - I’ll be there by [8:15](pickup_time) to get it
+    - I’m thinking [1:45 PM](pickup_time) for pickup
+    - Let’s do [5:30](pickup_time) for pickup
+    - How about [7 PM](pickup_time) for picking it up?
+    - Can I pick it up around [3:45](pickup_time)?
+    - I’ll be there at [12:15 PM](pickup_time) to pick up
+    - [5 PM](pickup_time) is when I’ll come by
+    - I’ll come at [4:00](pickup_time) to pick it up
+    - Let’s schedule pickup for [10:45](pickup_time)
+    - I'll be there at [7:00](pickup_time) to get it
+    - I should be able to pick it up by [11:45 AM](pickup_time)
+    - [3:30 PM](pickup_time) is good for me to pick it up
+    - I’ll come to get it at [9:15 AM](pickup_time)
+    - I'll come by at [6:30 pm](pickup_time)
+    - Can I pick it up at [11:45 AM](pickup_time)?
+    - I’ll be there at [7:15 pm](pickup_time) to get it
+    - I want to pick it up at [1:30 PM](pickup_time)
+    - I can pick it up at [4 pm](pickup_time)
+    - Let me pick it up at [5 o'clock](pickup_time)
+    - I'll collect the order at [8:30 PM](pickup_time)
+    - I’ll come around [7 pm](pickup_time)
+    - I will be there at [9:45 am](pickup_time)
+    - I'll pick it up at [10:30 AM](pickup_time)
+    - Can I come at [11 am](pickup_time)?
+    - I plan to pick up my order at [3:45 PM](pickup_time)
+    - I'll be there to pick it up at [3 pm](pickup_time)
+    - Can I come around [2:30 PM](pickup_time)?
+    - I should be able to pick it up by [5:45 pm](pickup_time)
+    - Can you have it ready by [7 pm](pickup_time)?
+    - I'll pick it up on my way home at [5 pm](pickup_time)
+    - Let’s schedule pickup for [9:30 AM](pickup_time)
+    - I’m planning to pick it up at [8:45 am](pickup_time)
+    - I’ll be there to collect it at [11:15 am](pickup_time)
+    - How does [4:45 pm](pickup_time) sound for pickup?
+    - I’m thinking of picking it up at [10:30 AM](pickup_time)
+    - I'll pick it up at [8 pm](pickup_time)
+    - Can I come at [6:15 pm](pickup_time) to get it?
+    - I’ll collect it at [4:30 PM](pickup_time)
+    - [2:45 pm](pickup_time) works for me to pick it up
+    - Let’s set the pickup time for [3:15 PM](pickup_time)
+    - I'll there by at [9 pm](pickup_time)
+    - [11:30 am](pickup_time) should be fine for me
+    - I’ll be there by [8:15 AM](pickup_time) to get it
+    - I’m thinking [1:45 pm](pickup_time) for pickup
+    - Let’s do [5:30 PM](pickup_time) for pickup
+    - How about [7 pm](pickup_time) for picking it up?
+    - Can I pick it up around [3:45 PM](pickup_time)?
+    - I’ll be there at [12:15 pm](pickup_time) to pick up
+    - I’ll come at [4:00 PM](pickup_time) to pick it up
+    - Let’s schedule pickup for [10:45 AM](pickup_time)
+    - I'll be there at [7:00 PM](pickup_time) to get it
+    - [3:30 pm](pickup_time) is good for me to pick it up
+    - I’ll come to get it at [9:15 am](pickup_time)
+    - I’ll be there around [midnight](pickup_time)
+    - I’ll pick it up at [12 o'clock](pickup_time)
+    - How about [4 o’clock](pickup_time) for pickup?
+    - Can I pick it up at [5 o’clock](pickup_time)?
+    - I’ll come at [6:00 PM](pickup_time)
+    - I’ll there by at [8 PM](pickup_time) to pick it up
+    - I'll pick it up around [3:00 PM](pickup_time)
+    - I'll collect it at [9 o'clock](pickup_time)
+    - I’ll be there to pick it up at [10:00 PM](pickup_time)
+    - Let’s set the pickup time for [7:45 PM](pickup_time)
+    - How does [11:00 AM](pickup_time) sound for pickup?
+    - I'll pick it up at [2:15 pm](pickup_time)
+    - I want to pick up my order at [17:00](pickup_time)
+    - I'll come by at [18:30](pickup_time)
+    - How about [14:00](pickup_time) for pickup?
+    - I can pick it up at [16:00](pickup_time)
+    - I’ll come around [19:00](pickup_time)
+    - I will be there at [09:45](pickup_time)
+    - Can I come at [11:00](pickup_time)?
+    - I'll be there to pick it up at [15:00](pickup_time)
+    - Can I come around [14:30](pickup_time)?
+    - I should be able to pick it up by [17:45](pickup_time)
+    - How about I pick it up at [16:00](pickup_time)?
+    - I’ll come and get it at [18:15](pickup_time)
+    - I think I can pick it up around [12:00](pickup_time)
+    - I'll swing by to grab it at [11:00](pickup_time)
+    - Can you have it ready by [19:00](pickup_time)?
+    - I'll pick it up on my way home at [17:00](pickup_time)
+    - Let’s schedule pickup for [09:30](pickup_time)
+    - I'll come at [14:00](pickup_time) to get my order
+    - I’m planning to pick it up at [08:45](pickup_time)
+    - How does [16:45](pickup_time) sound for pickup?
+    - I’ll reach by at [13:00](pickup_time)
+    - I'll pick it up at [20:00](pickup_time)
+    - I’ll be there around [07:30](pickup_time)
+    - Can I come at [18:15](pickup_time) to get it?
+    - I’ll collect it at [16:30](pickup_time)
+    - How about [10:00](pickup_time) for pickup?
+    - [14:45](pickup_time) works for me to pick it up
+    - Let’s set the pickup time for [15:15](pickup_time)
+    - I'll reach by at [21:00](pickup_time)
+    - [11:30](pickup_time) should be fine for me
+    - I’ll come by at [18:00](pickup_time) to grab my order
+    - I’ll pick up the order at [12:00](pickup_time)
+    - I’ll be there by [08:15](pickup_time) to get it
+    - I’m thinking [13:45](pickup_time) for pickup
+    - Let’s do [17:30](pickup_time) for pickup
+    - How about [19:00](pickup_time) for picking it up?
+    - Can I pick it up around [15:45](pickup_time)?
+    - I’ll be there at [12:15](pickup_time) to pick up
+    - [17:00](pickup_time) is when I’ll come by
+    - I’ll come at [16:00](pickup_time) to pick it up
+    - I'll be there at [19:00](pickup_time) to get it
+    - I should be able to pick it up by [11:45](pickup_time)
+    - [15:30](pickup_time) is good for me to pick it up
+    - I’ll come to get it at [09:15](pickup_time)
+    - I’ll be there around [00:00](pickup_time)
+    - I’ll pick it up at [12:00](pickup_time)
+    - How about [16:00](pickup_time) for pickup?
+    - Can I pick it up at [17:00](pickup_time)?
+    - I’ll come at [18:00](pickup_time)
+    - I’ll be there at [20:00](pickup_time) to pick it up
+    - I'll pick it up around [15:00](pickup_time)
+    - I'll collect it at [21:00](pickup_time)
+    - I’ll be there to pick it up at [22:00](pickup_time)
+    - Let’s set the pickup time for [19:45](pickup_time)
+    - How does [11:00](pickup_time) sound for pickup?
+    - I'll pick it up at [14:15](pickup_time)
+    - i'll pick at [23:30](pickup_time)
+    - i'll pick at [11:30 pm](pickup_time)
+    - i'll pick at [midnight](pickup_time)
+    - i'll pick at [11:50 PM](pickup_time)
+    - i'll pick at [12:30 AM](pickup_time)
+    - i'll pick at [9:30 pm](pickup_time)
+    - I'll pick at [midnight](pickup_time)
+    - i'll pick at [11:00 PM](pickup_time)
+- intent: approve_pickup_time
+  examples: |
+    - Yes, that works for me.
+    - Sounds perfect!
+    - That time is good.
+    - Yes, I’ll pick it up then.
+    - Perfect, I’ll be there.
+    - Sure, see you then.
+    - Yes, that’s a good time.
+    - Absolutely, that time is fine.
+    - Yes, I'll pick it up at that time.
+    - Yep, that time works.
+    - Yes, that’s okay with me.
+    - Yes, I’ll come at that time.
+    - Yes, that’s fine.
+    - That time works for me.
+    - I’m okay with that time.
+    - That time suits me well.
+    - Yes, that timing is perfect.
+    - yes, that's correct time.
+    - Yes, that's time
+    - yes, that's the correct time
+    - yes, that's the time
+- intent: deny_pickup_time
+  examples: |
+    - No, that’s too early.
+    - I need a later time.
+    - That’s not convenient for me.
+    - Can I pick it up later?
+    - No, that doesn’t work for me.
+    - I need to change the time.
+    - No, that time won’t work.
+    - I’d like to pick it up at a different time.
+    - No, can we push it back?
+    - That time is too soon, can I pick it up later?
+    - Can I choose a different time?
+    - No, I’ll come later instead.
+    - I need to reschedule the pickup time.
+    - Can we move the pickup time?
+    - I’m not available at that time.
+    - That time doesn’t suit me.
+    - No, that time is not good for me.
+- synonym: margherita
+  examples: |
+    - Margherita
+    - margerita
+    - margarina
+    - margarita
+    - mergarita
+    - margharita
+    - margherit
+    - margheritta
+- synonym: supreme
+  examples: |
+    - Supreme
+    - suprime
+    - suprim
+    - suprème
+    - supreem
+    - suprimé
+- synonym: pesto and sun-dried tomato
+  examples: |
+    - Pesto and Sun-Dried Tomato
+    - pesto & sun-dried tomato
+    - pesto and sundried tomato
+    - pesto & sundried tomato
+    - pesto sun-dried tomato
+    - pesto sundried tomato
+    - pesto and sun dried tomato
+    - pesto & sun dried tomato
+- synonym: seafood
+  examples: |
+    - Seafood
+    - sea food
+    - seafod
+    - seafod pizza
+    - seefod
+    - seafoad
+    - seefood
+    - see food
+- synonym: bbq chicken
+  examples: |
+    - BBQ Chicken
+    - bbq chicken
+    - barbecued chicken
+    - barbecue chicken
+    - bbq chiken
+    - barbeque chicken
+    - bar be que chicken
+    - bar-b-que chicken
+- synonym: large
+  examples: |
+    - Large
+    - l
+    - L
+- synonym: baby
+  examples: |
+    - Baby
+    - small
+    - Small
+    - S
+    - s
+    - B
+    - b
+- synonym: medium
+  examples: |
+    - Medium
+    - m
+    - M
+    - med
+    - Med
+- synonym: AM
+  examples: |
+    - am
+    - Am
+- synonym: PM
+  examples: |
+    - pm
+    - Pm
+- synonym: one
+  examples: |
+    - one
+    - 1
+    - One
+    - ONE
+- synonym: two
+  examples: |
+    - two
+    - 2
+    - Two
+    - TWO
+- synonym: three
+  examples: |
+    - three
+    - 3
+    - Three
+    - THREE
+- synonym: four
+  examples: |
+    - four
+    - 4
+    - Four
+    - FOUR
+- synonym: five
+  examples: |
+    - five
+    - 5
+    - Five
+    - FIVE
+- synonym: six
+  examples: |
+    - six
+    - 6
+    - Six
+    - SIX
+- synonym: seven
+  examples: |
+    - seven
+    - 7
+    - Seven
+    - SEVEN
+- synonym: eight
+  examples: |
+    - eight
+    - 8
+    - Eight
+    - EIGHT
+- synonym: nine
+  examples: |
+    - nine
+    - 9
+    - Nine
+    - NINE
+- synonym: ten
+  examples: |
+    - ten
+    - 10
+    - Ten
+    - TEN
+- synonym: mozzarella cheese
+  examples: |
+    - Mozzarella Cheese
+    - mozzarella
+    - mozz cheese
+    - mozzarella chees
+    - mozerella cheese
+    - mozerella
+    - mozarella
+    - mozz
+- synonym: feta cheese
+  examples: |
+    - Feta Cheese
+    - feta
+    - fetta cheese
+    - fetta
+    - fetta chees
+    - feta chees
+- synonym: tomato sauce
+  examples: |
+    - Tomato Sauce
+    - tomatoe sauce
+    - tom sauce
+    - tomatosauce
+    - tomato sause
+    - tom sause
+- synonym: pesto sauce
+  examples: |
+    - Pesto Sauce
+    - pesto
+    - pest sauce
+    - pesto sause
+    - pest sause
+- synonym: bbq sauce
+  examples: |
+    - BBQ Sauce
+    - barbecue sauce
+    - barbeque sauce
+    - bbq sause
+    - bbq
+- synonym: grilled chicken
+  examples: |
+    - Grilled Chicken
+    - grilled chix
+    - grilled chkn
+    - grilled chicken breast
+    - grilled chickn
+    - grilled chiken
+- synonym: tomatoes
+  examples: |
+    - Tomatoes
+    - tomato
+    - tomatos
+    - toms
+- synonym: sun-dried tomatoes
+  examples: |
+    - Sun-Dried Tomatoes
+    - sundried tomatoes
+    - sundried tomato
+    - sun dried tomatoes
+    - sundryed tomatoes
+    - sun-dryed tomatoes
+- synonym: spinach
+  examples: |
+    - Spinach
+    - spinich
+    - spinnach
+    - spinash
+    - spnach
+- synonym: basil leaves
+  examples: |
+    - Basil Leaves
+    - basil
+    - basil leaf
+    - basil leafs
+    - basilleaves
+- synonym: pepperoni slices
+  examples: |
+    - Pepperoni Slices
+    - pepperoni slice
+    - pepproni slices
+- synonym: mushrooms
+  examples: |
+    - Mushrooms
+    - mushroom
+    - mushrom
+    - mushroms
+    - mushies
+    - shrooms
+- synonym: onions
+  examples: |
+    - Onions
+    - onion
+    - onyon
+    - onyonz
+    - onyons
+- synonym: red onions
+  examples: |
+    - Red Onions
+    - red onion
+    - red onyon
+    - red onyonz
+    - red onyons
+- synonym: olives
+  examples: |
+    - Olives
+    - olive
+    - olives
+    - oliives
+    - olivs
+    - olvez
+    - OLIVES
+- synonym: prosciutto
+  examples: |
+    - Prosciutto
+    - prosciuto
+    - proscuito
+    - proscioto
+    - proshuto
+    - prosciut
+- synonym: artichokes
+  examples: |
+    - Artichokes
+    - artichoke
+    - artchoke
+    - artychoke
+    - articoke
+    - artichoks
+- synonym: anchovies
+  examples: |
+    - Anchovies
+    - anchovy
+    - anchoves
+    - anchovs
+    - anchov
+    - anchovies
+- synonym: bell peppers
+  examples: |
+    - Bell Peppers
+    - bell pepper
+    - capsicum
+    - green peppers
+    - bellpepper
+    - pepper
+- synonym: cilantro
+  examples: |
+    - Cilantro
+    - coriander
+    - corriander
+    - cilantro leaves
+- synonym: shrimp
+  examples: |
+    - Shrimp
+    - prawns
+    - shrimps
+    - shrimpz
+    - shrmp
+- synonym: mussels
+  examples: |
+    - Mussels
+    - mussel
+    - muscle
+    - musslez
+    - muscles
+    - muscls
+- synonym: clams
+  examples: |
+    - Clams
+    - clam
+    - clamz
+    - clammy
