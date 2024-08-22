@@ -48,7 +48,7 @@ RESTAURANT_DETAILS = {
         "Opening": "12:00 PM",
         "Closing": "11:59 PM"
     },
-    "final_order_time": "10:00 PM"
+    "final_order_time": "11:59 PM"
 }
 
 AVAILABLE_POSSIBLE_TOPPINGS = [
@@ -143,14 +143,23 @@ def generate_pizza_menu():
 
 
 def generate_vegetarian_pizza_menu():
-    menu = " Here's Our Vegetarian Pizza Menu :\n\n"
+    # menu = " Here's Our Vegetarian Pizza Menu :\n\n"
+    #
+    # menu += "- Vegetarian Pizzas:\n"
+    # for pizza_type in VEGETARIAN_PIZZA_TYPES:
+    #     menu += f"  - {pizza_type.capitalize()}: {', '.join(PIZZA_TOPPINGS_STD[pizza_type])}. "
+    #     menu += f"Price: ${PIZZA_PRICES[pizza_type]['medium']} (Medium)\n"
+    #
+    # menu += "\n-------------------------------------------\n"
+    #
+    # return menu
+    menu = " Our Vegetarian Pizza are: "
 
-    menu += "- Vegetarian Pizzas:\n"
+    menu += ""
     for pizza_type in VEGETARIAN_PIZZA_TYPES:
-        menu += f"  - {pizza_type.capitalize()}: {', '.join(PIZZA_TOPPINGS_STD[pizza_type])}. "
-        menu += f"Price: ${PIZZA_PRICES[pizza_type]['medium']} (Medium)\n"
+        menu += f" {pizza_type.capitalize()}, "
 
-    menu += "\n-------------------------------------------\n"
+    menu += "."
 
     return menu
 
@@ -169,10 +178,16 @@ def generate_non_vegetarian_pizza_menu():
 
 
 def generate_pizza_sizes():
-    sizes = " We offer the following sizes for our pizzas:\n\n"
+    # sizes = " We offer the following sizes for our pizzas:\n\n"
+    #
+    # for size in PIZZA_SIZES.keys():
+    #     sizes += f"  - {size.capitalize()}: {PIZZA_SIZES[size]} inches\n"
+    #
+    # return sizes
+    sizes = " We offer the following sizes for our pizzas:"
 
     for size in PIZZA_SIZES.keys():
-        sizes += f"  - {size.capitalize()}: {PIZZA_SIZES[size]} inches\n"
+        sizes += f" {size.capitalize()}, "
 
     return sizes
 
@@ -558,7 +573,7 @@ class ActionAskPizzaCustomToppings(Action):
         pizza_topping = PIZZA_TOPPINGS_STD[pizza_type]
 
         # get the available possible toppings
-        available_possible_toppings = AVAILABLE_POSSIBLE_TOPPINGS
+        available_possible_toppings = AVAILABLE_POSSIBLE_TOPPINGS[0:5]
 
         # remove the standard toppings from the available possible toppings
         for topping in pizza_topping:
@@ -1137,29 +1152,30 @@ class ActionSubmitOrderPickupForm(Action):
         # calculate the total price
         total_price = sum([item["price"] for item in order_list])
 
-        message = f"Order Confirmation: #{order_number}\n\n"
-        message += "Here's Your Final Order Summary:\n"
-        for i, item in enumerate(order_list):
-            message += "{}. {} {} Pizza\n".format(i + 1, item["size"].capitalize(), item["type"].capitalize())
-            message += "   - Toppings: {}\n".format(", ".join(item["topping"]))
-            message += "   - Quantity: {}\n".format(item["quantity"].capitalize())
-            message += "   - Price: ${:.2f}\n".format(item["price"])
-
-        message += "\nTotal Price: ${:.2f}".format(total_price)
-        message += "\nPreparation Time: {} minutes".format(order_preparation_time)
-        message += "\nPickup Time: {}".format(order_pickup_time)
+        # message = f"Order Confirmation: #{order_number}\n\n"
+        # message += "Here's Your Final Order Summary:\n"
+        # for i, item in enumerate(order_list):
+        #     message += "{}. {} {} Pizza\n".format(i + 1, item["size"].capitalize(), item["type"].capitalize())
+        #     message += "   - Toppings: {}\n".format(", ".join(item["topping"]))
+        #     message += "   - Quantity: {}\n".format(item["quantity"].capitalize())
+        #     message += "   - Price: ${:.2f}\n".format(item["price"])
+        #
+        # message += "\nTotal Price: ${:.2f}".format(total_price)
+        # message += "\nPreparation Time: {} minutes".format(order_preparation_time)
+        # message += "\nPickup Time: {}".format(order_pickup_time)
 
         # Add an ending line for pickup
-        message += f"\n\nThank you for your order! We’ll see you at Champ Pizza Hut on {order_pickup_time} for pickup. \n\n"
+
+        message = f"Thank you for your order! We’ll see you at Champ Pizza Hut on {order_pickup_time} for pickup. \n\n"
 
         # Add Restaurant Address
-        message += f"Our Address: {RESTAURANT_DETAILS['address']}\n"
+        # message += f"Our Address: {RESTAURANT_DETAILS['address']}\n"
 
         # Add a contact number for the restaurant
-        message += f"If you have any questions, please call us at {RESTAURANT_DETAILS['address']}.\n\n"
+        # message += f"If you have any questions, please call us at {RESTAURANT_DETAILS['address']}.\n\n"
 
         # Add the opening hours of the restaurant
-        message += f"We are open from {RESTAURANT_DETAILS['opening_hours']['Opening']} to {RESTAURANT_DETAILS['opening_hours']['Closing']}."
+        # message += f"We are open from {RESTAURANT_DETAILS['opening_hours']['Opening']} to {RESTAURANT_DETAILS['opening_hours']['Closing']}."
 
         # Store the order details in the database
         db: Session = SessionLocal()

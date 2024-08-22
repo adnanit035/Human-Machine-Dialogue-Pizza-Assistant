@@ -158,7 +158,7 @@ responses:
   action_utter_greet:
   - text: Hello! Welcome to Champ Pizza Hut! How may I assist you today?
   utter_greet_closed:
-  - text: Hello! Welcome to Champ Pizza Hut! We are currently closed. Our business hours are from 12 PM to 11 PM. How may I assist you today?
+  - text: Hello! Welcome to Champ Pizza Hut! We are currently closed. Our business hours are from 12 PM to 11:59 PM. How may I assist you today?
   utter_end_greet:
   - text: Thank you for choosing Champ Pizza Hut! Have a great day.
   utter_out_of_scope:
@@ -171,42 +171,42 @@ responses:
   - text: Ah, the aroma of freshly baked pizza! You've landed in pizza heaven, my friend. How can I make your pizza dreams come true today? Would you like to explore our menu, or are you curious about our recommended specialities?
   utter_ask_pizza_type:
   - text: |
-      🤔 Which pizza would you like to order?
+      Which pizza would you like to order?
   utter_ask_pizza_quantity:
   - text: |
-      🍕 How many pizzas would you like to order?
+      How many pizzas would you like to order?
   utter_pizza_add_confirmation_message:
-  - text: 🍕 Great! We have added {pizza_quantity} {pizza_size} {pizza_type} pizza(s) to your order.
+  - text: Great! We have added {pizza_quantity} {pizza_size} {pizza_type} pizza(s) to your order.
   utter_ask_topping_satisfaction:
   - text: |
-      Would you like to add/remove more flavor or are you happy with it? Feel free to customize further! 🎨.
+      Would you like to add/remove more flavor or are you happy with it? Feel free to customize further!.
   utter_summarize_customized_toppings:
   - text: |
-      🍕 Fantastic! You have customized your {pizza_type} pizza with your choices, pizza is uniquely yours! 🍕 Let's move on to the next step in your pizza order. 🚀
+      Fantastic! You have customized your {pizza_type} pizza with your choices, pizza is uniquely yours! Let's move on to the next step in your pizza order.
   utter_response_to_add_another_pizza_intent_general:
   - text: |
-      🍕 Great! Let's add another pizza to your order. 🍕
+      Great! Let's add another pizza to your order.
 
-      🤔 This time, would you like to try our recommended pizzas or explore the menu for more options?
+      This time, would you like to try our recommended pizzas or explore the menu for more options?
   utter_response_to_add_specific_pizza_intent:
   - text: |
-      🍕 Great choice! Let's add another {pizza_type} pizza to your order. 🍕
+      Great choice! Let's add another {pizza_type} pizza to your order.
 
-      Let's move on to the next step in your pizza order. 🚀
+      Let's move on to the next step in your pizza order.
   utter_response_to_proceed_to_pickup_intent:
   - text: |
-      🍕 Great! Your order will take approximately {preparation_time} minutes to prepare. 🍕
+      Great! Your order will take approximately {preparation_time} minutes to prepare.
 
-      When would you like to pick it up? Our business hours are from 12 PM to 11 PM. 🚀
+      When would you like to pick it up? Our business hours are from 12 PM to 11:59 PM.
   utter_time_outside_business_hours:
   - text: |
-      Our pickup times are available between 12 PM and 11 PM. Please choose a time within these hours.
+      Our pickup times are available between 12 PM and 11:59 PM. Please choose a time within these hours.
   utter_opening_times_with_ask_pickup_time:
   - text: |
-      Our business hours are from 12 PM to 11 PM every day. When would you like to pick up your order?
+      Our business hours are from 12 PM to 11:59 PM every day. When would you like to pick up your order?
   utter_opening_times:
   - text: |
-      Our business hours are from 12 PM to 11 PM every day.
+      Our business hours are from 12 PM to 11:59 PM every day.
   utter_confirm_cancel_order:
   - text: Are you sure you want to cancel the entire order?
   utter_order_cancelled:
