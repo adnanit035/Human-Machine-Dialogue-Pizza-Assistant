@@ -3,9 +3,11 @@ from collections import defaultdict
 from datetime import datetime, timedelta
 from typing import Dict, Text, Any, List, Optional
 
+from matplotlib.style import available
 from rasa_sdk import Action, Tracker, FormValidationAction
 from rasa_sdk.events import SlotSet, FollowupAction, ActiveLoop, AllSlotsReset
 from rasa_sdk.executor import CollectingDispatcher
+from slack_sdk.models.messages.message import message
 from sqlalchemy.orm import Session
 
 from database import Order, SessionLocal
@@ -48,7 +50,16 @@ RESTAURANT_DETAILS = {
         "Opening": "12:00 PM",
         "Closing": "11:59 PM"
     },
-    "final_order_time": "11:59 PM"
+    "final_order_time": "11:00 PM"
+}
+
+CUSTOM_TOPPINGS_OPTIONS = {
+    "margherita": ["prosciutto", "artichokes", "anchovies"],
+    "supreme": ["prosciutto", "artichokes", "anchovies", "cilantro"],
+    "pesto and sun-dried tomato": ["pepperoni slices", "artichokes", "olives", "anchovies"],
+    "pepperoni": ["artichokes", "spinach", "mushrooms", "sun-dried tomatoes"],
+    "bbq chicken": ["shrimp", "mussels", "clams", "artichokes"],
+    "seafood": ["bbq sauce", "spinach", "red onions", "bell peppers"]
 }
 
 AVAILABLE_POSSIBLE_TOPPINGS = [
@@ -125,19 +136,43 @@ def non_veg_pizza_recommendation(non_vegetarian_pizzas):
 
 
 def generate_pizza_menu():
-    menu = " Here's Our Menu :\n\n"
+    # menu = " Here's Our Menu :\n\n"
+    #
+    # menu += "- Vegetarian Pizzas:\n"
+    # for pizza_type in VEGETARIAN_PIZZA_TYPES:
+    #     menu += f"  - {pizza_type.capitalize()}: {', '.join(PIZZA_TOPPINGS_STD[pizza_type])}. "
+    #     menu += f"Price: ${PIZZA_PRICES[pizza_type]['medium']} (Medium)\n"
+    #
+    # menu += "\n- Non-Vegetarian Pizzas:\n"
+    # for pizza_type in NON_VEGETARIAN_PIZZA_TYPES:
+    #     menu += f"  - {pizza_type.capitalize()}: {', '.join(PIZZA_TOPPINGS_STD[pizza_type])}. "
+    #     menu += f"Price: ${PIZZA_PRICES[pizza_type]['medium']} (Medium)\n"
+    #
+    # menu += "\n-------------------------------------------\n"
 
-    menu += "- Vegetarian Pizzas:\n"
+    menu = "In our menu, we have two types of pizzas: Vegetarian and Non-Vegetarian. "
+
+    # 1. Vegetarian Pizzas
+    menu += "In Vegetarian Pizzas we have: "
+
     for pizza_type in VEGETARIAN_PIZZA_TYPES:
-        menu += f"  - {pizza_type.capitalize()}: {', '.join(PIZZA_TOPPINGS_STD[pizza_type])}. "
-        menu += f"Price: ${PIZZA_PRICES[pizza_type]['medium']} (Medium)\n"
+        menu += f" {pizza_type.capitalize()}, "
 
-    menu += "\n- Non-Vegetarian Pizzas:\n"
+    # remove the last comma and add a full stop
+    menu = menu[:-2]  # remove the last comma
+
+    menu += ". "
+
+    # 2. Non-Vegetarian Pizzas
+    menu += "And in Non-Vegetarian Pizzas we have: "
+
     for pizza_type in NON_VEGETARIAN_PIZZA_TYPES:
-        menu += f"  - {pizza_type.capitalize()}: {', '.join(PIZZA_TOPPINGS_STD[pizza_type])}. "
-        menu += f"Price: ${PIZZA_PRICES[pizza_type]['medium']} (Medium)\n"
+        menu += f" {pizza_type.capitalize()}, "
 
-    menu += "\n-------------------------------------------\n"
+    # remove the last comma and add a full stop
+    menu = menu[:-2]  # remove the last comma
+
+    menu += ". "
 
     return menu
 
@@ -159,22 +194,35 @@ def generate_vegetarian_pizza_menu():
     for pizza_type in VEGETARIAN_PIZZA_TYPES:
         menu += f" {pizza_type.capitalize()}, "
 
-    menu += "."
+    # remove the last comma and add a full stop
+    menu = menu[:-2]  # remove the last comma
+
+    menu += ". "
 
     return menu
 
 
 def generate_non_vegetarian_pizza_menu():
-    menu = " Here's Our Non-Vegetarian Pizza Menu :\n\n"
+    # menu = " Here's Our Non-Vegetarian Pizza Menu :\n\n"
+    #
+    # menu += "- Non-Vegetarian Pizzas:\n"
+    # for pizza_type in NON_VEGETARIAN_PIZZA_TYPES:
+    #     menu += f"  - {pizza_type.capitalize()}: {', '.join(PIZZA_TOPPINGS_STD[pizza_type])}. "
+    #     menu += f"Price: ${PIZZA_PRICES[pizza_type]['medium']} (Medium)\n"
+    #
+    # menu += "\n-------------------------------------------\n"
+    #
+    # return menu
 
-    menu += "- Non-Vegetarian Pizzas:\n"
+    menu = "Our Non-Vegetarian Pizzas are: "
+
     for pizza_type in NON_VEGETARIAN_PIZZA_TYPES:
-        menu += f"  - {pizza_type.capitalize()}: {', '.join(PIZZA_TOPPINGS_STD[pizza_type])}. "
-        menu += f"Price: ${PIZZA_PRICES[pizza_type]['medium']} (Medium)\n"
+        menu += f" {pizza_type.capitalize()}, "
 
-    menu += "\n-------------------------------------------\n"
+    # remove the last comma and add a full stop
+    menu = menu[:-2]  # remove the last comma
 
-    return menu
+    menu += ". "
 
 
 def generate_pizza_sizes():
@@ -184,10 +232,21 @@ def generate_pizza_sizes():
     #     sizes += f"  - {size.capitalize()}: {PIZZA_SIZES[size]} inches\n"
     #
     # return sizes
-    sizes = " We offer the following sizes for our pizzas:"
+    sizes = " We offer:"
 
-    for size in PIZZA_SIZES.keys():
+    pizza_sizes_list = list(PIZZA_SIZES.keys())
+
+    # add 'and' before the last size
+    pizza_sizes_list[-1] = "and " + pizza_sizes_list[-1]
+
+    for size in pizza_sizes_list:
         sizes += f" {size.capitalize()}, "
+
+    # remove the last comma and add a full stop
+    sizes = sizes[:-2]  # remove the last comma
+
+    sizes += " sizes for our pizzas."
+    # sizes += ". "
 
     return sizes
 
@@ -215,35 +274,41 @@ def generate_recommended_pizzas_menu():
     price_medium = PIZZA_PRICES[pizza_type]['medium']
 
     # generate the recommended pizzas menu
-    menu = " Here's Our Recommended Pizzas Menu :\n"
-    menu += "  (Based on Our Customers' Most Buying)\n\n"
+    # menu = " Here's Our Recommended Pizzas Menu :\n"
+    # menu += "  (Based on Our Customers' Most Buying)\n\n"
+    #
+    # menu += "- Recommended Vegetarian Pizzas:\n"
+    # menu += f"  - {pizza_type.capitalize()}: {', '.join(toppings)}. Price: ${price_medium} (Medium)\n"
 
-    menu += "- Recommended Vegetarian Pizzas:\n"
-    menu += f"  - {pizza_type.capitalize()}: {', '.join(toppings)}. Price: ${price_medium} (Medium)\n"
+    menu = "Based on our customers' most buying, we recommend: "
 
-    # second recommended veg pizza
-    pizza_type = list(veg_recommendation_2.keys())[0]
-    toppings = list(veg_recommendation_2.values())[0]
-    price_medium = PIZZA_PRICES[pizza_type]['medium']
+    menu += f"{pizza_type.capitalize()} with {', '.join(toppings)} toppings in vegetarian type. "
 
-    menu += f"  - {pizza_type.capitalize()}: {', '.join(toppings)}. Price: ${price_medium} (Medium)\n"
+    # # second recommended veg pizza
+    # pizza_type = list(veg_recommendation_2.keys())[0]
+    # toppings = list(veg_recommendation_2.values())[0]
+    # price_medium = PIZZA_PRICES[pizza_type]['medium']
+    #
+    # menu += f"  - {pizza_type.capitalize()}: {', '.join(toppings)}. Price: ${price_medium} (Medium)\n"
 
     # first recommended non-veg pizza
     pizza_type = list(non_veg_recommendation_1.keys())[0]
     toppings = list(non_veg_recommendation_1.values())[0]
     price_medium = PIZZA_PRICES[pizza_type]['medium']
 
-    menu += "\n- Recommended Non-Vegetarian Pizzas:\n"
-    menu += f"  - {pizza_type.capitalize()}: {', '.join(toppings)}. Price: ${price_medium} (Medium)\n"
+    # menu += "\n- Recommended Non-Vegetarian Pizzas:\n"
+    # menu += f"  - {pizza_type.capitalize()}: {', '.join(toppings)}. Price: ${price_medium} (Medium)\n"
 
-    # second recommended non-veg pizza
-    pizza_type = list(non_veg_recommendation_2.keys())[0]
-    toppings = list(non_veg_recommendation_2.values())[0]
-    price_medium = PIZZA_PRICES[pizza_type]['medium']
+    # # second recommended non-veg pizza
+    # pizza_type = list(non_veg_recommendation_2.keys())[0]
+    # toppings = list(non_veg_recommendation_2.values())[0]
+    # price_medium = PIZZA_PRICES[pizza_type]['medium']
+    #
+    # menu += f"  - {pizza_type.capitalize()}: {', '.join(toppings)}. Price: ${price_medium} (Medium)\n"
+    #
+    # menu += "\n-------------------------------------------\n"
 
-    menu += f"  - {pizza_type.capitalize()}: {', '.join(toppings)}. Price: ${price_medium} (Medium)\n"
-
-    menu += "\n-------------------------------------------\n"
+    menu += f"And {pizza_type.capitalize()} with {', '.join(toppings)} toppings in non-vegetarian type. "
 
     return menu
 
@@ -269,21 +334,25 @@ def generate_recommended_vegetarian_pizzas_menu():
     toppings = list(veg_recommendation_1.values())[0]
     price_medium = PIZZA_PRICES[pizza_type]['medium']
 
-    # generate the recommended pizzas menu
-    menu = " Here's Our Recommended Vegetarian Pizzas Menu :\n"
-    menu += "       (Based on Our Customers' Most Buying)       \n\n"
+    # # generate the recommended pizzas menu
+    # menu = " Here's Our Recommended Vegetarian Pizzas Menu :\n"
+    # menu += "       (Based on Our Customers' Most Buying)       \n\n"
+    #
+    # menu += "- Recommended Vegetarian Pizzas:\n"
+    # menu += f"  - {pizza_type.capitalize()}: {', '.join(toppings)}. Price: ${price_medium} (Medium)\n"
+    #
+    # # second recommended veg pizza
+    # pizza_type = list(veg_recommendation_2.keys())[0]
+    # toppings = list(veg_recommendation_2.values())[0]
+    # price_medium = PIZZA_PRICES[pizza_type]['medium']
+    #
+    # menu += f"  - {pizza_type.capitalize()}: {', '.join(toppings)}. Price: ${price_medium} (Medium)\n"
+    #
+    # menu += "\n-------------------------------------------\n"
 
-    menu += "- Recommended Vegetarian Pizzas:\n"
-    menu += f"  - {pizza_type.capitalize()}: {', '.join(toppings)}. Price: ${price_medium} (Medium)\n"
+    menu = "Based on our customers' most buying, we recommend: "
 
-    # second recommended veg pizza
-    pizza_type = list(veg_recommendation_2.keys())[0]
-    toppings = list(veg_recommendation_2.values())[0]
-    price_medium = PIZZA_PRICES[pizza_type]['medium']
-
-    menu += f"  - {pizza_type.capitalize()}: {', '.join(toppings)}. Price: ${price_medium} (Medium)\n"
-
-    menu += "\n-------------------------------------------\n"
+    menu += f"{pizza_type.capitalize()} with {', '.join(toppings)} toppings. "
 
     return menu
 
@@ -309,21 +378,25 @@ def generate_recommended_non_vegetarian_pizzas_menu():
     toppings = list(non_veg_recommendation_1.values())[0]
     price_medium = PIZZA_PRICES[pizza_type]['medium']
 
-    # generate the recommended pizzas menu
-    menu = " Here's Our Recommended Non-Vegetarian Pizzas Menu :\n"
-    menu += "        (Based on Our Customers' Most Buying)          \n\n"
+    # # generate the recommended pizzas menu
+    # menu = " Here's Our Recommended Non-Vegetarian Pizzas Menu :\n"
+    # menu += "        (Based on Our Customers' Most Buying)          \n\n"
+    #
+    # menu += "- Recommended Non-Vegetarian Pizzas:\n"
+    # menu += f"  - {pizza_type.capitalize()}: {', '.join(toppings)}. Price: ${price_medium} (Medium)\n"
+    #
+    # # second recommended non-veg pizza
+    # pizza_type = list(non_veg_recommendation_2.keys())[0]
+    # toppings = list(non_veg_recommendation_2.values())[0]
+    # price_medium = PIZZA_PRICES[pizza_type]['medium']
+    #
+    # menu += f"  - {pizza_type.capitalize()}: {', '.join(toppings)}. Price: ${price_medium} (Medium)\n"
+    #
+    # menu += "\n-------------------------------------------\n"
 
-    menu += "- Recommended Non-Vegetarian Pizzas:\n"
-    menu += f"  - {pizza_type.capitalize()}: {', '.join(toppings)}. Price: ${price_medium} (Medium)\n"
+    menu = "Based on our customers' most buying, we recommend: "
 
-    # second recommended non-veg pizza
-    pizza_type = list(non_veg_recommendation_2.keys())[0]
-    toppings = list(non_veg_recommendation_2.values())[0]
-    price_medium = PIZZA_PRICES[pizza_type]['medium']
-
-    menu += f"  - {pizza_type.capitalize()}: {', '.join(toppings)}. Price: ${price_medium} (Medium)\n"
-
-    menu += "\n-------------------------------------------\n"
+    menu += f"{pizza_type.capitalize()} with {', '.join(toppings)} toppings. "
 
     return menu
 
@@ -378,11 +451,11 @@ class ActionResponseToAskRestaurantDetails(Action):
         final_order_time = RESTAURANT_DETAILS["final_order_time"]
 
         message = " Here are the details of the restaurant:\n"
-        message += f"  - Name: {name}\n"
-        message += f"  - Address: {address}\n"
-        message += f"  - Phone Number: {phone_number}\n"
-        message += f"  - Opening Hours: {opening_hours['Opening']} to {opening_hours['Closing']}\n"
-        message += f"  - Final Order Time: {final_order_time}\n"
+        message += f"  - Name: {name}. \n"
+        message += f"  - Address: {address}. \n"
+        message += f"  - Phone Number: {phone_number}. \n"
+        message += f"  - Opening Hours: {opening_hours['Opening']} to {opening_hours['Closing']}. \n"
+        message += f"  - Final Order Time: {final_order_time}. \n"
 
         dispatcher.utter_message(text=message)
         return []
@@ -548,9 +621,27 @@ class ActionInformAvailableToppings(Action):
         return "action_inform_available_toppings"
 
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        available_possible_toppings = AVAILABLE_POSSIBLE_TOPPINGS
-        message = " We offer the following topping options: {}.".format(", ".join(available_possible_toppings))
-        dispatcher.utter_message(text=message)
+        # get pizza type
+        pizza_type = tracker.get_slot("pizza_type").lower()
+
+        # get the available possible toppings for the pizza type
+        available_possible_toppings = CUSTOM_TOPPINGS_OPTIONS[pizza_type]
+
+        # add 'and' before the last topping if there are more than one topping
+        if len(available_possible_toppings) > 1:
+            # if pizza_topping list has any item with 'and' then remove 'and' from the items. and add 'and' in last item
+            if available_possible_toppings[-1].startswith("and "):
+                available_possible_toppings[-1] = available_possible_toppings[-1][4:]
+
+            # add 'and' before the last topping if there are more than one topping
+            available_possible_toppings[-1] = "and " + available_possible_toppings[-1]
+
+        available_possible_toppings = ", ".join(available_possible_toppings)
+
+        message = "For your '{}' pizza, we offer: {} customizations.".format(
+            pizza_type, available_possible_toppings)
+
+        dispatcher.utter_message(text=message, response="utter_ask_pizza_custom_toppings")
         return []
 
 
@@ -573,7 +664,9 @@ class ActionAskPizzaCustomToppings(Action):
         pizza_topping = PIZZA_TOPPINGS_STD[pizza_type]
 
         # get the available possible toppings
-        available_possible_toppings = AVAILABLE_POSSIBLE_TOPPINGS[0:5]
+        # randomly select 5 toppings from the available possible toppings
+
+        available_possible_toppings = CUSTOM_TOPPINGS_OPTIONS[pizza_type]
 
         # remove the standard toppings from the available possible toppings
         for topping in pizza_topping:
@@ -593,12 +686,11 @@ class ActionAskPizzaCustomToppings(Action):
         if len(available_possible_toppings) > 1:
             available_possible_toppings[-1] = "and " + available_possible_toppings[-1]
 
-        message = " Current Selected Toppings for Your '{}' Pizza are: {}".format(
+        message = " Current Selected Toppings for Your '{}' Pizza are: {}. ".format(
             tracker.get_slot("pizza_type"), ", ".join(pizza_topping)
         )
-        message += "\n We offer the following topping options: {}.".format(", ".join(available_possible_toppings))
-        message += "\n\n Please make your own custom toppings selection(s)..."
-
+        message += " For your Pizza, we offer: {} customizations.".format(", ".join(available_possible_toppings))
+        message += " Please tell me your custom toppings one by one."
         dispatcher.utter_message(text=message)
 
         return []
@@ -620,19 +712,21 @@ class ValidatePizzaOrderForm(FormValidationAction):
     async def validate_pizza_type(self, slot_value: Any, dispatcher: CollectingDispatcher, tracker: Tracker,
                                   domain: Dict[Text, Any]) -> Dict[Text, Any]:
         """Validate pizza_type value."""
-        last_intent = tracker.get_intent_of_latest_message(skip_fallback_intent=True)
         latest_intent = tracker.latest_message["intent"].get("name")
         if latest_intent == "pizza_standard_topping_confirm":
             pizza_type = tracker.get_slot("pizza_type").lower()
             pizza_topping = PIZZA_TOPPINGS_STD[pizza_type]
-            dispatcher.utter_message(text="Noted! your pizza will have the standard toppings")
+            dispatcher.utter_message(text="Noted! your pizza will have the standard toppings.")
             return {"pizza_type": pizza_type, "pizza_topping": pizza_topping, "topping_satisfaction": True}
 
         if slot_value.lower() in PIZZA_TYPES:
             # acknowledge the pizza type randomly
             acknowledgements = ["Great Choice!", "Nice Selection!", "Awesome!", "Yummy Choice!"]
             acknowledgement = random.choice(acknowledgements)
-            dispatcher.utter_message(text=f"{acknowledgement} You have selected {slot_value.capitalize()} Pizza.")
+            # get topping_satisfaction slot value
+            topping_satisfaction = tracker.get_slot("topping_satisfaction")
+            if not topping_satisfaction:  # if topping_satisfaction is None or False then don't need to acknowledge
+                dispatcher.utter_message(text=f"{acknowledgement} You have selected {slot_value.capitalize()} Pizza.")
             return {"pizza_type": slot_value}
         else:
             dispatcher.utter_message(
@@ -672,11 +766,19 @@ class ValidatePizzaOrderForm(FormValidationAction):
         """Validate pizza_quantity value."""
         if slot_value.lower() in ["a", "A", "an", "An"]:
             slot_value = "one"
+
         if slot_value.lower() in PIZZA_QUANTITY:
             return {"pizza_quantity": slot_value}
+        elif slot_value.isdigit():
+            if 1 <= int(slot_value) <= 10:
+                return {"pizza_quantity": PIZZA_QUANTITY[int(slot_value) - 1]}
+            else:
+                dispatcher.utter_message(
+                    text="Sorry, if you want to order more than 10 pizzas, then please contact us on +XX-XXX-XXX-XXXX.")
+                return {"pizza_quantity": None}
         else:
             dispatcher.utter_message(
-                text="Sorry, if you want to order more than 10 pizzas, then please contact us on +XX-XXX-XXX-XXXX")
+                text="Sorry, I didn't get that. Please provide a valid quantity.")
             return {"pizza_quantity": None}
 
     async def extract_order_list(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict) -> Dict[
@@ -702,7 +804,13 @@ class ActionSubmitPizzaOrderForm(Action):
             order_list = [item for item in order_list if isinstance(item, dict)]
 
             # calculate the total price of current selected items
-            current_item_price = PIZZA_PRICES[pizza_type][pizza_size] * PIZZA_QUANTITY.index(pizza_quantity) + 1
+            print("PIZZA_PRICES[pizza_type][pizza_size]:", PIZZA_PRICES[pizza_type][pizza_size])
+            print("PIZZA_QUANTITY.index(pizza_quantity) + 1:", PIZZA_QUANTITY.index(pizza_quantity) + 1)
+            current_item_price = PIZZA_PRICES[pizza_type][pizza_size] * (PIZZA_QUANTITY.index(pizza_quantity) + 1)
+            print("pizza_size: ", pizza_size)
+            print("pizza_quantity: ", pizza_quantity)
+            print("current_item_price: ", current_item_price)
+            print("order_list: ", order_list)
 
             # if order_list is not empty, then calculate the total price of all items
             if order_list:
@@ -720,17 +828,35 @@ class ActionSubmitPizzaOrderForm(Action):
             })
 
             # Display Order Summary with the total price in a nice format
-            message = "Here's Your Order Summary:\n"
+            # message = "Here's Your Order Summary:\n"
+            # for i, item in enumerate(order_list):
+            #     message += "{}. {} {} Pizza\n".format(i + 1, item["size"].capitalize(), item["type"].capitalize())
+            #     message += "   - Toppings: {}\n".format(", ".join(item["topping"]))
+            #     message += "   - Quantity: {}\n".format(item["quantity"].capitalize())
+            #     message += "   - Price: ${:.2f}\n".format(item["price"])
+            #
+            # message += "\nTotal Price: ${:.2f}".format(total_price)
+            #
+            # # prompt to ask if the customer wants to add more items to the order
+            # message += "\n\nWould you like to add another Pizza to your order? or Proceed to Pickup?"
+
+            # generate order summary message
+            # """
+            #  Your order summary is:
+            #  Item 1: Two Medium Margherita Pizza with Cheese, Tomato, and Basil Toppings with price $20.00 .
+            #  Item 2: One Large Pepperoni Pizza with Cheese, Tomato, and Pepperoni Toppings with price $15.00 .
+            #  And the total price is $35.00.
+            #  Would you like to add another Pizza to your order? or Proceed to Pickup?
+            # """
+
+            message = "Your order summary is: "
             for i, item in enumerate(order_list):
-                message += "{}. {} {} Pizza\n".format(i + 1, item["size"].capitalize(), item["type"].capitalize())
-                message += "   - Toppings: {}\n".format(", ".join(item["topping"]))
-                message += "   - Quantity: {}\n".format(item["quantity"].capitalize())
-                message += "   - Price: ${:.2f}\n".format(item["price"])
+                message += f"Item {i + 1}: {item['quantity']} {item['size'].capitalize()} {item['type'].capitalize()} " \
+                           f"with {', '.join(item['topping'])} Toppings with price ${item['price']}. "
 
-            message += "\nTotal Price: ${:.2f}".format(total_price)
+            message += f"And the total price of your order is ${total_price}. "
 
-            # prompt to ask if the customer wants to add more items to the order
-            message += "\n\nWould you like to add another Pizza to your order? or Proceed to Pickup?"
+            message += "Would you like to add another Pizza to your order? or Proceed to Pickup?"
 
             dispatcher.utter_message(text=message)
 
@@ -750,7 +876,6 @@ class ActionSubmitPizzaOrderForm(Action):
             return [FollowupAction("action_restart")]
 
 
-# action_show_order_summary
 class ActionShowOrderSummary(Action):
     def name(self) -> Text:
         return "action_show_order_summary"
@@ -766,17 +891,26 @@ class ActionShowOrderSummary(Action):
         total_price = sum([item["price"] for item in order_list])
 
         # Display Order Summary with the total price in a nice format
-        message = "Here's Your Order Summary:\n"
+        # message = "Here's Your Order Summary:\n"
+        # for i, item in enumerate(order_list):
+        #     message += "{}. {} {} Pizza\n".format(i + 1, item["size"].capitalize(), item["type"].capitalize())
+        #     message += "   - Toppings: {}\n".format(", ".join(item["topping"]))
+        #     message += "   - Quantity: {}\n".format(item["quantity"].capitalize())
+        #     message += "   - Price: ${:.2f}\n".format(item["price"])
+        #
+        # message += "\nTotal Price: ${:.2f}".format(total_price)
+        #
+        # # prompt to ask if the customer wants to add more items to the order
+        # message += "\n\nWould you like to add another Pizza to your order? or Proceed to Pickup?"
+
+        message = "Your order summary is: "
         for i, item in enumerate(order_list):
-            message += "{}. {} {} Pizza\n".format(i + 1, item["size"].capitalize(), item["type"].capitalize())
-            message += "   - Toppings: {}\n".format(", ".join(item["topping"]))
-            message += "   - Quantity: {}\n".format(item["quantity"].capitalize())
-            message += "   - Price: ${:.2f}\n".format(item["price"])
+            message += f"Item {i + 1}: {item['quantity']} {item['size'].capitalize()} {item['type'].capitalize()} " \
+                       f"with {', '.join(item['topping'])} Toppings with price ${item['price']}. "
 
-        message += "\nTotal Price: ${:.2f}".format(total_price)
+        message += f"And the total price of your order is ${total_price}. "
 
-        # prompt to ask if the customer wants to add more items to the order
-        message += "\n\nWould you like to add another Pizza to your order? or Proceed to Pickup?"
+        message += "Would you like to add another Pizza to your order? or Proceed to Pickup?"
 
         dispatcher.utter_message(text=message)
 
@@ -880,7 +1014,7 @@ class ValidatePizzaCustomToppingForm(FormValidationAction):
             if topping.startswith("and "):
                 pizza_topping[i] = topping[4:]
 
-        pizza_topping = [topping.strip() for topping in pizza_topping]
+        pizza_topping = [topping.strip().lower() for topping in pizza_topping]
 
         pizza_custom_toppings = tracker.get_slot("pizza_custom_toppings")
         if pizza_custom_toppings:
@@ -894,7 +1028,7 @@ class ValidatePizzaCustomToppingForm(FormValidationAction):
             if latest_intent == "add_pizza_custom_toppings":
                 pizza_custom_toppings = [topping.strip() for topping in pizza_custom_toppings]
             elif latest_intent == "remove_pizza_custom_toppings":
-                pizza_custom_toppings = [topping.strip() for topping in pizza_custom_toppings]
+                pizza_custom_toppings = [topping.strip().lower() for topping in pizza_custom_toppings]
 
                 # remove the custom toppings from the standard toppings list
                 for topping in pizza_custom_toppings:
@@ -906,6 +1040,8 @@ class ValidatePizzaCustomToppingForm(FormValidationAction):
                 if latest_intent == "add_pizza_custom_toppings":
                     pizza_topping.extend(pizza_custom_toppings)
 
+                    pizza_topping = [topping.title() for topping in pizza_topping]
+
                     # add 'and' before the last topping if there are more than one topping
                     if len(pizza_topping) > 1:
                         pizza_topping[-1] = "and " + pizza_topping[-1]
@@ -915,6 +1051,8 @@ class ValidatePizzaCustomToppingForm(FormValidationAction):
                         pizza_custom_toppings, pizza_topping)
                     )
                 elif latest_intent == "remove_pizza_custom_toppings":
+                    pizza_topping = [topping.title() for topping in pizza_topping]
+
                     # add 'and' before the last topping if there are more than one topping
                     if len(pizza_topping) > 1:
                         pizza_topping[-1] = "and " + pizza_topping[-1]
@@ -925,13 +1063,18 @@ class ValidatePizzaCustomToppingForm(FormValidationAction):
                     )
 
                 # remove the 'and' from any item in the list
-                pizza_topping = pizza_topping.split(", ")
+                if isinstance(pizza_topping, str):
+                    pizza_topping = pizza_topping.split(", ")
+
                 for j, topping in enumerate(pizza_topping):
                     if topping.startswith("and "):
                         pizza_topping[j] = topping[4:]
 
+                pizza_topping = [topping.title() for topping in pizza_topping]
+
             return {"pizza_topping": pizza_topping, "pizza_custom_toppings": pizza_custom_toppings}
         else:
+            pizza_topping = [topping.title() for topping in pizza_topping]
             return {"pizza_topping": pizza_topping, "pizza_custom_toppings": None}
 
     async def validate_topping_satisfaction(self, slot_value: Any, dispatcher: CollectingDispatcher, tracker: Tracker,
@@ -978,6 +1121,40 @@ class ValidateOrderPickupForm(FormValidationAction):
     def name(self) -> Text:
         return "validate_order_pickup_form"
 
+    def word_to_num(self, word):
+        num_words = {
+            "forty-five": "45", "thirty-five": "35", "twenty-five": "25",
+            "fifty-five": "55", "fifty-nine": "59", "fifty-eight": "58",
+            "one": "1", "two": "2", "three": "3", "four": "4", "five": "5",
+            "six": "6", "seven": "7", "eight": "8", "nine": "9", "ten": "10",
+            "eleven": "11", "twelve": "12", "thirteen": "13", "fourteen": "14",
+            "fifteen": "15", "sixteen": "16", "seventeen": "17", "eighteen": "18",
+            "nineteen": "19", "twenty": "20", "thirty": "30", "forty": "40",
+            "fifty": "50", "sixty": "60", "o'clock": ":00", "p.m.": "PM", "a.m.": "AM"
+        }
+
+        words = word.split()
+        result = []
+
+        for w in words:
+            if w in num_words:
+                result.append(num_words[w])
+            else:
+                result.append(w)
+
+        # Join numbers properly to handle cases like "forty five"
+        final_result = []
+        i = 0
+        while i < len(result):
+            if i + 1 < len(result) and result[i].isdigit() and result[i + 1].isdigit():
+                final_result.append(result[i] + result[i + 1])
+                i += 2
+            else:
+                final_result.append(result[i])
+                i += 1
+
+        return " ".join(final_result)
+
     def extract_time(self, time_str: str):
         """
         Tries to extract a time from the given string using common time formats.
@@ -1014,22 +1191,36 @@ class ValidateOrderPickupForm(FormValidationAction):
         """Validate order_pickup_time value."""
         pickup_time_str = tracker.get_slot('pickup_time')
 
-        times_in_english_words = [
-            'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten',
-            'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen',
-            'twenty', 'twenty one', 'twenty two', 'twenty three', 'twenty four'
-        ]
+        if not pickup_time_str.__contains__(":"):
+            time_words_ = pickup_time_str.split()
+            time_words = [word for word in time_words_ if word.lower() not in ["a.m.", "p.m."]]
+            if len(time_words) == 1:
+                time_str = time_words[0] + " " + time_words_[-1]
+            elif len(time_words) == 2:
+                time_str = time_words[0] + " " + time_words[1] + " " + time_words_[-1]
+            elif len(time_words) == 3:
+                time_str = time_words[0] + " " + time_words[1] + "-" + time_words[2] + " " + time_words_[-1]
+            else:
+                time_str = " ".join(time_words)
 
-        # replace the sting time with the numeric time
-        for i, time in enumerate(times_in_english_words):
-            pickup_time_str = pickup_time_str.replace(time, str(i + 1))
+            converted_time_str = self.word_to_num(time_str)
+        else:
+            converted_time_str = pickup_time_str.replace(".", "")
 
-        # remove . from the time string
-        pickup_time_str = pickup_time_str.replace(".", "")
-        print(pickup_time_str)
+        # times_in_english_words = [
+        #     'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten',
+        #     'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen',
+        #     'twenty', 'twenty one', 'twenty two', 'twenty three', 'twenty four'
+        # ]
+        #
+        # # replace the sting time with the numeric time
+        # for i, time in enumerate(times_in_english_words):
+        #     pickup_time_str = pickup_time_str.replace(time, str(i + 1))
+        #
+        # # remove . from the time string
+        # pickup_time_str = pickup_time_str.replace(".", "")
 
-        parsed_time = self.extract_time(pickup_time_str)  # parse the date time object
-
+        parsed_time = self.extract_time(converted_time_str)  # parse the date time object
 
         if parsed_time:
             # Assuming you want to store the time as a string in 24-hour format
@@ -1045,6 +1236,7 @@ class ValidateOrderPickupForm(FormValidationAction):
                          f"We're open till {RESTAURANT_DETAILS['opening_hours']['Closing']} "
                          f"and accepting orders till {RESTAURANT_DETAILS['final_order_time']}."
                 )
+
                 return {"pickup_time": None, "order_pickup_time": None}
 
             # if the date is not today, then ask the user to provide a time for today
@@ -1055,6 +1247,7 @@ class ValidateOrderPickupForm(FormValidationAction):
                          f"Please remember, Today, we're open till {RESTAURANT_DETAILS['opening_hours']['Closing']}."
                          f" And accepting orders till {RESTAURANT_DETAILS['final_order_time']}."
                 )
+
                 return {"pickup_time": None, "order_pickup_time": None}
 
             # if the time is after the closing time, then ask the user to provide a time before the closing time
@@ -1064,6 +1257,7 @@ class ValidateOrderPickupForm(FormValidationAction):
                          f"Please provide us your pickup time before the closing time. "
                          f"We're open till {RESTAURANT_DETAILS['opening_hours']['Closing']}."
                 )
+
                 return {"pickup_time": None, "order_pickup_time": None}
 
             # if the time is before the opening time, then ask the user to provide a time after the opening time
@@ -1072,6 +1266,7 @@ class ValidateOrderPickupForm(FormValidationAction):
                     text=f"I'm sorry, we're open at {RESTAURANT_DETAILS['opening_hours']['Opening']}. "
                          f"Please provide us your pickup time after the opening time."
                 )
+
                 return {"pickup_time": None, "order_pickup_time": None}
 
             # If the preparation time is more than the time provided,
@@ -1163,8 +1358,6 @@ class ActionSubmitOrderPickupForm(Action):
         # message += "\nTotal Price: ${:.2f}".format(total_price)
         # message += "\nPreparation Time: {} minutes".format(order_preparation_time)
         # message += "\nPickup Time: {}".format(order_pickup_time)
-
-        # Add an ending line for pickup
 
         message = f"Thank you for your order! We’ll see you at Champ Pizza Hut on {order_pickup_time} for pickup. \n\n"
 

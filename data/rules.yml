@@ -341,6 +341,7 @@ rules:
     steps:
       - intent: ask_custom_toppings_info
       - action: action_inform_available_toppings
+      - action: action_utter_ask_topping_confirmation
 
 
   - rule: Activate Pizza Order Form
@@ -356,9 +357,19 @@ rules:
     steps:
         - intent: ask_custom_toppings_info
         - action: action_inform_available_toppings
-        - action: action_utter_ask_topping_confirmation
         - action: pizza_custom_topping_form
         - active_loop: pizza_custom_topping_form
+
+
+  - rule: Ask custom toppings options info during custom topping form
+    condition:
+      - active_loop: pizza_custom_topping_form
+    steps:
+      - intent: ask_custom_toppings_info
+      - action: action_inform_available_toppings
+      - action: action_ask_topping_satisfaction
+      - action: pizza_custom_topping_form
+      - active_loop: pizza_custom_topping_form
 
 
   - rule: Intrupt the pizza order form with opening times information
@@ -418,6 +429,8 @@ rules:
     condition:
       - slot_was_set:
           - order_list: true
+#          - order_pickup_time: false
+#          - pickup_time: false
     steps:
       - intent: cancel_complete_order
       - action: utter_confirm_cancel_order
@@ -452,10 +465,12 @@ rules:
       - action: utter_order_not_cancelled
 
 
-  - rule: Handle cancel request when no active order
+  - rule: Handle cancel complete order request when no active order
     condition:
       - slot_was_set:
           - order_list: false
+#          - order_pickup_time: false
+#          - pickup_time: false
     steps:
       - intent: cancel_complete_order
       - action: utter_no_active_order_to_cancel

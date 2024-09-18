@@ -2,22 +2,36 @@ version: "3.1"
 nlu:
 - intent: start_greet
   examples: |
-    - hi
+    - Hi, nice to see you.
+    - Hey, good to be here.
+    - Hello, it’s been a while.
+    - Hi there, just dropping by.
+    - Hey there, checking in.
+    - Hey there!
+    - Hi, catching up after a while.
+    - Hey, just touching base.
+    - Hey! Feels good to connect.
+    - Hello there! It’s good to be here.
+    - Hi, been meaning to reach out.
+    - Hi, good morning!
+    - Hey there, good evening!
+    - Hello, good afternoon!
+    - Hey! Nice to be around.
+    - Hello! Staying productive.
+    - Hi! Good to be in touch.
     - just going to say hi
-    - hey
-    - hello hi
-    - Hey
     - howdy
     - Howdy
     - hey there
     - hi there
-    - Hi
-    - Hi there
     - greetings
     - long time no see
     - hello
     - hello there
-    - Hello
+    - hi
+    - hey
+    - hi there
+    - hello there
 - intent: end_greet
   examples: |
     - bye
@@ -545,18 +559,18 @@ nlu:
     - Add [Supreme](pizza_type)
     - Add [Pesto and Sun-dried Tomato](pizza_type)
     - Add [Seafood](pizza_type)
-    - Please add [a](pizza_quantity) [Margherita](pizza_type) pizza
-    - Please add [a](pizza_quantity) [Pepperoni](pizza_type) pizza
-    - Please add [a](pizza_quantity) [BBQ Chicken](pizza_type) pizza
-    - Please add [a](pizza_quantity) [Supreme](pizza_type) pizza
-    - Please add [a](pizza_quantity) [Pesto and Sun-dried Tomato](pizza_type) pizza
-    - Please add [a](pizza_quantity) [Seafood](pizza_type) pizza
-    - Add [a](pizza_quantity) [Margherita](pizza_type) pizza
-    - Add [a](pizza_quantity) [Pepperoni](pizza_type) pizza
-    - Add [a](pizza_quantity) [BBQ Chicken](pizza_type) pizza
-    - Add [a](pizza_quantity) [Supreme](pizza_type) pizza
-    - Add [a](pizza_quantity) [Pesto and Sun-dried Tomato](pizza_type) pizza
-    - Add [a](pizza_quantity) [Seafood](pizza_type) pizza
+    - please add [one](pizza_quantity) [Margherita](pizza_type) pizza
+    - please add [one](pizza_quantity) [Pepperoni](pizza_type) pizza
+    - please add [one](pizza_quantity) [BBQ Chicken](pizza_type) pizza
+    - please add [one](pizza_quantity) [Supreme](pizza_type) pizza
+    - please add [one](pizza_quantity) [Pesto and Sun-dried Tomato](pizza_type) pizza
+    - please add [one](pizza_quantity) [Seafood](pizza_type) pizza
+    - add [one](pizza_quantity) [Margherita](pizza_type) pizza
+    - add [one](pizza_quantity) [Pepperoni](pizza_type) pizza
+    - add [one](pizza_quantity) [BBQ Chicken](pizza_type) pizza
+    - add [one](pizza_quantity) [Supreme](pizza_type) pizza
+    - add [one](pizza_quantity) [Pesto and Sun-dried Tomato](pizza_type) pizza
+    - add [one](pizza_quantity) [Seafood](pizza_type) pizza
     - Add [one](pizza_quantity) [Margherita](pizza_type) pizza
     - Add [one](pizza_quantity) [Pepperoni](pizza_type) pizza
     - Add [one](pizza_quantity) [BBQ Chicken](pizza_type) pizza
@@ -689,6 +703,16 @@ nlu:
     - What are the different toppings you offer?
     - What are the possible toppings I can choose from?
     - Could you tell me about the available toppings?
+    - Could you please repeat the custom toppings options?
+    - Please repeat the custom toppings options.
+    - Can you repeat the custom toppings options?
+    - Can you repeat the toppings options?
+    - Can you repeat the available toppings?
+    - Can you repeat the toppings list?
+    - Can you repeat the toppings choices?
+    - What was the custom options for toppings?
+    - What was the toppings options?
+    - What was the toppings list?
 - intent: pizza_custom_toppings_request
   examples: |
     - I want to customize my pizza toppings
@@ -962,60 +986,128 @@ nlu:
     - Please add [nine](pizza_quantity) pizzas
     - Please add [ten](pizza_quantity) pizzas
     - [nine](pizza_quantity)
+    - [1](pizza_quantity)
+    - [2](pizza_quantity)
+    - [3](pizza_quantity)
+    - [4](pizza_quantity)
+    - [5](pizza_quantity)
+    - [6](pizza_quantity)
+    - [7](pizza_quantity)
+    - [8](pizza_quantity)
+    - [9](pizza_quantity)
+    - [10](pizza_quantity)
+    - I want [1](pizza_quantity)
+    - I want [2](pizza_quantity)
+    - I want [3](pizza_quantity)
+    - I want [4](pizza_quantity)
+    - I want [5](pizza_quantity)
+    - I want [6](pizza_quantity)
+    - I want [7](pizza_quantity)
+    - I want [8](pizza_quantity)
+    - I want [9](pizza_quantity)
+    - I want [10](pizza_quantity)
+    - Please add [1](pizza_quantity) pizza
+    - Please add [2](pizza_quantity) pizzas
+    - Please add [3](pizza_quantity) pizzas
+    - Please add [4](pizza_quantity)
+    - Please add [5](pizza_quantity)
+    - Please add [6](pizza_quantity)
+    - Please add [7](pizza_quantity)
+    - Please add [8](pizza_quantity)
+    - Please add [9](pizza_quantity)
+    - Please add [10](pizza_quantity)
+    - I would like [1](pizza_quantity) pizza
+    - I would like [2](pizza_quantity) pizzas
+    - I would like [3](pizza_quantity)
+    - I would like [4](pizza_quantity)
+    - I would like [5](pizza_quantity)
+    - I would like [6](pizza_quantity)
+    - I would like [7](pizza_quantity)
+    - I would like [8](pizza_quantity)
+    - I would like [9](pizza_quantity)
+    - I would like [10](pizza_quantity)
+    - [1](pizza_quantity) please
+    - [2](pizza_quantity) please
+    - [3](pizza_quantity) please
+    - [4](pizza_quantity) please
+    - [5](pizza_quantity) please
+    - [6](pizza_quantity) please
+    - [7](pizza_quantity) please
+    - [8](pizza_quantity) please
+    - [9](pizza_quantity) please
+    - [10](pizza_quantity) please
+    - I want [1](pizza_quantity) pizza
+    - I want [2](pizza_quantity) pizzas
+    - I want [3](pizza_quantity) pizzas
+    - I want [4](pizza_quantity) pizzas
+    - I want [5](pizza_quantity) pizzas
+    - I want [6](pizza_quantity) pizzas
+    - I want [7](pizza_quantity) pizzas
+    - I want [8](pizza_quantity) pizzas
+    - I want [9](pizza_quantity) pizzas
+    - I want [10](pizza_quantity) pizzas
+    - Please add [4](pizza_quantity) pizzas
+    - Please add [5](pizza_quantity) pizzas
+    - Please add [6](pizza_quantity) pizzas
+    - Please add [7](pizza_quantity) pizzas
+    - Please add [8](pizza_quantity) pizzas
+    - Please add [9](pizza_quantity) pizzas
+    - Please add [10](pizza_quantity) pizzas
+    - [9](pizza_quantity)
 - intent: inform_pizza_size
   examples: |
     - [small](pizza_size)
     - [medium](pizza_size)
     - [large](pizza_size)
     - [ten inches](pizza_size)
-    - [towel inches](pizza_size)
+    - [twelve inches](pizza_size)
     - [sixteen inches](pizza_size)
     - [ten inch](pizza_size)
-    - [towel inch](pizza_size)
+    - [twelve inch](pizza_size)
     - [sixteen inch](pizza_size)
-    - I want [small](pizza_size)
-    - I want [medium](pizza_size)
-    - I want [large](pizza_size)
-    - I want [ten inches](pizza_size)
-    - I want [towel inches](pizza_size)
-    - I want [sixteen inches](pizza_size)
-    - I want [ten inch](pizza_size)
-    - I want [towel inch](pizza_size)
-    - I want [sixteen inch](pizza_size)
+    - I’d like a [small](pizza_size) pizza
+    - Can I get a [medium](pizza_size) pizza?
+    - Let’s go with a [large](pizza_size) pizza
+    - I prefer the [ten inches](pizza_size) size
+    - How about a [twelve inches](pizza_size) pizza?
+    - Give me the [sixteen inches](pizza_size) one
+    - I want the [ten inch](pizza_size) pizza
+    - A [twelve inch](pizza_size) pizza sounds good
+    - Make it a [sixteen inch](pizza_size) pizza
     - I want [size S](pizza_size)
     - I want [size M](pizza_size)
     - I want [size L](pizza_size)
-    - Please add [small](pizza_size)
-    - Please add [medium](pizza_size)
-    - Please add [large](pizza_size)
-    - Please add [ten inches](pizza_size)
-    - Please add [towel inches](pizza_size)
-    - Please add [sixteen inches](pizza_size)
-    - Please [small](pizza_size)
-    - Please [medium](pizza_size)
-    - Please [large](pizza_size)
-    - [small](pizza_size) please
-    - [medium](pizza_size) please
-    - [large](pizza_size) please
-    - [ten inches](pizza_size) please
-    - [towel inches](pizza_size) please
-    - [sixteen inches](pizza_size) please
-    - [ten inch](pizza_size) please
-    - [towel inch](pizza_size) please
-    - [sixteen inch](pizza_size) please
-    - I want [small](pizza_size) pizza
-    - I want [medium](pizza_size) pizzas
-    - I want [large](pizza_size) pizzas
-    - I want [ten inches](pizza_size) pizzas
-    - I want [towel inches](pizza_size) pizzas
-    - I want [sixteen inches](pizza_size) pizzas
-    - I want [ten inch](pizza_size) pizzas
-    - I want [towel inch](pizza_size) pizzas
-    - I want [sixteen inch](pizza_size) pizzas
-    - Please add [small](pizza_size) pizza
-    - Please add [medium](pizza_size) pizzas
-    - Please add [large](pizza_size) pizzas
-    - [large](pizza_size)
+    - Please add a [small](pizza_size) pizza to my order
+    - I’ll take a [medium](pizza_size) pizza
+    - Add a [large](pizza_size) pizza to my order
+    - Can you get me a [ten inches](pizza_size) pizza?
+    - A [twelve inches](pizza_size) pizza, please
+    - I’ll have the [sixteen inches](pizza_size) pizza
+    - A [small](pizza_size) pizza for me
+    - [medium](pizza_size) pizza, please
+    - [large](pizza_size) pizza, please
+    - I’ll go with the [ten inches](pizza_size) pizza
+    - A [twelve inches](pizza_size) pizza sounds perfect
+    - I’ll have the [sixteen inches](pizza_size) pizza, please
+    - A [small](pizza_size) pizza for takeaway
+    - [medium](pizza_size) pizza for delivery
+    - A [large](pizza_size) pizza to go
+    - I’ll take a [ten inch](pizza_size) pizza
+    - I’d like a [twelve inch](pizza_size) pizza
+    - [sixteen inch](pizza_size) pizza sounds good
+    - Can I get a [small](pizza_size) pizza?
+    - I want a [medium](pizza_size) pizza
+    - A [large](pizza_size) pizza, please
+    - I’m in the mood for a [ten inches](pizza_size) pizza
+    - I’ll have a [twelve inches](pizza_size) pizza
+    - How about a [sixteen inches](pizza_size) pizza?
+    - I’d like a [ten inch](pizza_size) pizza
+    - Make it a [twelve inch](pizza_size) pizza
+    - A [sixteen inch](pizza_size) pizza for me
+    - Please add a [small](pizza_size) pizza
+    - Can I have a [medium](pizza_size) pizza?
+    - Add a [large](pizza_size) pizza, please
+    - [large](pizza_size) pizza, please
 - intent: add_another_pizza_general
   examples: |
     - I want to add another pizza
@@ -1523,6 +1615,121 @@ nlu:
     - i'll pick at [9:30 pm](pickup_time)
     - I'll pick at [midnight](pickup_time)
     - i'll pick at [11:00 PM](pickup_time)
+    - I will pick up my order at [two o'clock](pickup_time)
+    - I'll come by at [six thirty p.m.](pickup_time)
+    - Can I pick it up at [eleven forty five a.m.](pickup_time)?
+    - I'll pick it up around [six p.m.](pickup_time)
+    - How about [two p.m.](pickup_time) for pickup?
+    - I’ll be there at [seven fifteen p.m.](pickup_time) to get it
+    - I want to pick it up at [one thirty p.m.](pickup_time)
+    - I can pick it up at [four p.m.](pickup_time)
+    - Let me pick it up at [five o'clock](pickup_time)
+    - I'll collect the order at [eight thirty p.m.](pickup_time)
+    - I’ll come around [seven p.m.](pickup_time)
+    - How does [twelve fifteen p.m.](pickup_time) sound for pickup?
+    - I will be there at [nine forty five a.m.](pickup_time)
+    - I'll pick it up at [ten thirty a.m.](pickup_time)
+    - Can I come at [eleven a.m.](pickup_time)?
+    - I plan to pick up my order at [three forty five p.m.](pickup_time)
+    - I'll be there to pick it up at [three p.m.](pickup_time)
+    - Can I come around [two thirty p.m.](pickup_time)?
+    - I should be able to pick it up by [five forty five p.m.](pickup_time)
+    - How about I pick it up at [four p.m.](pickup_time)?
+    - I’ll come and get it at [six fifteen p.m.](pickup_time)
+    - I think I can pick it up around [noon](pickup_time)
+    - I'll swing by to grab it at [eleven a.m.](pickup_time)
+    - Can you have it ready by [seven p.m.](pickup_time)?
+    - I'll pick it up on my way home at [five p.m.](pickup_time)
+    - Let’s schedule pickup for [nine thirty a.m.](pickup_time)
+    - I'll come at [two p.m.](pickup_time) to get my order
+    - I’m planning to pick it up at [eight forty five a.m.](pickup_time)
+    - I’ll be there to collect it at [eleven fifteen a.m.](pickup_time)
+    - How does [four forty five p.m.](pickup_time) sound for pickup?
+    - I’ll be there by [one p.m.](pickup_time)
+    - I’m thinking of picking it up at [ten thirty a.m.](pickup_time)
+    - I'll pick it up at [eight p.m.](pickup_time)
+    - I’ll be there around [seven thirty a.m.](pickup_time)
+    - Can I come at [six fifteen p.m.](pickup_time) to get it?
+    - I’ll collect it at [four thirty p.m.](pickup_time)
+    - How about [ten a.m.](pickup_time) for pickup?
+    - [two forty five p.m.](pickup_time) works for me to pick it up
+    - Let’s set the pickup time for [three fifteen p.m.](pickup_time)
+    - I'll reach by at [nine p.m.](pickup_time)
+    - [eleven thirty a.m.](pickup_time) should be fine for me
+    - I’ll come by at [six p.m.](pickup_time) to grab my order
+    - I’ll pick up the order at [noon](pickup_time)
+    - I’ll be there by [eight fifteen a.m.](pickup_time) to get it
+    - I’m thinking [one forty five p.m.](pickup_time) for pickup
+    - Let’s do [five thirty p.m.](pickup_time) for pickup
+    - How about [seven p.m.](pickup_time) for picking it up?
+    - Can I pick it up around [three forty five p.m.](pickup_time)?
+    - I’ll be there at [twelve fifteen p.m.](pickup_time) to pick up
+    - [five p.m.](pickup_time) is when I’ll come by
+    - I’ll come at [four o'clock](pickup_time) to pick it up
+    - Let’s schedule pickup for [ten forty five a.m.](pickup_time)
+    - I'll be there at [seven o'clock](pickup_time) to get it
+    - I should be able to pick it up by [eleven forty five a.m.](pickup_time)
+    - [three thirty p.m.](pickup_time) is good for me to pick it up
+    - I’ll come to get it at [nine fifteen a.m.](pickup_time)
+    - I'll come by at [six thirty p.m.](pickup_time)
+    - Can I pick it up at [eleven forty five a.m.](pickup_time)?
+    - I’ll be there at [seven fifteen p.m.](pickup_time) to get it
+    - I want to pick it up at [one thirty p.m.](pickup_time)
+    - I can pick it up at [four p.m.](pickup_time)
+    - Let me pick it up at [five o'clock p.m.](pickup_time)
+    - I'll collect the order at [eight thirty p.m.](pickup_time)
+    - I’ll come around [seven o'clock p.m.](pickup_time)
+    - I will be there at [nine forty five a.m.](pickup_time)
+    - I'll pick it up at [ten thirty a.m.](pickup_time)
+    - Can I come at [eleven o'clock a.m.](pickup_time)?
+    - I plan to pick up my order at [three forty five p.m.](pickup_time)
+    - I'll be there to pick it up at [three o'clock p.m.](pickup_time)
+    - Can I come around [two thirty p.m.](pickup_time)?
+    - I should be able to pick it up by [five forty five p.m.](pickup_time)
+    - Can you have it ready by [seven o'clock p.m.](pickup_time)?
+    - I'll pick it up on my way home at [five o'clock p.m.](pickup_time)
+    - Let’s schedule pickup for [nine thirty a.m.](pickup_time)
+    - I’m planning to pick it up at [eight forty five a.m.](pickup_time)
+    - I’ll be there to collect it at [eleven fifteen a.m.](pickup_time)
+    - How does [four forty five p.m.](pickup_time) sound for pickup?
+    - I’m thinking of picking it up at [ten thirty a.m.](pickup_time)
+    - I'll pick it up at [eight o'clock p.m.](pickup_time)
+    - Can I come at [six fifteen p.m.](pickup_time) to get it?
+    - I’ll collect it at [four thirty p.m.](pickup_time)
+    - [two forty five p.m.](pickup_time) works for me to pick it up
+    - Let’s set the pickup time for [three fifteen p.m.](pickup_time)
+    - I'll reach by at [nine o'clock p.m.](pickup_time)
+    - [eleven thirty a.m.](pickup_time) should be fine for me
+    - I’ll be there by [eight fifteen a.m.](pickup_time) to get it
+    - I’m thinking [one forty five p.m.](pickup_time) for pickup
+    - Let’s do [five thirty p.m.](pickup_time) for pickup
+    - How about [seven o'clock p.m.](pickup_time) for picking it up?
+    - Can I pick it up around [three forty five p.m.](pickup_time)?
+    - I’ll be there at [twelve fifteen p.m.](pickup_time) to pick up
+    - I’ll come at [four o'clock p.m.](pickup_time) to pick it up
+    - Let’s schedule pickup for [ten forty five a.m.](pickup_time)
+    - I'll be there at [seven o'clock p.m.](pickup_time) to get it
+    - [three thirty p.m.](pickup_time) is good for me to pick it up
+    - I’ll come to get it at [nine fifteen a.m.](pickup_time)
+    - I’ll be there around [midnight](pickup_time)
+    - I’ll pick it up at [twelve o'clock](pickup_time)
+    - How about [four o'clock](pickup_time) for pickup?
+    - Can I pick it up at [five o'clock](pickup_time)?
+    - I’ll come at [six p.m.](pickup_time)
+    - I’ll be there by [eight p.m.](pickup_time) to pick it up
+    - I'll pick it up around [three p.m.](pickup_time)
+    - I'll collect it at [nine o'clock](pickup_time)
+    - I’ll be there to pick it up at [ten o'clock p.m.](pickup_time)
+    - Let’s set the pickup time for [seven forty five p.m.](pickup_time)
+    - How does [eleven a.m.](pickup_time) sound for pickup?
+    - I'll pick it up at [two fifteen p.m.](pickup_time)
+    - I'll pick at [eleven thirty p.m.](pickup_time)
+    - I'll pick at [midnight](pickup_time)
+    - I'll pick at [eleven fifty p.m.](pickup_time)
+    - I'll pick at [twelve thirty a.m.](pickup_time)
+    - I'll pick at [nine thirty p.m.](pickup_time)
+    - I'll pick at [midnight](pickup_time)
+    - I'll pick at [eleven o'clock p.m.](pickup_time)
 - intent: approve_pickup_time
   examples: |
     - Yes, that works for me.

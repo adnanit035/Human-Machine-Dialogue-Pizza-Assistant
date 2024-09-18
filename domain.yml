@@ -155,6 +155,8 @@ responses:
   - text: Okay, Thank you for visiting Champ Pizza Hut. Have a great day!
   utter_response_to_deny_stop_request:
   - text: Okay, let me know if you need anything else.
+  utter_greet:
+    - text: Hello! Welcome to Champ Pizza Hut! How may I assist you today?
   action_utter_greet:
   - text: Hello! Welcome to Champ Pizza Hut! How may I assist you today?
   utter_greet_closed:
@@ -179,7 +181,7 @@ responses:
   - text: Great! We have added {pizza_quantity} {pizza_size} {pizza_type} pizza(s) to your order.
   utter_ask_topping_satisfaction:
   - text: |
-      Would you like to add/remove more flavor or are you happy with it? Feel free to customize further!.
+      Would you like to add or remove more flavor or are you happy with it? Feel free to customize further!
   utter_summarize_customized_toppings:
   - text: |
       Fantastic! You have customized your {pizza_type} pizza with your choices, pizza is uniquely yours! Let's move on to the next step in your pizza order.
@@ -215,6 +217,10 @@ responses:
   - text: No worries! Your order is still active.
   utter_no_active_order_to_cancel:
   - text: There’s no active order to cancel. Can I help you with anything else?
+  utter_ask_pizza_custom_toppings:
+  - text: Would you like to go for custom toppings on your {pizza_type} pizza?
+  utter_ask_topping_confirmation:
+  - text: Would you like to go with the standard toppings or customize your own toppings?
 
 actions:
 - action_submit_pizza_order_form

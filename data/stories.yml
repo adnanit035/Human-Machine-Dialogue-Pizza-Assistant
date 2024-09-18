@@ -136,6 +136,8 @@ stories:
     steps:
       - slot_was_set:
           - order_list: true
+#          - order_pickup_time: false
+#          - pickup_time: false
       - intent: cancel_complete_order
       - action: utter_confirm_cancel_order
       - intent: affirm
@@ -147,6 +149,8 @@ stories:
     steps:
       - slot_was_set:
           - order_list: true
+#          - order_pickup_time: false
+#          - pickup_time: false
       - intent: cancel_complete_order
       - action: utter_confirm_cancel_order
       - intent: deny
@@ -157,6 +161,8 @@ stories:
     steps:
       - slot_was_set:
           - order_list: false
+#          - order_pickup_time: false
+#          - pickup_time: false
       - intent: cancel_complete_order
       - action: utter_no_active_order_to_cancel
 
@@ -234,7 +240,6 @@ stories:
       - active_loop: pizza_order_form
       - intent: ask_custom_toppings_info
       - action: action_inform_available_toppings
-      - action: action_utter_ask_topping_confirmation
       - action: pizza_custom_topping_form
       - active_loop: pizza_custom_topping_form
 
@@ -2008,6 +2013,8 @@ stories:
                   - and Tomatoes
                 quantity: nine
                 price: 144.92
+#          - order_pickup_time: null
+#          - pickup_time: null
       - intent: cancel_complete_order
       - action: utter_confirm_cancel_order
       - intent: affirm
